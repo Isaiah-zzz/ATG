@@ -2,6 +2,8 @@ using Unity.VisualScripting;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEditor.Callbacks;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -12,8 +14,17 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask cam1Layer;
     [SerializeField] private LayerMask cam2Layer;
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private TrailRenderer tr;
     private BoxCollider2D boxCollider;
     private Rigidbody2D body;
+
+    private bool dashReady = true;
+    private bool dashing;
+    private float dashTime = 0.3f;
+    private float dashRefresh = .5f;
+
+
 
     [SerializeField] private GameObject cam1;
     [SerializeField] private GameObject cam2;
@@ -26,6 +37,12 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+
+        if(dashing)
+        {
+            return;
+        }
+
         float horizontalInput = Input.GetAxis("Horizontal");
 
         // flip player direction
@@ -38,7 +55,6 @@ public class NewBehaviourScript : MonoBehaviour
 
         if(transform.position.x < 13)
         {
-            print("CAM 1");
             cam1.SetActive(true);
             cam2.SetActive(false);
         }
@@ -63,13 +79,36 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Jump();
         }
-        
+
+        if (Input.GetKey(KeyCode.LeftShift) && dashReady)
+        {
+            StartCoroutine(Dash());
+            // Dash();
+        }
+
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
         
     }
 
     private void Jump(){
         body.velocity = new Vector2(body.velocity.x, jumpSpeed);
+    }
+
+    private IEnumerator Dash()
+    {
+        dashReady = false;
+        dashing = true;
+        float originalGravity = body.gravityScale;
+        body.gravityScale = 0f;
+        body.velocity = new Vector2(transform.localScale.x * dashSpeed, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        tr.emitting = false;
+        body.gravityScale = originalGravity;
+        dashing = false;
+        yield return new WaitForSeconds(dashRefresh);
+        dashReady = true;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision){
@@ -80,15 +119,4 @@ public class NewBehaviourScript : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    private bool inCam1()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, cam1Layer);
-        return raycastHit.collider != null;
-    }
-
-    private bool inCam2()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, cam2Layer);
-        return raycastHit.collider != null;
-    }
 }
