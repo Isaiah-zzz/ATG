@@ -43,17 +43,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -97,10 +97,86 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape: []
+    physicsShape:
+    - - {x: -306, y: 146}
+      - {x: -306, y: 78}
+      - {x: -238, y: 78}
+      - {x: -238, y: 144}
+      - {x: -240, y: 146}
+    - - {x: -225, y: 146}
+      - {x: -226, y: 144}
+      - {x: -226, y: 80}
+      - {x: -224, y: 78}
+      - {x: -158, y: 78}
+      - {x: -158, y: 146}
+    - - {x: -80, y: 146}
+      - {x: -146, y: 146}
+      - {x: -146, y: 78}
+      - {x: -83, y: 78}
+      - {x: -78, y: 83}
+      - {x: -78, y: 144}
+    - - {x: -306, y: 226}
+      - {x: -306, y: 158}
+      - {x: -239, y: 158}
+      - {x: -238, y: 160}
+      - {x: -238, y: 224}
+      - {x: -240, y: 226}
+    - - {x: -224, y: 226}
+      - {x: -226, y: 224}
+      - {x: -226, y: 160}
+      - {x: -224, y: 158}
+      - {x: -158, y: 158}
+      - {x: -158, y: 226}
+    - - {x: -146, y: 226}
+      - {x: -146, y: 158}
+      - {x: -78, y: 158}
+      - {x: -78, y: 226}
+    - - {x: -66, y: 226}
+      - {x: -66, y: 158}
+      - {x: 2, y: 158}
+      - {x: 2, y: 226}
+    - - {x: 16, y: 226}
+      - {x: 14, y: 224}
+      - {x: 14, y: 160}
+      - {x: 16, y: 158}
+      - {x: 80, y: 158}
+      - {x: 82, y: 160}
+      - {x: 82, y: 224}
+      - {x: 80, y: 226}
+    - - {x: -299, y: 306}
+      - {x: -302, y: 303}
+      - {x: -306, y: 298}
+      - {x: -306, y: 238}
+      - {x: -238, y: 238}
+      - {x: -238, y: 306}
+    - - {x: -224, y: 306}
+      - {x: -226, y: 304}
+      - {x: -226, y: 240}
+      - {x: -224, y: 238}
+      - {x: -158, y: 238}
+      - {x: -158, y: 306}
+    - - {x: -146, y: 306}
+      - {x: -146, y: 238}
+      - {x: -78, y: 238}
+      - {x: -78, y: 302}
+      - {x: -82, y: 306}
+    - - {x: -66, y: 306}
+      - {x: -66, y: 238}
+      - {x: 0, y: 238}
+      - {x: 2, y: 240}
+      - {x: 2, y: 304}
+      - {x: 0, y: 306}
+    - - {x: 16, y: 306}
+      - {x: 14, y: 304}
+      - {x: 14, y: 240}
+      - {x: 16, y: 238}
+      - {x: 80, y: 238}
+      - {x: 82, y: 240}
+      - {x: 82, y: 304}
+      - {x: 80, y: 306}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
