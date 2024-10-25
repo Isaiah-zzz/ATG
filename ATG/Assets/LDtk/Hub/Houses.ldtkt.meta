@@ -108,7 +108,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: b3f47a4b6ced04184ae4aa8344449239
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 16, y: 32}
+      - {x: -1, y: 9}
+      - {x: -19, y: -16}
+      - {x: 0, y: -16}
+      - {x: 12, y: -16}
+      - {x: 32, y: -16}
+      - {x: 32, y: 8}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: Houses_7
     originalName: 
@@ -122,7 +131,14 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 1e355f09ca9874dcda790a9094d89e05
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -17}
+      - {x: -7, y: -17}
+      - {x: 11, y: -17}
+      - {x: 32, y: -17}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: Houses_8
     originalName: 
@@ -136,7 +152,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 1cf2ed0a91d71493cb5c328ea2e5dbe0
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -17, y: 32}
+      - {x: -32, y: 32}
+      - {x: -32, y: -17}
+      - {x: -14, y: -17}
+      - {x: 0, y: -17}
+      - {x: 16, y: -17}
+      - {x: 8, y: -4}
+      - {x: -3, y: 11}
     tessellationDetail: 0
   - name: Houses_9
     originalName: 
@@ -18829,4 +18854,4 @@ ScriptedImporter:
     spriteOutline: []
     tessellationDetail: 0
   _secondaryTextures: []
-  _artifacts: {instanceID: 0}
+  _artifacts: {fileID: -2988177865379244337, guid: dd313ccc311e84bd58f3480ca5b1927b, type: 3}
