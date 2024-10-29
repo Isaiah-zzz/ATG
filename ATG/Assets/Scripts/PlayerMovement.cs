@@ -33,10 +33,18 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject cam1;
     [SerializeField] private GameObject cam2;
 
+    Animator animator;
+
+    private void Start()
+    {
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    }
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -44,12 +52,21 @@ public class NewBehaviourScript : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
 
         // flip player direction depending on movement
-        if(horizontalInput > 0.01f){
-            transform.localScale = new Vector3(playerScale, playerScale, playerScale);
-        } 
+        // if(horizontalInput > 0.01f){
+        //     transform.localScale = new Vector3(playerScale, playerScale, playerScale);
+        // } 
+        // else if (horizontalInput < -0.01f)
+        // {
+        //     transform.localScale = new Vector3(-playerScale, playerScale, playerScale);
+        // }
+
+        if (horizontalInput > 0.01f)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
         else if (horizontalInput < -0.01f)
         {
-            transform.localScale = new Vector3(-playerScale, playerScale, playerScale);
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
         // very basic detection for changing cameras depending on player position
@@ -79,11 +96,15 @@ public class NewBehaviourScript : MonoBehaviour
         {
             body.gravityScale = grav;
             coyoteTimeCounter = coyoteTime;
+            animator.SetBool("isJumping", false);
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+            animator.SetBool("isJumping", true);
         }
+
+        animator.SetFloat("yVelocity", body.velocity.y);
 
         // friction for velocity on x axis
         if(coyoteTimeCounter != 0 && IsGrounded())
@@ -155,6 +176,7 @@ public class NewBehaviourScript : MonoBehaviour
         else
         {
             body.velocity = new Vector2(horizontalInput * speed + xMomentum, body.velocity.y);
+            animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         }
         
     }
