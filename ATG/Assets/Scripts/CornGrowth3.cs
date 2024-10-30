@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class CornGrowth3 : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
     public GameObject spriteMask; // Reference to the GameObject with Sprite Mask component
-    public float shrinkSpeed = 0.5f; // Speed at which the mask shrinks
-    private bool isShrinking = false;
+    public float shrinkSpeed = 4f; // Speed at which the mask shrinks
+    private bool isShrinking = true;
+    private bool revealed = false;
     private float initY;
 
     void Start()
     {
         initY = transform.position.y + (transform.localScale.y / 2);
+        spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        // Detect if the "F" key is pressed once
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            isShrinking = true; // Start shrinking the mask
+        // if (Input.GetKeyDown(KeyCode.E))
+        // {
+        //     isShrinking = true; // Start shrinking the mask
+        // }
+
+        if (revealed && Input.GetKeyDown(KeyCode.R)) {
+            spriteRenderer.color = Color.grey;
         }
 
         // Shrink the mask downwards
@@ -33,7 +39,7 @@ public class CornGrowth3 : MonoBehaviour
             {
                 newHeight = 0; // Cap it to zero
                 isShrinking = false; // Stop shrinking when fully shrunk
-                Debug.Log("done");
+                revealed = true;
             }
 
             // Apply the new scale

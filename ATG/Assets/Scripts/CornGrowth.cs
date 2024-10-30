@@ -21,7 +21,7 @@ public class CornGrowth : MonoBehaviour
     void Update()
     {
         // Hold down the "E" key to start growing the sprite
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.G))
         {
             isGrowing = true;
         }
