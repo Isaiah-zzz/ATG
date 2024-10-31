@@ -34,7 +34,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject cam1;
     //[SerializeField] private GameObject cam2;
 
-    Animator animator;
+   Animator animator;
 
     private void Start()
     {

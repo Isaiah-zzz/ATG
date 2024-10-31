@@ -718,6 +718,7 @@ GameObject:
   - component: {fileID: 156587080}
   - component: {fileID: 156587079}
   - component: {fileID: 156587083}
+  - component: {fileID: 156587086}
   - component: {fileID: 156587084}
   - component: {fileID: 156587085}
   m_Layer: 0
@@ -1024,6 +1025,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &156587086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156587078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a69db061a2331548b83a131c1843f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tossablePrefab: {fileID: 3781112293687478788, guid: affaf3d48fc38b14bbaf84027cef767a, type: 3}
+  cornPrefab: {fileID: 7393297838317709663, guid: 4544cef1b9f7cfb47ac259fabac35585, type: 3}
+  tossForce: 7
+  throwableCirclePrefab: {fileID: 4315928568953197358, guid: c9b8288d324125d4ca12ebc217cfff3e, type: 3}
+  throwDistance: 6
 --- !u!1 &165459031
 GameObject:
   m_ObjectHideFlags: 0
