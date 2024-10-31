@@ -61,16 +61,16 @@ public class NewBehaviourScript : MonoBehaviour
 
         // very basic detection for changing cameras depending on player position
         // FIXME: needs more robust implementation
-        if(transform.position.x < 13)
-        {
-            cam1.SetActive(true);
-            cam2.SetActive(false);
-        }
-        if (transform.position.x > 13)
-        {
-            cam2.SetActive(true);
-            cam1.SetActive(false);
-        }
+        // if(transform.position.x < 13)
+        // {
+        //     cam1.SetActive(true);
+        //     cam2.SetActive(false);
+        // }
+        // if (transform.position.x > 13)
+        // {
+        //     cam2.SetActive(true);
+        //     cam1.SetActive(false);
+        // }
 
         // cause player to fall faster after being up in air for a bit
         if (body.velocity.y < 0)
@@ -220,6 +220,22 @@ public class NewBehaviourScript : MonoBehaviour
         {
             xMomentum = longJumpPower;
             body.velocity = new Vector2(xMomentum, xMomentum);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.name == "Enemy")
+        {
+            transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.name == "Enemy")
+        {
+            transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
         }
     }
 
