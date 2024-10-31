@@ -718,6 +718,7 @@ GameObject:
   - component: {fileID: 156587080}
   - component: {fileID: 156587079}
   - component: {fileID: 156587083}
+  - component: {fileID: 156587086}
   - component: {fileID: 156587084}
   - component: {fileID: 156587085}
   m_Layer: 0
@@ -1024,6 +1025,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &156587086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156587078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a69db061a2331548b83a131c1843f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tossablePrefab: {fileID: 3781112293687478788, guid: affaf3d48fc38b14bbaf84027cef767a, type: 3}
+  cornPrefab: {fileID: 7393297838317709663, guid: 4544cef1b9f7cfb47ac259fabac35585, type: 3}
+  tossForce: 7
+  throwableCirclePrefab: {fileID: 4315928568953197358, guid: c9b8288d324125d4ca12ebc217cfff3e, type: 3}
+  throwDistance: 6
 --- !u!1 &165459031
 GameObject:
   m_ObjectHideFlags: 0
@@ -14000,71 +14018,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1937799931434487733
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2314983694105968043, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: cam1
-      value: 
-      objectReference: {fileID: 519420028}
-    - target: {fileID: 2314983694105968043, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: cam2
-      value: 
-      objectReference: {fileID: 1185620042}
-    - target: {fileID: 2454403170822714163, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833084602088500055, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6ad8930cf03585f46846611d4102de5b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

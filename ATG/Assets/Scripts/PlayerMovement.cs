@@ -34,7 +34,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject cam1;
     //[SerializeField] private GameObject cam2;
 
-   // Animator animator;
+   Animator animator;
 
     private void Start()
     {
@@ -50,7 +50,7 @@ public class NewBehaviourScript : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         playerScale = transform.localScale.x;
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -104,15 +104,15 @@ public class NewBehaviourScript : MonoBehaviour
         {
             body.gravityScale = grav;
             coyoteTimeCounter = coyoteTime;
-            //animator.SetBool("isJumping", false);
+            animator.SetBool("isJumping", false);
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            //animator.SetBool("isJumping", true);
+            animator.SetBool("isJumping", true);
         }
 
-        //animator.SetFloat("yVelocity", body.velocity.y);
+        animator.SetFloat("yVelocity", body.velocity.y);
 
         // friction for velocity on x axis
         if(coyoteTimeCounter != 0 && IsGrounded())
@@ -214,7 +214,7 @@ public class NewBehaviourScript : MonoBehaviour
         else
         {
             body.velocity = new Vector2(horizontalInput * speed + xMomentum, body.velocity.y);
-            //animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
+            animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         }
         
     }
