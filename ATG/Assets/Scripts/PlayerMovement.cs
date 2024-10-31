@@ -155,7 +155,7 @@ public class NewBehaviourScript : MonoBehaviour
             Vector2 DragEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // Vector2 _velocity = (DragEndPos - DragStartPos) * longJumpPower;
             float xPow = (DragEndPos.x - DragStartPos.x) * longJumpPower;
-            float yPow = Mathf.Min(13, DragEndPos.y - DragStartPos.y) * longJumpPower;
+            float yPow = Mathf.Min(20, DragEndPos.y - DragStartPos.y) * longJumpPower;
             Vector2 _velocity = new(xPow, yPow);
             print("x: "+ (DragEndPos.x - DragStartPos.x));
             print("y: "+ (DragEndPos.y - DragStartPos.y));
@@ -246,21 +246,21 @@ public class NewBehaviourScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.name == "Enemy")
-        {
-            transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if(other.name == "Enemy")
+    //     {
+    //         transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
+    //     }
+    // }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.name == "Enemy")
-        {
-            transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
-        }
-    }
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if (other.name == "Enemy")
+    //     {
+    //         transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
+    //     }
+    // }
 
     // checking if player is grounded with raycast
     private bool IsGrounded(){
