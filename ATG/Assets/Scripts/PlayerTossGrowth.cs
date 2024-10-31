@@ -6,7 +6,10 @@ public class PlayerTossGrowth : MonoBehaviour
 {
     public GameObject tossablePrefab; // Reference to the tossable object prefab
     public GameObject cornPrefab;
-    public float tossForce = 3f; // Upward force for the toss
+    public float tossForce = 7f; // Upward force for the toss
+
+    public GameObject throwableCirclePrefab;  // Assign your throwable circle prefab in the inspector
+    public float throwDistance = 6f;
 
     void Update()
     {
@@ -14,6 +17,19 @@ public class PlayerTossGrowth : MonoBehaviour
         {
             TossObject();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            ThrowCircle();
+        }
+    }
+
+    void ThrowCircle()
+    {
+        float playerDirection = transform.localScale.x > 0 ? 1f : -1f;
+        Vector3 dir = new Vector3(playerDirection, 0, 0);
+        // Instantiate the circle at the specified throw point
+        Instantiate(throwableCirclePrefab, transform.position + dir * throwDistance, transform.rotation);
     }
 
     void TossObject()
