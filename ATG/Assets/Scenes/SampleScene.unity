@@ -786,7 +786,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09560909, y: 0.3358491}
+  m_Offset: {x: -0.0956091, y: 0.27111906}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.2231405, y: 0}
@@ -797,7 +797,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.40488392, y: 0.6696882}
+  m_Size: {x: 0.40488392, y: 0.5402281}
   m_EdgeRadius: 0
 --- !u!212 &156587081
 SpriteRenderer:
@@ -880,15 +880,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpPower: 16
-  longJumpXPower: 4
-  longJumpYPower: 4
-  longJumpXCap: 25
-  longJumpYCap: 25
   grav: 3
   gravMultiplier: 2.25
   maxFallSpeed: 26
   coyoteTime: 0.075
   jumpBufferTime: 0.1
+  catapultXPower: 0
+  catapultYPower: 0
+  catapultXCap: 0
+  catapultYCap: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -8959,7 +8959,7 @@ GameObject:
   - component: {fileID: 1406275731}
   - component: {fileID: 1406275734}
   - component: {fileID: 1406275735}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vole
   m_TagString: NPC
   m_Icon: {fileID: 0}
