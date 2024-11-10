@@ -2096,7 +2096,18 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: d83cd60712e36444c8576657baf3f039
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 27, y: 21}
+      - {x: 9, y: 16}
+      - {x: -5, y: 15}
+      - {x: -30, y: 22}
+      - {x: -30, y: 26}
+      - {x: -4, y: 19}
+      - {x: 7, y: 19}
+      - {x: 26, y: 25}
+      - {x: 32, y: 25}
+      - {x: 32, y: 21}
     tessellationDetail: 0
   - name: Houses_145
     originalName: 
@@ -2110,7 +2121,18 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 2e3bc0eed57194e3e92215f809e1c9b2
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 24, y: 22}
+      - {x: 7, y: 14}
+      - {x: -10, y: 14}
+      - {x: -32, y: 21}
+      - {x: -32, y: 25}
+      - {x: -10, y: 18}
+      - {x: 6, y: 18}
+      - {x: 24, y: 26}
+      - {x: 32, y: 24}
+      - {x: 32, y: 20}
     tessellationDetail: 0
   - name: Houses_146
     originalName: 
@@ -2124,7 +2146,18 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 43b9a6065297745c7b3253202a85404b
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 22, y: 22}
+      - {x: 0, y: 15}
+      - {x: -15, y: 14}
+      - {x: -32, y: 20}
+      - {x: -32, y: 24}
+      - {x: -14, y: 18}
+      - {x: 0, y: 18}
+      - {x: 22, y: 26}
+      - {x: 32, y: 23}
+      - {x: 32, y: 18}
     tessellationDetail: 0
   - name: Houses_147
     originalName: 
@@ -2138,7 +2171,18 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 3d6b316dd0d75490fabbde48039a3949
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 25, y: 23}
+      - {x: -1, y: 14}
+      - {x: -14, y: 14}
+      - {x: -32, y: 18}
+      - {x: -32, y: 22}
+      - {x: -13, y: 17}
+      - {x: -1, y: 17}
+      - {x: 25, y: 27}
+      - {x: 32, y: 26}
+      - {x: 32, y: 21}
     tessellationDetail: 0
   - name: Houses_148
     originalName: 
@@ -2152,7 +2196,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 2dfb83bb0ae8d4ba78b837e0f9d6a766
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 17, y: 15}
+      - {x: -4, y: 15}
+      - {x: -32, y: 21}
+      - {x: -32, y: 25}
+      - {x: -4, y: 18}
+      - {x: 16, y: 18}
+      - {x: 32, y: 22}
+      - {x: 32, y: 18}
     tessellationDetail: 0
   - name: Houses_149
     originalName: 
@@ -6860,8 +6913,8 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: 27, y: 32}
-      - {x: 14, y: 17}
-      - {x: 19, y: 18}
+      - {x: 12, y: 15}
+      - {x: 17, y: 15}
       - {x: 31, y: 32}
     tessellationDetail: 0
   - name: Houses_481
