@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - cam1Layer
   - cam2Layer
+  - NPC
+  - Enemy
   layers:
   - Default
   - TransparentFX

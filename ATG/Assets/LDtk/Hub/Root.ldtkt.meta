@@ -236,17 +236,19 @@ ScriptedImporter:
     spriteID: f5cf979f5b34149e993f1c16ffe040b1
     spriteOutline:
     - shape:
+      - {x: 1, y: 19}
+      - {x: -5, y: 21}
+      - {x: -20, y: 21}
+      - {x: -20, y: 17}
+      - {x: -5, y: 17}
       - {x: 3, y: 14}
-      - {x: -9, y: 15}
-      - {x: -18, y: 15}
-      - {x: -23, y: 8}
-      - {x: -29, y: 1}
-      - {x: -14, y: 0}
-      - {x: 2, y: 0}
-      - {x: 15, y: -4}
-      - {x: 32, y: -12}
+      - {x: 6, y: 9}
+      - {x: 15, y: 2}
+      - {x: 32, y: 1}
       - {x: 32, y: 5}
-      - {x: 15, y: 5}
+      - {x: 16, y: 6}
+      - {x: 11, y: 9}
+      - {x: 8, y: 14}
     tessellationDetail: 0
   - name: Root_14
     originalName: 
@@ -263,19 +265,22 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: 23, y: -20}
-      - {x: 13, y: -17}
-      - {x: 9, y: -24}
-      - {x: 32, y: -32}
+      - {x: 8, y: -20}
+      - {x: 8, y: -23}
+      - {x: 32, y: -24}
       - {x: 32, y: -21}
     - shape:
-      - {x: -26, y: 2}
-      - {x: -32, y: 3}
-      - {x: -32, y: -11}
-      - {x: -28, y: -12}
-      - {x: -15, y: -11}
-      - {x: -4, y: -7}
+      - {x: -28, y: 4}
+      - {x: -32, y: 5}
+      - {x: -32, y: 1}
+      - {x: -23, y: -2}
+      - {x: -16, y: -4}
+      - {x: -8, y: -5}
+      - {x: -6, y: -7}
+      - {x: -4, y: -6}
       - {x: -6, y: -2}
-      - {x: -20, y: -1}
+      - {x: -16, y: -1}
+      - {x: -23, y: 1}
     tessellationDetail: 0
   - name: Root_15
     originalName: 
@@ -291,10 +296,13 @@ ScriptedImporter:
     spriteID: 61fc5ae61f837423ea122dff75390c84
     spriteOutline:
     - shape:
-      - {x: -16, y: -32}
+      - {x: -26, y: -24}
+      - {x: -20, y: -32}
+      - {x: -15, y: -32}
+      - {x: -22, y: -24}
       - {x: -26, y: -21}
-      - {x: -32, y: -20}
-      - {x: -32, y: -32}
+      - {x: -32, y: -21}
+      - {x: -32, y: -24}
     tessellationDetail: 0
   - name: Root_16
     originalName: 
@@ -411,9 +419,14 @@ ScriptedImporter:
       - {x: 28, y: -15}
       - {x: 24, y: -21}
       - {x: 14, y: -32}
-      - {x: 27, y: -32}
-      - {x: 32, y: -27}
+      - {x: 19, y: -32}
+      - {x: 32, y: -15}
       - {x: 32, y: -9}
+    - shape:
+      - {x: 24, y: -21}
+      - {x: 24, y: -21}
+      - {x: 24, y: -21}
+      - {x: 24, y: -21}
     tessellationDetail: 0
   - name: Root_24
     originalName: 
@@ -429,10 +442,14 @@ ScriptedImporter:
     spriteID: 351c133f0f9f640ad9162bec0189ccc1
     spriteOutline:
     - shape:
+      - {x: -22, y: -9}
+      - {x: -29, y: -7}
+      - {x: -32, y: -8}
       - {x: -32, y: -15}
-      - {x: -32, y: -25}
-      - {x: -9, y: -23}
-      - {x: -5, y: -15}
+      - {x: -28, y: -12}
+      - {x: 1, y: -13}
+      - {x: 2, y: -11}
+      - {x: 1, y: -9}
     tessellationDetail: 0
   - name: Root_25
     originalName: 
@@ -448,15 +465,23 @@ ScriptedImporter:
     spriteID: e04f4fd48464b4c418d261cba9b24946
     spriteOutline:
     - shape:
-      - {x: -32, y: 32}
-      - {x: -26, y: 26}
-      - {x: -15, y: 18}
-      - {x: 5, y: 15}
+      - {x: -20, y: 32}
+      - {x: -14, y: 27}
+      - {x: -8, y: 23}
+      - {x: 7, y: 23}
+      - {x: 13, y: 26}
+      - {x: 16, y: 24}
       - {x: 17, y: 26}
       - {x: 15, y: 29}
-      - {x: 8, y: 26}
+      - {x: 12, y: 29}
+      - {x: 6, y: 26}
       - {x: -7, y: 26}
-      - {x: -17, y: 32}
+      - {x: -15, y: 32}
+    - shape:
+      - {x: 17, y: -32}
+      - {x: 17, y: -31}
+      - {x: 32, y: -31}
+      - {x: 32, y: -32}
     tessellationDetail: 0
   - name: Root_26
     originalName: 
@@ -556,11 +581,19 @@ ScriptedImporter:
     spriteID: 02fb97d2124d74e6f9ab8ad425441041
     spriteOutline:
     - shape:
-      - {x: 17, y: -9}
-      - {x: 0, y: -27}
+      - {x: 21, y: 1}
+      - {x: 17, y: -7}
+      - {x: 12, y: -12}
+      - {x: 3, y: -23}
+      - {x: -1, y: -25}
+      - {x: -9, y: -29}
+      - {x: -17, y: -29}
       - {x: -20, y: -32}
-      - {x: 10, y: -32}
-      - {x: 32, y: -10}
+      - {x: -6, y: -32}
+      - {x: 7, y: -25}
+      - {x: 15, y: -14}
+      - {x: 24, y: -2}
+      - {x: 32, y: 7}
       - {x: 32, y: 12}
     tessellationDetail: 0
   - name: Root_33
@@ -577,15 +610,20 @@ ScriptedImporter:
     spriteID: 30a5134d378f24bd199dfa6dd607767b
     spriteOutline:
     - shape:
-      - {x: 16, y: 32}
-      - {x: 3, y: 18}
-      - {x: -12, y: 13}
+      - {x: 14, y: 32}
+      - {x: 8, y: 24}
+      - {x: -2, y: 17}
+      - {x: -11, y: 16}
+      - {x: -14, y: 14}
+      - {x: -28, y: 14}
       - {x: -32, y: 11}
-      - {x: -32, y: -9}
-      - {x: -25, y: 1}
-      - {x: -1, y: 4}
-      - {x: 14, y: 12}
-      - {x: 27, y: 32}
+      - {x: -32, y: 7}
+      - {x: -26, y: 10}
+      - {x: -11, y: 10}
+      - {x: -10, y: 12}
+      - {x: 0, y: 13}
+      - {x: 7, y: 18}
+      - {x: 19, y: 32}
     tessellationDetail: 0
   - name: Root_34
     originalName: 
@@ -601,13 +639,15 @@ ScriptedImporter:
     spriteID: 3eff14961411946c48939fc4a7fd68a8
     spriteOutline:
     - shape:
-      - {x: 15, y: -7}
+      - {x: 15, y: -8}
       - {x: 9, y: -11}
-      - {x: 11, y: -15}
-      - {x: 22, y: -15}
-      - {x: 30, y: -15}
-      - {x: 32, y: -14}
-      - {x: 32, y: -2}
+      - {x: 8, y: -15}
+      - {x: 11, y: -16}
+      - {x: 14, y: -12}
+      - {x: 17, y: -11}
+      - {x: 26, y: -7}
+      - {x: 32, y: -5}
+      - {x: 32, y: -1}
       - {x: 23, y: -5}
     tessellationDetail: 0
   - name: Root_35
@@ -625,17 +665,17 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: 17, y: 32}
-      - {x: 5, y: 27}
-      - {x: -4, y: 17}
-      - {x: -20, y: 2}
-      - {x: -32, y: -2}
-      - {x: -32, y: -14}
-      - {x: -18, y: -7}
-      - {x: 6, y: 15}
-      - {x: 14, y: 21}
-      - {x: 23, y: 21}
-      - {x: 30, y: 11}
-      - {x: 32, y: 2}
+      - {x: 7, y: 30}
+      - {x: -3, y: 21}
+      - {x: -18, y: 7}
+      - {x: -32, y: -1}
+      - {x: -32, y: -5}
+      - {x: -19, y: 2}
+      - {x: -3, y: 16}
+      - {x: 8, y: 26}
+      - {x: 19, y: 30}
+      - {x: 29, y: 30}
+      - {x: 32, y: 29}
       - {x: 32, y: 32}
     tessellationDetail: 0
   - name: Root_36
@@ -653,9 +693,9 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: 32}
-      - {x: -32, y: 18}
-      - {x: -19, y: 19}
-      - {x: -20, y: 32}
+      - {x: -32, y: 29}
+      - {x: -19, y: 29}
+      - {x: -19, y: 32}
     tessellationDetail: 0
   - name: Root_37
     originalName: 
@@ -727,14 +767,22 @@ ScriptedImporter:
     spriteID: 2295414cac3aa4536a83225e78031b8d
     spriteOutline:
     - shape:
-      - {x: -23, y: 9}
-      - {x: -23, y: -5}
-      - {x: -5, y: -11}
-      - {x: 14, y: -16}
-      - {x: 32, y: -27}
+      - {x: -18, y: 12}
+      - {x: -25, y: 12}
+      - {x: -25, y: 9}
+      - {x: -12, y: 9}
+      - {x: -1, y: 8}
+      - {x: 5, y: 2}
+      - {x: 22, y: -9}
+      - {x: 32, y: -16}
       - {x: 32, y: -13}
-      - {x: 16, y: -3}
-      - {x: -1, y: 9}
+      - {x: 23, y: -5}
+      - {x: 16, y: -2}
+      - {x: 7, y: 4}
+      - {x: 2, y: 10}
+      - {x: -2, y: 12}
+      - {x: -7, y: 13}
+      - {x: -17, y: 13}
     tessellationDetail: 0
   - name: Root_42
     originalName: 
@@ -751,18 +799,16 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: -13}
-      - {x: -32, y: -29}
-      - {x: -27, y: -32}
-      - {x: -12, y: -32}
-      - {x: -16, y: -28}
+      - {x: -32, y: -16}
+      - {x: -15, y: -32}
+      - {x: -11, y: -32}
+      - {x: -16, y: -27}
       - {x: -24, y: -19}
     - shape:
       - {x: -20, y: 32}
-      - {x: -17, y: 28}
-      - {x: -8, y: 27}
-      - {x: 7, y: 29}
-      - {x: 11, y: 31}
-      - {x: 12, y: 32}
+      - {x: -19, y: 28}
+      - {x: -16, y: 29}
+      - {x: -16, y: 32}
     tessellationDetail: 0
   - name: Root_43
     originalName: 
@@ -792,14 +838,15 @@ ScriptedImporter:
     spriteID: 8c5a860f6f54d4c49819167bd5beed1a
     spriteOutline:
     - shape:
-      - {x: -6, y: 6}
-      - {x: -27, y: 6}
-      - {x: -18, y: -12}
-      - {x: -6, y: -14}
-      - {x: 11, y: -15}
-      - {x: 24, y: -15}
-      - {x: 32, y: -17}
-      - {x: 32, y: -6}
+      - {x: -1, y: 5}
+      - {x: -6, y: 10}
+      - {x: -30, y: 11}
+      - {x: -30, y: 7}
+      - {x: -8, y: 5}
+      - {x: 6, y: -1}
+      - {x: 17, y: -6}
+      - {x: 32, y: -9}
+      - {x: 32, y: -5}
       - {x: 13, y: 0}
     tessellationDetail: 0
   - name: Root_45
@@ -816,13 +863,14 @@ ScriptedImporter:
     spriteID: 8b7e7468f7c4f4622a43c032d3de2f5d
     spriteOutline:
     - shape:
-      - {x: -32, y: -17}
-      - {x: -21, y: -21}
-      - {x: -5, y: -32}
+      - {x: -32, y: -9}
+      - {x: -19, y: -11}
+      - {x: -8, y: -17}
+      - {x: 5, y: -32}
       - {x: 10, y: -32}
       - {x: 3, y: -25}
-      - {x: -6, y: -15}
-      - {x: -18, y: -8}
+      - {x: -6, y: -14}
+      - {x: -18, y: -7}
       - {x: -32, y: -5}
     tessellationDetail: 0
   - name: Root_46
@@ -923,14 +971,14 @@ ScriptedImporter:
     spriteID: e13525c8675ea437684c20b0c06a859a
     spriteOutline:
     - shape:
-      - {x: -26, y: 32}
-      - {x: -19, y: 25}
-      - {x: 4, y: 5}
-      - {x: 16, y: 1}
-      - {x: 32, y: 1}
-      - {x: 32, y: 12}
-      - {x: 12, y: 13}
-      - {x: -3, y: 23}
+      - {x: -16, y: 32}
+      - {x: -3, y: 20}
+      - {x: 14, y: 9}
+      - {x: 32, y: 9}
+      - {x: 32, y: 13}
+      - {x: 15, y: 13}
+      - {x: 11, y: 14}
+      - {x: -2, y: 23}
       - {x: -11, y: 32}
     tessellationDetail: 0
   - name: Root_53
@@ -947,13 +995,15 @@ ScriptedImporter:
     spriteID: e4ad7be33f1254597aeb5cc8db023c1b
     spriteOutline:
     - shape:
-      - {x: 3, y: 13}
-      - {x: -32, y: 12}
-      - {x: -32, y: 1}
-      - {x: -17, y: 2}
-      - {x: 1, y: 3}
-      - {x: 17, y: -1}
-      - {x: 32, y: -6}
+      - {x: 3, y: 14}
+      - {x: -27, y: 14}
+      - {x: -32, y: 13}
+      - {x: -32, y: 9}
+      - {x: -27, y: 10}
+      - {x: -18, y: 10}
+      - {x: 2, y: 10}
+      - {x: 18, y: 6}
+      - {x: 32, y: -3}
       - {x: 32, y: 0}
       - {x: 18, y: 9}
     tessellationDetail: 0
@@ -972,7 +1022,7 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: 0}
-      - {x: -32, y: -7}
+      - {x: -32, y: -3}
       - {x: -29, y: -6}
       - {x: -27, y: -4}
       - {x: -29, y: -3}
@@ -992,14 +1042,13 @@ ScriptedImporter:
     spriteID: 0195cb2de66d840e7b2955c3dd81d190
     spriteOutline:
     - shape:
-      - {x: 11, y: 32}
-      - {x: -5, y: 32}
-      - {x: 0, y: 27}
-      - {x: 11, y: 17}
-      - {x: 23, y: 5}
-      - {x: 32, y: 1}
-      - {x: 32, y: 12}
-      - {x: 18, y: 23}
+      - {x: 10, y: 32}
+      - {x: 5, y: 32}
+      - {x: 13, y: 24}
+      - {x: 25, y: 14}
+      - {x: 32, y: 9}
+      - {x: 32, y: 13}
+      - {x: 19, y: 23}
     tessellationDetail: 0
   - name: Root_56
     originalName: 
@@ -1015,14 +1064,16 @@ ScriptedImporter:
     spriteID: fd99106f41bb54aea8a0026e1d782b71
     spriteOutline:
     - shape:
-      - {x: -32, y: 12}
-      - {x: -32, y: 0}
-      - {x: -10, y: -5}
-      - {x: 8, y: -10}
-      - {x: 9, y: -8}
-      - {x: 5, y: -3}
-      - {x: -6, y: 3}
-      - {x: -22, y: 7}
+      - {x: -32, y: 13}
+      - {x: -32, y: 8}
+      - {x: -24, y: 5}
+      - {x: -9, y: 2}
+      - {x: 1, y: -4}
+      - {x: 8, y: -11}
+      - {x: 10, y: -8}
+      - {x: 6, y: -3}
+      - {x: -8, y: 5}
+      - {x: -22, y: 8}
     tessellationDetail: 0
   - name: Root_57
     originalName: 
@@ -1092,7 +1143,13 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 4888510feadda4bb3997b928c9cdd725
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 23, y: -32}
+      - {x: 25, y: -30}
+      - {x: 32, y: -27}
+      - {x: 32, y: -31}
+      - {x: 29, y: -32}
     tessellationDetail: 0
   - name: Root_62
     originalName: 
@@ -1106,7 +1163,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 66691a4954fa44d4a954f7fd46508246
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: -30}
+      - {x: -32, y: -26}
+      - {x: -22, y: -26}
+      - {x: -22, y: -30}
     tessellationDetail: 0
   - name: Root_63
     originalName: 
@@ -1136,18 +1198,21 @@ ScriptedImporter:
     spriteID: 6e8188a9e87394f0d9a52a4225039990
     spriteOutline:
     - shape:
+      - {x: 28, y: 32}
       - {x: 24, y: 32}
-      - {x: 11, y: 15}
-      - {x: 4, y: 4}
-      - {x: -4, y: -14}
-      - {x: -11, y: -24}
+      - {x: 10, y: 15}
+      - {x: 5, y: 9}
+      - {x: 1, y: 1}
+      - {x: -5, y: -14}
+      - {x: -12, y: -23}
       - {x: -20, y: -32}
-      - {x: 0, y: -32}
-      - {x: 12, y: -18}
-      - {x: 16, y: -1}
-      - {x: 23, y: 7}
-      - {x: 32, y: 7}
-      - {x: 32, y: 32}
+      - {x: -15, y: -32}
+      - {x: -2, y: -16}
+      - {x: 9, y: 7}
+      - {x: 19, y: 20}
+      - {x: 26, y: 28}
+      - {x: 32, y: 26}
+      - {x: 32, y: 30}
     tessellationDetail: 0
   - name: Root_65
     originalName: 
@@ -1163,13 +1228,17 @@ ScriptedImporter:
     spriteID: 7803f9c52afed4f54a68a452d4995e6b
     spriteOutline:
     - shape:
-      - {x: -32, y: -9}
-      - {x: -3, y: -11}
-      - {x: 24, y: -11}
-      - {x: 32, y: -15}
-      - {x: 32, y: 0}
-      - {x: 12, y: 5}
-      - {x: -10, y: 14}
+      - {x: -32, y: 27}
+      - {x: -23, y: 22}
+      - {x: -5, y: 8}
+      - {x: 14, y: 2}
+      - {x: 32, y: -2}
+      - {x: 32, y: 2}
+      - {x: 16, y: 6}
+      - {x: 5, y: 8}
+      - {x: -5, y: 12}
+      - {x: -11, y: 18}
+      - {x: -15, y: 20}
       - {x: -20, y: 25}
       - {x: -32, y: 30}
     tessellationDetail: 0
@@ -1187,13 +1256,15 @@ ScriptedImporter:
     spriteID: a4c0e7c6d9e9c497db1091e3a0933892
     spriteOutline:
     - shape:
-      - {x: -15, y: -32}
-      - {x: 2, y: -32}
-      - {x: -3, y: -26}
-      - {x: -8, y: -20}
+      - {x: -19, y: -12}
+      - {x: 0, y: -32}
+      - {x: 5, y: -32}
+      - {x: -2, y: -25}
+      - {x: -7, y: -19}
+      - {x: -16, y: -10}
       - {x: -22, y: -6}
-      - {x: -32, y: 0}
-      - {x: -32, y: -15}
+      - {x: -32, y: 1}
+      - {x: -32, y: -3}
     tessellationDetail: 0
   - name: Root_67
     originalName: 
@@ -1265,18 +1336,22 @@ ScriptedImporter:
     spriteID: bf53558f79114406cac3820ddc8dcecd
     spriteOutline:
     - shape:
-      - {x: 24, y: 31}
-      - {x: 19, y: 19}
-      - {x: 2, y: 3}
-      - {x: -14, y: -9}
+      - {x: 23, y: 32}
+      - {x: 22, y: 26}
+      - {x: 18, y: 21}
+      - {x: 0, y: 4}
+      - {x: -12, y: -5}
+      - {x: -20, y: -12}
       - {x: -29, y: -24}
+      - {x: -32, y: -29}
       - {x: -32, y: -32}
-      - {x: -12, y: -32}
-      - {x: 1, y: -11}
-      - {x: 16, y: -1}
-      - {x: 24, y: 5}
-      - {x: 32, y: 5}
-      - {x: 32, y: 32}
+      - {x: -29, y: -32}
+      - {x: -19, y: -17}
+      - {x: -10, y: -8}
+      - {x: -3, y: -4}
+      - {x: 11, y: 8}
+      - {x: 24, y: 21}
+      - {x: 29, y: 32}
     tessellationDetail: 0
   - name: Root_72
     originalName: 
@@ -1290,13 +1365,7 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 9110eeeb3cb6e47c2b96ef1973df3ff6
-    spriteOutline:
-    - shape:
-      - {x: -32, y: 32}
-      - {x: -32, y: 6}
-      - {x: -17, y: 6}
-      - {x: -18, y: 23}
-      - {x: -22, y: 32}
+    spriteOutline: []
     tessellationDetail: 0
   - name: Root_73
     originalName: 
@@ -1312,17 +1381,16 @@ ScriptedImporter:
     spriteID: 07358b9b19a364fa7a5fca2dc4e10478
     spriteOutline:
     - shape:
-      - {x: -6, y: 23}
-      - {x: -14, y: 30}
-      - {x: -15, y: 25}
-      - {x: -12, y: 17}
-      - {x: -3, y: 10}
-      - {x: 12, y: 8}
-      - {x: 26, y: 10}
-      - {x: 32, y: 12}
-      - {x: 32, y: 25}
-      - {x: 23, y: 21}
-      - {x: 9, y: 20}
+      - {x: -5, y: 23}
+      - {x: -13, y: 31}
+      - {x: -16, y: 29}
+      - {x: -9, y: 21}
+      - {x: 3, y: 18}
+      - {x: 17, y: 18}
+      - {x: 32, y: 22}
+      - {x: 32, y: 26}
+      - {x: 22, y: 23}
+      - {x: 9, y: 22}
     tessellationDetail: 0
   - name: Root_74
     originalName: 
@@ -1338,14 +1406,12 @@ ScriptedImporter:
     spriteID: 874a6daa1381c4f11a456bcab0abe99f
     spriteOutline:
     - shape:
-      - {x: 0, y: 32}
-      - {x: -20, y: 32}
+      - {x: -15, y: 32}
+      - {x: -21, y: 32}
       - {x: -32, y: 26}
-      - {x: -32, y: 12}
-      - {x: -23, y: 18}
-      - {x: -12, y: 23}
-      - {x: -5, y: 28}
-      - {x: -1, y: 31}
+      - {x: -32, y: 22}
+      - {x: -27, y: 25}
+      - {x: -21, y: 28}
     tessellationDetail: 0
   - name: Root_75
     originalName: 
@@ -1375,15 +1441,16 @@ ScriptedImporter:
     spriteID: 29b932287cc4249c3ba2bc14fd0f4873
     spriteOutline:
     - shape:
-      - {x: -15, y: 32}
-      - {x: -8, y: 23}
-      - {x: 1, y: 15}
-      - {x: 10, y: 7}
-      - {x: 21, y: -1}
-      - {x: 32, y: -6}
-      - {x: 32, y: 4}
-      - {x: 16, y: 17}
-      - {x: 2, y: 32}
+      - {x: 0, y: 32}
+      - {x: 4, y: 27}
+      - {x: 14, y: 17}
+      - {x: 23, y: 9}
+      - {x: 32, y: 2}
+      - {x: 32, y: 6}
+      - {x: 17, y: 19}
+      - {x: 10, y: 25}
+      - {x: 9, y: 28}
+      - {x: 5, y: 32}
     tessellationDetail: 0
   - name: Root_77
     originalName: 
@@ -1399,13 +1466,14 @@ ScriptedImporter:
     spriteID: b360d5a48553e4b76aafb61ec21b7d54
     spriteOutline:
     - shape:
-      - {x: -19, y: 1}
-      - {x: -32, y: 5}
-      - {x: -32, y: -7}
-      - {x: 21, y: -7}
-      - {x: 32, y: -11}
-      - {x: 32, y: -3}
-      - {x: 18, y: 1}
+      - {x: -19, y: 2}
+      - {x: -32, y: 6}
+      - {x: -32, y: 2}
+      - {x: -23, y: -2}
+      - {x: 19, y: -2}
+      - {x: 32, y: -6}
+      - {x: 32, y: -2}
+      - {x: 18, y: 2}
     tessellationDetail: 0
   - name: Root_78
     originalName: 
@@ -1421,14 +1489,14 @@ ScriptedImporter:
     spriteID: a0ed4394dfa3a433ba9a69b39907d786
     spriteOutline:
     - shape:
-      - {x: -32, y: -3}
-      - {x: -32, y: -11}
-      - {x: -30, y: -13}
-      - {x: -28, y: -14}
-      - {x: -25, y: -15}
-      - {x: -24, y: -14}
-      - {x: -24, y: -12}
-      - {x: -27, y: -7}
+      - {x: -32, y: -2}
+      - {x: -32, y: -6}
+      - {x: -28, y: -9}
+      - {x: -24, y: -16}
+      - {x: -22, y: -14}
+      - {x: -23, y: -12}
+      - {x: -24, y: -9}
+      - {x: -27, y: -5}
     tessellationDetail: 0
   - name: Root_79
     originalName: 
@@ -1456,7 +1524,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: a209e4cc658ed4dbc87199df95520b2a
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 28, y: 26}
+      - {x: 31, y: 32}
+      - {x: 32, y: 32}
+      - {x: 32, y: 26}
     tessellationDetail: 0
   - name: Root_81
     originalName: 
@@ -1470,7 +1543,11 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 77dc27a87b6b24deea631b7f081012eb
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 27}
+      - {x: -32, y: 32}
+      - {x: -29, y: 32}
     tessellationDetail: 0
   - name: Root_82
     originalName: 
@@ -1486,16 +1563,17 @@ ScriptedImporter:
     spriteID: e0658d4f2a5ec42ee8de59dae54802bb
     spriteOutline:
     - shape:
-      - {x: 6, y: 21}
-      - {x: -5, y: 23}
-      - {x: -13, y: 22}
-      - {x: -30, y: 20}
-      - {x: -32, y: 1}
-      - {x: -13, y: -5}
-      - {x: -1, y: -7}
-      - {x: 19, y: -19}
-      - {x: 32, y: -23}
-      - {x: 32, y: 0}
+      - {x: 16, y: 14}
+      - {x: 1, y: 24}
+      - {x: -10, y: 24}
+      - {x: -14, y: 23}
+      - {x: -32, y: 23}
+      - {x: -32, y: 19}
+      - {x: -10, y: 19}
+      - {x: -1, y: 20}
+      - {x: 15, y: 10}
+      - {x: 32, y: -3}
+      - {x: 32, y: 2}
     tessellationDetail: 0
   - name: Root_83
     originalName: 
@@ -1511,15 +1589,16 @@ ScriptedImporter:
     spriteID: 9d63fce517bd248098c844657be004c3
     spriteOutline:
     - shape:
-      - {x: -32, y: 0}
-      - {x: -32, y: -24}
-      - {x: -14, y: -28}
-      - {x: 14, y: -28}
-      - {x: 32, y: -23}
-      - {x: 32, y: -7}
-      - {x: 21, y: -10}
-      - {x: -5, y: -11}
-      - {x: -16, y: -8}
+      - {x: -32, y: 2}
+      - {x: -32, y: -3}
+      - {x: -6, y: -13}
+      - {x: 19, y: -12}
+      - {x: 32, y: -10}
+      - {x: 32, y: -6}
+      - {x: 21, y: -9}
+      - {x: -3, y: -10}
+      - {x: -5, y: -9}
+      - {x: -16, y: -6}
     tessellationDetail: 0
   - name: Root_84
     originalName: 
@@ -1536,15 +1615,17 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: -6}
-      - {x: -32, y: -24}
-      - {x: -21, y: -22}
-      - {x: -8, y: -25}
-      - {x: 7, y: -32}
-      - {x: 26, y: -32}
-      - {x: 21, y: -30}
-      - {x: 12, y: -24}
-      - {x: -5, y: -16}
-      - {x: -16, y: -8}
+      - {x: -32, y: -9}
+      - {x: -15, y: -11}
+      - {x: -6, y: -18}
+      - {x: 6, y: -24}
+      - {x: 21, y: -32}
+      - {x: 29, y: -32}
+      - {x: 20, y: -27}
+      - {x: 8, y: -20}
+      - {x: -4, y: -16}
+      - {x: -12, y: -8}
+      - {x: -17, y: -7}
     tessellationDetail: 0
   - name: Root_85
     originalName: 
@@ -1597,11 +1678,14 @@ ScriptedImporter:
     spriteID: a12d90d6b2af34b9b8b506abbfe1a169
     spriteOutline:
     - shape:
-      - {x: -14, y: -32}
-      - {x: 32, y: -32}
-      - {x: 32, y: -19}
-      - {x: 26, y: -25}
-      - {x: 6, y: -30}
+      - {x: -16, y: -32}
+      - {x: -1, y: -32}
+      - {x: 24, y: -28}
+      - {x: 32, y: -21}
+      - {x: 32, y: -17}
+      - {x: 20, y: -26}
+      - {x: 4, y: -28}
+      - {x: -9, y: -29}
     tessellationDetail: 0
   - name: Root_88
     originalName: 
@@ -1617,17 +1701,19 @@ ScriptedImporter:
     spriteID: 8662a529bd2ea460b9708c8ebb5d8cea
     spriteOutline:
     - shape:
-      - {x: 12, y: 24}
-      - {x: -1, y: 18}
-      - {x: -14, y: 7}
+      - {x: 10, y: 25}
+      - {x: 4, y: 22}
+      - {x: -7, y: 15}
+      - {x: -15, y: 7}
       - {x: -23, y: -6}
-      - {x: -32, y: -18}
-      - {x: -32, y: -32}
-      - {x: -25, y: -32}
-      - {x: 0, y: 0}
-      - {x: 7, y: 0}
-      - {x: 28, y: 1}
-      - {x: 30, y: 24}
+      - {x: -32, y: -17}
+      - {x: -32, y: -21}
+      - {x: -20, y: -9}
+      - {x: -11, y: 5}
+      - {x: -1, y: 14}
+      - {x: 10, y: 21}
+      - {x: 32, y: 21}
+      - {x: 32, y: 25}
     tessellationDetail: 0
   - name: Root_89
     originalName: 
@@ -1713,12 +1799,10 @@ ScriptedImporter:
     spriteID: 137fd6595cad849deb401f7a0074d941
     spriteOutline:
     - shape:
-      - {x: 27, y: 32}
-      - {x: 7, y: 32}
-      - {x: 17, y: 29}
-      - {x: 26, y: 28}
-      - {x: 32, y: 24}
-      - {x: 32, y: 31}
+      - {x: 28, y: 32}
+      - {x: 21, y: 32}
+      - {x: 32, y: 26}
+      - {x: 32, y: 30}
     tessellationDetail: 0
   - name: Root_95
     originalName: 
@@ -1735,11 +1819,10 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: 30}
-      - {x: -32, y: 24}
+      - {x: -32, y: 26}
       - {x: -30, y: 24}
-      - {x: -29, y: 25}
       - {x: -28, y: 26}
-      - {x: -30, y: 28}
+      - {x: -30, y: 29}
     tessellationDetail: 0
   - name: Root_96
     originalName: 
@@ -1756,15 +1839,19 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: 15, y: 1}
-      - {x: -2, y: -4}
-      - {x: -12, y: -5}
-      - {x: -18, y: -11}
-      - {x: -17, y: -16}
-      - {x: -4, y: -12}
-      - {x: 14, y: -9}
-      - {x: 32, y: -3}
-      - {x: 32, y: 13}
-      - {x: 28, y: 9}
+      - {x: -3, y: -3}
+      - {x: -13, y: -4}
+      - {x: -18, y: -9}
+      - {x: -19, y: -15}
+      - {x: -17, y: -17}
+      - {x: -15, y: -10}
+      - {x: -7, y: -7}
+      - {x: 4, y: -5}
+      - {x: 16, y: -2}
+      - {x: 25, y: 3}
+      - {x: 32, y: 10}
+      - {x: 32, y: 14}
+      - {x: 27, y: 10}
     tessellationDetail: 0
   - name: Root_97
     originalName: 
@@ -1780,16 +1867,14 @@ ScriptedImporter:
     spriteID: 68f4d8402b57d4dc98a99728c78b6e1e
     spriteOutline:
     - shape:
-      - {x: -14, y: 32}
+      - {x: -16, y: 32}
       - {x: -23, y: 25}
-      - {x: -26, y: 18}
-      - {x: -32, y: 13}
-      - {x: -32, y: -3}
-      - {x: -22, y: 1}
-      - {x: 0, y: 21}
-      - {x: 23, y: 23}
-      - {x: 32, y: 27}
-      - {x: 32, y: 32}
+      - {x: -27, y: 18}
+      - {x: -32, y: 14}
+      - {x: -32, y: 9}
+      - {x: -24, y: 16}
+      - {x: -19, y: 25}
+      - {x: -9, y: 32}
     tessellationDetail: 0
   - name: Root_98
     originalName: 
@@ -1861,12 +1946,12 @@ ScriptedImporter:
     spriteID: e5495fe74ee78420594ea43c92ec79d4
     spriteOutline:
     - shape:
-      - {x: 13, y: -28}
-      - {x: 1, y: -32}
-      - {x: 27, y: -32}
-      - {x: 32, y: -28}
+      - {x: 13, y: -27}
+      - {x: 0, y: -32}
+      - {x: 11, y: -32}
+      - {x: 32, y: -20}
       - {x: 32, y: -15}
-      - {x: 22, y: -23}
+      - {x: 22, y: -22}
     tessellationDetail: 0
   - name: Root_103
     originalName: 
@@ -1882,14 +1967,21 @@ ScriptedImporter:
     spriteID: 1ae0c1f728dbb45a191877cf603689af
     spriteOutline:
     - shape:
-      - {x: -23, y: -11}
-      - {x: -32, y: -16}
-      - {x: -32, y: -29}
-      - {x: -10, y: -18}
-      - {x: 32, y: -18}
-      - {x: 32, y: -3}
-      - {x: 21, y: -7}
-      - {x: -8, y: -8}
+      - {x: -12, y: -8}
+      - {x: -19, y: -8}
+      - {x: -24, y: -11}
+      - {x: -32, y: -15}
+      - {x: -32, y: -21}
+      - {x: -23, y: -14}
+      - {x: -10, y: -11}
+      - {x: 21, y: -10}
+      - {x: 25, y: -8}
+      - {x: 32, y: -8}
+      - {x: 32, y: -2}
+      - {x: 30, y: -4}
+      - {x: 21, y: -5}
+      - {x: 19, y: -7}
+      - {x: -10, y: -7}
     tessellationDetail: 0
   - name: Root_104
     originalName: 
@@ -1905,16 +1997,17 @@ ScriptedImporter:
     spriteID: 0c1e77c07acef463ca3ee5a7c1da5d1d
     spriteOutline:
     - shape:
-      - {x: 10, y: 31}
-      - {x: -7, y: 17}
-      - {x: -18, y: 3}
+      - {x: 10, y: 32}
+      - {x: -7, y: 19}
+      - {x: -15, y: 8}
       - {x: -32, y: -3}
-      - {x: -32, y: -18}
-      - {x: -19, y: -10}
-      - {x: -13, y: -3}
-      - {x: -1, y: 10}
-      - {x: 13, y: 26}
-      - {x: 19, y: 30}
+      - {x: -32, y: -7}
+      - {x: -11, y: 7}
+      - {x: -3, y: 18}
+      - {x: 11, y: 28}
+      - {x: 17, y: 27}
+      - {x: 20, y: 29}
+      - {x: 17, y: 32}
     tessellationDetail: 0
   - name: Root_105
     originalName: 
@@ -1930,14 +2023,13 @@ ScriptedImporter:
     spriteID: 198fd821b5cfa42f69d5bc2989d90ad4
     spriteOutline:
     - shape:
-      - {x: 18, y: -32}
-      - {x: 19, y: -28}
-      - {x: 23, y: -32}
-      - {x: 32, y: -32}
-      - {x: 32, y: -20}
-      - {x: 23, y: -12}
-      - {x: 7, y: -13}
-      - {x: 2, y: -32}
+      - {x: 20, y: -13}
+      - {x: 32, y: -23}
+      - {x: 32, y: -18}
+      - {x: 26, y: -13}
+      - {x: 20, y: -9}
+      - {x: 4, y: -9}
+      - {x: 4, y: -13}
     tessellationDetail: 0
   - name: Root_106
     originalName: 
@@ -1974,15 +2066,22 @@ ScriptedImporter:
     spriteID: 94467d455ba7244ba99be69d39cfb7ee
     spriteOutline:
     - shape:
-      - {x: 13, y: 1}
-      - {x: -1, y: 1}
-      - {x: -13, y: -8}
-      - {x: -26, y: -15}
-      - {x: -21, y: -16}
-      - {x: -1, y: -9}
-      - {x: 13, y: -11}
-      - {x: 32, y: -32}
-      - {x: 32, y: -9}
+      - {x: 21, y: 0}
+      - {x: 13, y: 3}
+      - {x: 3, y: 4}
+      - {x: -4, y: 3}
+      - {x: -14, y: -6}
+      - {x: -20, y: -11}
+      - {x: -24, y: -11}
+      - {x: -27, y: -14}
+      - {x: -25, y: -18}
+      - {x: -22, y: -15}
+      - {x: -19, y: -15}
+      - {x: -6, y: -4}
+      - {x: 4, y: 0}
+      - {x: 16, y: -3}
+      - {x: 32, y: -10}
+      - {x: 32, y: -6}
     tessellationDetail: 0
   - name: Root_108
     originalName: 
@@ -1998,10 +2097,11 @@ ScriptedImporter:
     spriteID: f9896bfc41b7749d79612c084fe610fa
     spriteOutline:
     - shape:
-      - {x: -32, y: -9}
-      - {x: -32, y: -24}
-      - {x: -18, y: -24}
-      - {x: -17, y: -9}
+      - {x: -23, y: -7}
+      - {x: -32, y: -6}
+      - {x: -32, y: -10}
+      - {x: -16, y: -12}
+      - {x: -15, y: -9}
     tessellationDetail: 0
   - name: Root_109
     originalName: 
@@ -2031,13 +2131,10 @@ ScriptedImporter:
     spriteID: 5fd254f55617d46bfbc5a27c057cc05a
     spriteOutline:
     - shape:
-      - {x: 23, y: -18}
-      - {x: 18, y: -25}
-      - {x: 14, y: -32}
-      - {x: 29, y: -32}
-      - {x: 32, y: -23}
-      - {x: 32, y: 1}
-      - {x: 28, y: -8}
+      - {x: 27, y: -9}
+      - {x: 32, y: -9}
+      - {x: 32, y: -5}
+      - {x: 27, y: -5}
     tessellationDetail: 0
   - name: Root_111
     originalName: 
@@ -2053,28 +2150,30 @@ ScriptedImporter:
     spriteID: 707ba5f75d387427090b0c517c889d06
     spriteOutline:
     - shape:
-      - {x: -22, y: 29}
-      - {x: -25, y: 17}
-      - {x: -17, y: 11}
-      - {x: -8, y: 9}
-      - {x: 32, y: 9}
-      - {x: 32, y: 25}
-      - {x: -2, y: 26}
-      - {x: -10, y: 28}
+      - {x: -25, y: 30}
+      - {x: -25, y: 26}
+      - {x: -9, y: 26}
+      - {x: 2, y: 22}
+      - {x: 32, y: 22}
+      - {x: 32, y: 26}
+      - {x: 9, y: 26}
+      - {x: 8, y: 27}
+      - {x: -1, y: 27}
+      - {x: -7, y: 30}
     - shape:
-      - {x: 15, y: -32}
-      - {x: 1, y: -29}
-      - {x: -19, y: -26}
-      - {x: -27, y: -20}
-      - {x: -32, y: -18}
-      - {x: -32, y: -8}
+      - {x: 17, y: -22}
+      - {x: -3, y: -19}
+      - {x: -17, y: -17}
+      - {x: -25, y: -11}
+      - {x: -32, y: -9}
+      - {x: -32, y: -5}
       - {x: -24, y: -8}
-      - {x: -19, y: -13}
-      - {x: -9, y: -14}
+      - {x: -20, y: -10}
+      - {x: -16, y: -13}
       - {x: 5, y: -16}
-      - {x: 20, y: -20}
-      - {x: 32, y: -26}
-      - {x: 32, y: -32}
+      - {x: 17, y: -18}
+      - {x: 32, y: -25}
+      - {x: 32, y: -29}
     tessellationDetail: 0
   - name: Root_112
     originalName: 
@@ -2093,12 +2192,14 @@ ScriptedImporter:
       - {x: 1, y: 32}
       - {x: -16, y: 26}
       - {x: -32, y: 26}
-      - {x: -32, y: 9}
-      - {x: -18, y: 11}
-      - {x: -4, y: 14}
-      - {x: 10, y: 21}
-      - {x: 21, y: 26}
-      - {x: 29, y: 32}
+      - {x: -32, y: 22}
+      - {x: -14, y: 22}
+      - {x: 10, y: 32}
+    - shape:
+      - {x: -32, y: -29}
+      - {x: -32, y: -25}
+      - {x: -24, y: -32}
+      - {x: -29, y: -32}
     tessellationDetail: 0
   - name: Root_113
     originalName: 
@@ -2116,11 +2217,10 @@ ScriptedImporter:
     - shape:
       - {x: 24, y: -24}
       - {x: 23, y: -27}
-      - {x: 27, y: -30}
-      - {x: 32, y: -30}
+      - {x: 25, y: -28}
+      - {x: 32, y: -24}
       - {x: 32, y: -20}
-      - {x: 30, y: -21}
-      - {x: 27, y: -24}
+      - {x: 28, y: -22}
     tessellationDetail: 0
   - name: Root_114
     originalName: 
@@ -2136,19 +2236,18 @@ ScriptedImporter:
     spriteID: f470bd4b2a1d64c60a239639186bb671
     spriteOutline:
     - shape:
-      - {x: 22, y: 15}
+      - {x: 21, y: 16}
       - {x: 13, y: 13}
-      - {x: -2, y: 4}
+      - {x: -1, y: 5}
       - {x: -18, y: -8}
       - {x: -32, y: -20}
-      - {x: -32, y: -29}
-      - {x: -25, y: -27}
-      - {x: -18, y: -23}
-      - {x: -7, y: -14}
-      - {x: 3, y: -6}
-      - {x: 15, y: 0}
-      - {x: 32, y: 0}
-      - {x: 32, y: 13}
+      - {x: -32, y: -24}
+      - {x: -24, y: -19}
+      - {x: -12, y: -9}
+      - {x: 2, y: 2}
+      - {x: 21, y: 12}
+      - {x: 32, y: 12}
+      - {x: 32, y: 16}
     tessellationDetail: 0
   - name: Root_115
     originalName: 
@@ -2164,16 +2263,15 @@ ScriptedImporter:
     spriteID: 9a249da71dbb047558d2d819d195a3cc
     spriteOutline:
     - shape:
-      - {x: 0, y: 32}
-      - {x: -2, y: 23}
-      - {x: -12, y: 16}
-      - {x: -19, y: 13}
-      - {x: -32, y: 13}
-      - {x: -32, y: -1}
-      - {x: -16, y: 5}
-      - {x: 2, y: 12}
-      - {x: 17, y: 11}
-      - {x: 19, y: 32}
+      - {x: -1, y: 24}
+      - {x: -15, y: 15}
+      - {x: -29, y: 15}
+      - {x: -32, y: 16}
+      - {x: -32, y: 12}
+      - {x: -13, y: 11}
+      - {x: 2, y: 20}
+      - {x: 20, y: 20}
+      - {x: 20, y: 24}
     tessellationDetail: 0
   - name: Root_116
     originalName: 
@@ -2189,19 +2287,20 @@ ScriptedImporter:
     spriteID: c7526d4d4475f4f7aa0a7ac2a998d213
     spriteOutline:
     - shape:
-      - {x: -32, y: 32}
-      - {x: -32, y: 21}
-      - {x: -28, y: 13}
-      - {x: -21, y: -2}
-      - {x: -11, y: -9}
-      - {x: 14, y: -17}
-      - {x: 23, y: -24}
-      - {x: 32, y: -24}
-      - {x: 32, y: -20}
-      - {x: 15, y: -6}
+      - {x: -25, y: 32}
+      - {x: -20, y: 17}
+      - {x: -12, y: 4}
+      - {x: -1, y: -3}
+      - {x: 13, y: -8}
+      - {x: 24, y: -18}
+      - {x: 32, y: -22}
+      - {x: 32, y: -18}
+      - {x: 25, y: -14}
+      - {x: 17, y: -7}
+      - {x: 11, y: -4}
       - {x: -4, y: 2}
       - {x: -14, y: 12}
-      - {x: -23, y: 32}
+      - {x: -22, y: 32}
     tessellationDetail: 0
   - name: Root_117
     originalName: 
@@ -2217,19 +2316,12 @@ ScriptedImporter:
     spriteID: 5eadc3bc13974499e8a9e269bb06c829
     spriteOutline:
     - shape:
-      - {x: -32, y: -19}
-      - {x: -32, y: -25}
-      - {x: -25, y: -25}
+      - {x: -32, y: -18}
+      - {x: -32, y: -22}
+      - {x: -26, y: -23}
       - {x: -21, y: -26}
-      - {x: -20, y: -24}
-      - {x: -22, y: -21}
+      - {x: -20, y: -23}
       - {x: -24, y: -19}
-    - shape:
-      - {x: 31, y: 32}
-      - {x: 31, y: 11}
-      - {x: 31, y: 9}
-      - {x: 32, y: 7}
-      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: Root_118
     originalName: 
@@ -2245,16 +2337,19 @@ ScriptedImporter:
     spriteID: c7add8c338faf43ca8c56a6763565e9c
     spriteOutline:
     - shape:
-      - {x: -29, y: -5}
-      - {x: -26, y: -16}
-      - {x: -3, y: -16}
-      - {x: 5, y: -20}
-      - {x: 23, y: -32}
-      - {x: 32, y: -32}
-      - {x: 32, y: -26}
-      - {x: 17, y: -11}
+      - {x: -26, y: -2}
+      - {x: -32, y: -5}
+      - {x: -32, y: -9}
+      - {x: -24, y: -6}
+      - {x: -1, y: -6}
+      - {x: 11, y: -10}
+      - {x: 17, y: -15}
+      - {x: 32, y: -30}
+      - {x: 32, y: -25}
+      - {x: 25, y: -17}
+      - {x: 14, y: -8}
       - {x: -2, y: -2}
-      - {x: -16, y: -3}
+      - {x: -16, y: -2}
     tessellationDetail: 0
   - name: Root_119
     originalName: 
@@ -2270,11 +2365,11 @@ ScriptedImporter:
     spriteID: 35e4229ca01004264b958c177e02759e
     spriteOutline:
     - shape:
-      - {x: -32, y: -32}
-      - {x: -24, y: -32}
-      - {x: -27, y: -30}
-      - {x: -30, y: -27}
-      - {x: -32, y: -24}
+      - {x: -32, y: -30}
+      - {x: -29, y: -32}
+      - {x: -23, y: -32}
+      - {x: -28, y: -29}
+      - {x: -32, y: -25}
     tessellationDetail: 0
   - name: Root_120
     originalName: 
@@ -2360,12 +2455,12 @@ ScriptedImporter:
     spriteID: 18f93cbafa3384f8bbdd65503fa6879a
     spriteOutline:
     - shape:
-      - {x: -5, y: -14}
-      - {x: -20, y: -32}
-      - {x: -4, y: -32}
-      - {x: 4, y: -22}
-      - {x: 15, y: -22}
-      - {x: 16, y: -14}
+      - {x: -5, y: -12}
+      - {x: -21, y: -32}
+      - {x: -15, y: -32}
+      - {x: -3, y: -16}
+      - {x: 19, y: -19}
+      - {x: 20, y: -16}
     tessellationDetail: 0
   - name: Root_126
     originalName: 
@@ -2395,12 +2490,14 @@ ScriptedImporter:
     spriteID: 3529df6564b4d472a9fefd7fa53a8de6
     spriteOutline:
     - shape:
-      - {x: 1, y: -25}
-      - {x: -9, y: -27}
-      - {x: -21, y: -32}
-      - {x: 32, y: -32}
-      - {x: 32, y: -26}
-      - {x: 21, y: -27}
+      - {x: 8, y: -23}
+      - {x: -3, y: -25}
+      - {x: -22, y: -32}
+      - {x: -11, y: -32}
+      - {x: 4, y: -27}
+      - {x: 32, y: -29}
+      - {x: 32, y: -25}
+      - {x: 22, y: -25}
     tessellationDetail: 0
   - name: Root_128
     originalName: 
@@ -2416,13 +2513,14 @@ ScriptedImporter:
     spriteID: 27ab01bfdeacf4618adc594c5cbba77a
     spriteOutline:
     - shape:
-      - {x: -9, y: -21}
-      - {x: -20, y: -24}
-      - {x: -32, y: -26}
-      - {x: -32, y: -32}
-      - {x: -20, y: -32}
-      - {x: 8, y: -32}
+      - {x: -10, y: -19}
+      - {x: -21, y: -23}
+      - {x: -32, y: -25}
+      - {x: -32, y: -29}
+      - {x: -3, y: -21}
       - {x: 8, y: -21}
+      - {x: 8, y: -17}
+      - {x: -4, y: -17}
     - shape:
       - {x: 22, y: 32}
       - {x: 26, y: 29}
@@ -2444,17 +2542,17 @@ ScriptedImporter:
     spriteID: 54e1d287577bd4a1cac387188e26f9e4
     spriteOutline:
     - shape:
-      - {x: 4, y: 24}
-      - {x: -16, y: 27}
+      - {x: -4, y: 25}
+      - {x: -16, y: 28}
       - {x: -25, y: 32}
-      - {x: -32, y: 32}
-      - {x: -32, y: 24}
-      - {x: -20, y: 19}
-      - {x: -5, y: 16}
-      - {x: 22, y: 16}
+      - {x: -31, y: 32}
+      - {x: -20, y: 26}
+      - {x: -4, y: 21}
+      - {x: 21, y: 21}
+      - {x: 29, y: 19}
       - {x: 30, y: 21}
       - {x: 29, y: 23}
-      - {x: 22, y: 23}
+      - {x: 22, y: 25}
     tessellationDetail: 0
   - name: Root_130
     originalName: 
@@ -2498,14 +2596,14 @@ ScriptedImporter:
     spriteID: 1aba6b18ba6954c11810e9409ac17a34
     spriteOutline:
     - shape:
-      - {x: 3, y: -11}
-      - {x: 9, y: -17}
-      - {x: 25, y: -32}
-      - {x: 32, y: -32}
+      - {x: -4, y: 5}
+      - {x: 6, y: 3}
+      - {x: 15, y: -11}
+      - {x: 32, y: -29}
       - {x: 32, y: -23}
-      - {x: 20, y: -14}
-      - {x: 12, y: -3}
-      - {x: 0, y: -3}
+      - {x: 15, y: -4}
+      - {x: 11, y: 5}
+      - {x: -5, y: 10}
     tessellationDetail: 0
   - name: Root_133
     originalName: 
@@ -2522,10 +2620,9 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: -24}
-      - {x: -32, y: -32}
-      - {x: -25, y: -32}
-      - {x: -27, y: -30}
-      - {x: -29, y: -27}
+      - {x: -32, y: -29}
+      - {x: -29, y: -32}
+      - {x: -24, y: -32}
     tessellationDetail: 0
   - name: Root_134
     originalName: 
@@ -2541,14 +2638,16 @@ ScriptedImporter:
     spriteID: dec1472887fc64ea8a1424257fa5ca61
     spriteOutline:
     - shape:
-      - {x: 7, y: 6}
-      - {x: -4, y: -5}
-      - {x: -4, y: -9}
-      - {x: 8, y: -4}
-      - {x: 17, y: -7}
-      - {x: 32, y: -2}
-      - {x: 32, y: 14}
-      - {x: 21, y: 6}
+      - {x: 5, y: 6}
+      - {x: -5, y: -4}
+      - {x: -4, y: -10}
+      - {x: -1, y: -8}
+      - {x: -1, y: -4}
+      - {x: 7, y: 2}
+      - {x: 22, y: 4}
+      - {x: 32, y: 10}
+      - {x: 32, y: 16}
+      - {x: 20, y: 8}
     tessellationDetail: 0
   - name: Root_135
     originalName: 
@@ -2565,12 +2664,12 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -20, y: 32}
-      - {x: -26, y: 21}
-      - {x: -32, y: 14}
-      - {x: -32, y: -3}
-      - {x: -23, y: 9}
-      - {x: -13, y: 26}
-      - {x: -5, y: 32}
+      - {x: -26, y: 25}
+      - {x: -32, y: 15}
+      - {x: -32, y: 10}
+      - {x: -26, y: 17}
+      - {x: -22, y: 24}
+      - {x: -15, y: 32}
     tessellationDetail: 0
   - name: Root_136
     originalName: 
@@ -2586,13 +2685,12 @@ ScriptedImporter:
     spriteID: c236a450066934e7ba0ef8b6033e4a2e
     spriteOutline:
     - shape:
-      - {x: 26, y: 23}
-      - {x: 19, y: 21}
+      - {x: 26, y: 24}
       - {x: 4, y: 19}
-      - {x: 3, y: 15}
-      - {x: 20, y: 12}
-      - {x: 32, y: 13}
-      - {x: 32, y: 25}
+      - {x: 2, y: 17}
+      - {x: 4, y: 15}
+      - {x: 32, y: 23}
+      - {x: 32, y: 27}
     tessellationDetail: 0
   - name: Root_137
     originalName: 
@@ -2608,14 +2706,10 @@ ScriptedImporter:
     spriteID: 463caa2c6a5d94fa592336a8c7584c3d
     spriteOutline:
     - shape:
-      - {x: -19, y: 32}
-      - {x: -32, y: 25}
-      - {x: -32, y: 13}
-      - {x: -13, y: 23}
-      - {x: 2, y: 29}
-      - {x: 23, y: 25}
-      - {x: 32, y: 26}
-      - {x: 32, y: 32}
+      - {x: -22, y: 32}
+      - {x: -32, y: 27}
+      - {x: -32, y: 23}
+      - {x: -13, y: 32}
     tessellationDetail: 0
   - name: Root_138
     originalName: 
@@ -2631,10 +2725,14 @@ ScriptedImporter:
     spriteID: e7ef733475c1a41e6abecfc84829a688
     spriteOutline:
     - shape:
+      - {x: -23, y: -28}
+      - {x: -29, y: -28}
       - {x: -32, y: -31}
-      - {x: -26, y: -22}
-      - {x: -15, y: -23}
-      - {x: -20, y: -32}
+      - {x: -32, y: -26}
+      - {x: -30, y: -24}
+      - {x: -22, y: -24}
+      - {x: -16, y: -27}
+      - {x: -17, y: -29}
     tessellationDetail: 0
   - name: Root_139
     originalName: 
@@ -2708,18 +2806,16 @@ ScriptedImporter:
     - shape:
       - {x: -18, y: 24}
       - {x: -24, y: 32}
-      - {x: -32, y: 32}
-      - {x: -32, y: 25}
-      - {x: -27, y: 18}
-      - {x: -24, y: 10}
-      - {x: -19, y: 0}
-      - {x: -11, y: -10}
-      - {x: 1, y: -19}
-      - {x: 16, y: -26}
-      - {x: 32, y: -31}
-      - {x: 32, y: -26}
-      - {x: 19, y: -21}
-      - {x: 4, y: -12}
+      - {x: -29, y: 32}
+      - {x: -22, y: 24}
+      - {x: -18, y: 12}
+      - {x: -12, y: 2}
+      - {x: 0, y: -12}
+      - {x: 8, y: -18}
+      - {x: 32, y: -30}
+      - {x: 32, y: -25}
+      - {x: 20, y: -19}
+      - {x: 5, y: -11}
       - {x: -10, y: 5}
     tessellationDetail: 0
   - name: Root_144
@@ -2757,13 +2853,16 @@ ScriptedImporter:
     spriteID: 217bf068a510e48baa1be463c302483c
     spriteOutline:
     - shape:
-      - {x: -1, y: -15}
-      - {x: -3, y: -24}
-      - {x: 10, y: -24}
-      - {x: 21, y: -31}
-      - {x: 32, y: -32}
-      - {x: 32, y: -23}
-      - {x: 20, y: -15}
+      - {x: 11, y: -10}
+      - {x: -3, y: -9}
+      - {x: -3, y: -13}
+      - {x: 11, y: -14}
+      - {x: 17, y: -16}
+      - {x: 25, y: -24}
+      - {x: 32, y: -26}
+      - {x: 32, y: -21}
+      - {x: 25, y: -18}
+      - {x: 19, y: -12}
     tessellationDetail: 0
   - name: Root_146
     originalName: 
@@ -2779,12 +2878,12 @@ ScriptedImporter:
     spriteID: 722f356a0b9404b72aaf727bd932f4c7
     spriteOutline:
     - shape:
-      - {x: -32, y: -23}
-      - {x: -32, y: -32}
-      - {x: -14, y: -32}
-      - {x: 1, y: -32}
-      - {x: -9, y: -29}
-      - {x: -20, y: -26}
+      - {x: -32, y: -21}
+      - {x: -32, y: -26}
+      - {x: -7, y: -32}
+      - {x: 3, y: -32}
+      - {x: -9, y: -27}
+      - {x: -22, y: -25}
     tessellationDetail: 0
   - name: Root_147
     originalName: 
@@ -2800,17 +2899,12 @@ ScriptedImporter:
     spriteID: 5fa138189127e46b49b28b6882f10c93
     spriteOutline:
     - shape:
-      - {x: 28, y: 32}
+      - {x: 27, y: 32}
       - {x: 11, y: 15}
-      - {x: 8, y: 8}
-      - {x: 26, y: 8}
-      - {x: 32, y: 16}
+      - {x: 7, y: 7}
+      - {x: 9, y: 6}
+      - {x: 17, y: 16}
       - {x: 32, y: 32}
-    - shape:
-      - {x: 21, y: -32}
-      - {x: 21, y: -26}
-      - {x: 32, y: -26}
-      - {x: 32, y: -32}
     tessellationDetail: 0
   - name: Root_148
     originalName: 
@@ -2824,12 +2918,7 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 1e69dd49c8cd74da0961f6b7c1bc6143
-    spriteOutline:
-    - shape:
-      - {x: -32, y: -32}
-      - {x: -21, y: -32}
-      - {x: -26, y: -26}
-      - {x: -32, y: -26}
+    spriteOutline: []
     tessellationDetail: 0
   - name: Root_149
     originalName: 
@@ -2915,11 +3004,10 @@ ScriptedImporter:
     spriteID: 1d9d4058488df4674a6c1832ca7e99fe
     spriteOutline:
     - shape:
-      - {x: 28, y: -17}
-      - {x: 19, y: -27}
-      - {x: 14, y: -32}
-      - {x: 32, y: -32}
-      - {x: 32, y: -13}
+      - {x: 32, y: -11}
+      - {x: 13, y: -32}
+      - {x: 19, y: -32}
+      - {x: 32, y: -17}
     tessellationDetail: 0
   - name: Root_155
     originalName: 
@@ -2935,11 +3023,12 @@ ScriptedImporter:
     spriteID: 87087ae32e03f418cb1c03ab5e9603f7
     spriteOutline:
     - shape:
-      - {x: -32, y: -13}
-      - {x: -32, y: -32}
-      - {x: -24, y: -32}
-      - {x: -24, y: -24}
-      - {x: -16, y: -13}
+      - {x: -26, y: -4}
+      - {x: -32, y: -10}
+      - {x: -32, y: -17}
+      - {x: -25, y: -9}
+      - {x: -9, y: -10}
+      - {x: -8, y: -7}
     tessellationDetail: 0
   - name: Root_156
     originalName: 
@@ -2955,15 +3044,12 @@ ScriptedImporter:
     spriteID: 079a8954130bb40dfa24859a5bc04113
     spriteOutline:
     - shape:
-      - {x: -32, y: 32}
-      - {x: -32, y: 30}
-      - {x: -21, y: 28}
-      - {x: -6, y: 26}
-      - {x: 3, y: 20}
-      - {x: 9, y: 16}
-      - {x: 18, y: 14}
+      - {x: -7, y: 32}
+      - {x: 2, y: 28}
+      - {x: 9, y: 22}
+      - {x: 18, y: 13}
       - {x: 20, y: 16}
-      - {x: 11, y: 23}
+      - {x: 12, y: 25}
       - {x: 3, y: 32}
     tessellationDetail: 0
   - name: Root_157
@@ -2980,16 +3066,17 @@ ScriptedImporter:
     spriteID: 0c4d3e2f672d84ba5b4db536ab4b78b2
     spriteOutline:
     - shape:
-      - {x: 20, y: 32}
-      - {x: 21, y: 22}
-      - {x: 32, y: 21}
+      - {x: 18, y: 32}
+      - {x: 18, y: 28}
+      - {x: 32, y: 29}
       - {x: 32, y: 32}
     - shape:
-      - {x: -3, y: -32}
-      - {x: 14, y: -27}
-      - {x: 25, y: -24}
-      - {x: 32, y: -20}
-      - {x: 32, y: -32}
+      - {x: 4, y: -32}
+      - {x: -8, y: -32}
+      - {x: 13, y: -25}
+      - {x: 24, y: -21}
+      - {x: 32, y: -17}
+      - {x: 32, y: -22}
     tessellationDetail: 0
   - name: Root_158
     originalName: 
@@ -3005,21 +3092,23 @@ ScriptedImporter:
     spriteID: 1d715ed5cccfc4a9283f414e6358b1cb
     spriteOutline:
     - shape:
-      - {x: 13, y: 3}
+      - {x: 20, y: 3}
+      - {x: 4, y: 10}
       - {x: -5, y: 17}
       - {x: -21, y: 32}
       - {x: -32, y: 32}
-      - {x: -32, y: 20}
-      - {x: -28, y: 20}
-      - {x: -21, y: 15}
-      - {x: -4, y: 1}
-      - {x: 32, y: -13}
-      - {x: 32, y: -2}
+      - {x: -32, y: 29}
+      - {x: -23, y: 29}
+      - {x: -12, y: 18}
+      - {x: 3, y: 6}
+      - {x: 22, y: -2}
+      - {x: 32, y: -5}
+      - {x: 32, y: -1}
     - shape:
-      - {x: -32, y: -32}
-      - {x: -32, y: -20}
-      - {x: -18, y: -20}
-      - {x: -14, y: -32}
+      - {x: -32, y: -21}
+      - {x: -32, y: -16}
+      - {x: -16, y: -16}
+      - {x: -16, y: -20}
     tessellationDetail: 0
   - name: Root_159
     originalName: 
@@ -3035,17 +3124,20 @@ ScriptedImporter:
     spriteID: abb729786f19e4ac8a4c894fc361c057
     spriteOutline:
     - shape:
-      - {x: -22, y: -4}
-      - {x: -32, y: -2}
-      - {x: -32, y: -14}
-      - {x: -28, y: -15}
-      - {x: -2, y: -16}
-      - {x: 10, y: -21}
-      - {x: 20, y: -23}
-      - {x: 22, y: -19}
-      - {x: 17, y: -17}
-      - {x: 10, y: -12}
-      - {x: -1, y: -4}
+      - {x: -27, y: -2}
+      - {x: -32, y: -1}
+      - {x: -32, y: -5}
+      - {x: -29, y: -6}
+      - {x: -5, y: -6}
+      - {x: 2, y: -9}
+      - {x: 8, y: -14}
+      - {x: 13, y: -16}
+      - {x: 21, y: -23}
+      - {x: 23, y: -22}
+      - {x: 23, y: -19}
+      - {x: 15, y: -14}
+      - {x: 2, y: -4}
+      - {x: -4, y: -2}
     tessellationDetail: 0
   - name: Root_160
     originalName: 
@@ -3075,12 +3167,13 @@ ScriptedImporter:
     spriteID: d80c941ce05174fe389c382771a67396
     spriteOutline:
     - shape:
-      - {x: 22, y: -32}
-      - {x: 13, y: -20}
-      - {x: 7, y: -11}
-      - {x: 23, y: -11}
-      - {x: 32, y: -20}
-      - {x: 32, y: -32}
+      - {x: 16, y: -5}
+      - {x: 1, y: -4}
+      - {x: 1, y: 0}
+      - {x: 18, y: -1}
+      - {x: 26, y: -12}
+      - {x: 32, y: -19}
+      - {x: 32, y: -24}
     tessellationDetail: 0
   - name: Root_162
     originalName: 
@@ -3096,12 +3189,11 @@ ScriptedImporter:
     spriteID: 4563c77ba52884a1bafbd7a5366b8b8d
     spriteOutline:
     - shape:
-      - {x: -32, y: -20}
-      - {x: -32, y: -32}
-      - {x: -15, y: -32}
-      - {x: -20, y: -30}
-      - {x: -25, y: -27}
-      - {x: -30, y: -23}
+      - {x: -32, y: -18}
+      - {x: -32, y: -24}
+      - {x: -21, y: -32}
+      - {x: -11, y: -32}
+      - {x: -19, y: -29}
     tessellationDetail: 0
   - name: Root_163
     originalName: 
@@ -3117,11 +3209,11 @@ ScriptedImporter:
     spriteID: 94d84c44389ec4bdc8801e5f36094342
     spriteOutline:
     - shape:
-      - {x: 6, y: -9}
-      - {x: 4, y: -11}
+      - {x: 6, y: -8}
+      - {x: 3, y: -11}
       - {x: 5, y: -13}
-      - {x: 26, y: -13}
-      - {x: 32, y: -12}
+      - {x: 25, y: -8}
+      - {x: 32, y: -5}
       - {x: 32, y: 0}
       - {x: 25, y: -3}
       - {x: 14, y: -7}
@@ -3140,16 +3232,14 @@ ScriptedImporter:
     spriteID: 913b3eb44f44b40f19a020d0a85c6de8
     spriteOutline:
     - shape:
-      - {x: 13, y: 32}
-      - {x: 1, y: 20}
+      - {x: 12, y: 32}
+      - {x: 0, y: 20}
       - {x: -14, y: 8}
       - {x: -32, y: -1}
-      - {x: -32, y: -12}
-      - {x: -13, y: -4}
-      - {x: 6, y: 8}
-      - {x: 24, y: 24}
-      - {x: 32, y: 24}
-      - {x: 32, y: 32}
+      - {x: -32, y: -5}
+      - {x: -11, y: 5}
+      - {x: 0, y: 15}
+      - {x: 19, y: 32}
     tessellationDetail: 0
   - name: Root_165
     originalName: 
@@ -3165,21 +3255,18 @@ ScriptedImporter:
     spriteID: 9da5244e1549c4fd8afdd0b86dcea132
     spriteOutline:
     - shape:
-      - {x: -28, y: -2}
-      - {x: -21, y: -15}
-      - {x: -11, y: -21}
-      - {x: -3, y: -23}
-      - {x: 11, y: -26}
-      - {x: 13, y: -24}
-      - {x: 4, y: -18}
-      - {x: -2, y: -16}
-      - {x: -8, y: -13}
-      - {x: -19, y: -2}
-    - shape:
-      - {x: -32, y: 24}
-      - {x: -32, y: 32}
-      - {x: -25, y: 32}
-      - {x: -25, y: 24}
+      - {x: -32, y: 7}
+      - {x: -32, y: 3}
+      - {x: -24, y: 3}
+      - {x: -9, y: -16}
+      - {x: 0, y: -19}
+      - {x: 11, y: -27}
+      - {x: 14, y: -24}
+      - {x: 8, y: -19}
+      - {x: -1, y: -14}
+      - {x: -5, y: -14}
+      - {x: -19, y: 2}
+      - {x: -19, y: 7}
     tessellationDetail: 0
   - name: Root_166
     originalName: 
@@ -3195,15 +3282,15 @@ ScriptedImporter:
     spriteID: 44fe2c756adee4d3fbd1c45a51ed7bf8
     spriteOutline:
     - shape:
-      - {x: -7, y: 3}
+      - {x: -8, y: 3}
       - {x: -6, y: -1}
-      - {x: 2, y: 3}
-      - {x: 19, y: 3}
-      - {x: 32, y: 4}
-      - {x: 32, y: 14}
-      - {x: 18, y: 12}
-      - {x: 6, y: 12}
-      - {x: -2, y: 8}
+      - {x: -1, y: 5}
+      - {x: 8, y: 9}
+      - {x: 32, y: 12}
+      - {x: 32, y: 16}
+      - {x: 17, y: 14}
+      - {x: 6, y: 13}
+      - {x: -3, y: 9}
     tessellationDetail: 0
   - name: Root_167
     originalName: 
@@ -3219,16 +3306,15 @@ ScriptedImporter:
     spriteID: 7c173ad3f975e472993f72bdcdd548b1
     spriteOutline:
     - shape:
-      - {x: -32, y: 3}
-      - {x: -32, y: 15}
-      - {x: -22, y: 19}
-      - {x: -9, y: 30}
-      - {x: -4, y: 32}
-      - {x: 32, y: 32}
-      - {x: 32, y: 30}
-      - {x: 4, y: 26}
-      - {x: -5, y: 20}
-      - {x: -23, y: 6}
+      - {x: -32, y: 12}
+      - {x: -32, y: 16}
+      - {x: -25, y: 19}
+      - {x: -19, y: 25}
+      - {x: -10, y: 30}
+      - {x: -7, y: 32}
+      - {x: 3, y: 32}
+      - {x: -13, y: 24}
+      - {x: -23, y: 16}
     tessellationDetail: 0
   - name: Root_168
     originalName: 
@@ -3307,21 +3393,21 @@ ScriptedImporter:
     spriteID: 66d7b9541068042d2abb418ea4a45227
     spriteOutline:
     - shape:
-      - {x: -4, y: 26}
-      - {x: -14, y: 32}
-      - {x: -32, y: 32}
-      - {x: -32, y: 24}
-      - {x: -22, y: 19}
-      - {x: -11, y: 11}
-      - {x: 1, y: -4}
-      - {x: 9, y: -19}
-      - {x: 16, y: -32}
-      - {x: 32, y: -32}
-      - {x: 32, y: -24}
-      - {x: 22, y: -16}
-      - {x: 15, y: -6}
-      - {x: 10, y: 5}
-      - {x: 2, y: 17}
+      - {x: -3, y: 26}
+      - {x: -10, y: 32}
+      - {x: -20, y: 32}
+      - {x: -11, y: 28}
+      - {x: -3, y: 20}
+      - {x: 4, y: 9}
+      - {x: 10, y: -4}
+      - {x: 18, y: -13}
+      - {x: 24, y: -21}
+      - {x: 32, y: -26}
+      - {x: 32, y: -22}
+      - {x: 24, y: -15}
+      - {x: 19, y: -7}
+      - {x: 13, y: -1}
+      - {x: 4, y: 18}
     tessellationDetail: 0
   - name: Root_173
     originalName: 
@@ -3337,11 +3423,13 @@ ScriptedImporter:
     spriteID: 2b1436c0512ec488f9cf9b28c4f9253d
     spriteOutline:
     - shape:
-      - {x: -32, y: -24}
-      - {x: -32, y: -32}
+      - {x: -32, y: -22}
+      - {x: -32, y: -26}
+      - {x: -13, y: -26}
+      - {x: -4, y: -32}
       - {x: 1, y: -32}
-      - {x: -2, y: -30}
-      - {x: -10, y: -24}
+      - {x: -5, y: -27}
+      - {x: -13, y: -22}
     tessellationDetail: 0
   - name: Root_174
     originalName: 
@@ -3399,13 +3487,13 @@ ScriptedImporter:
     spriteID: 937a862eb142b4bc6baba076ba9adee6
     spriteOutline:
     - shape:
-      - {x: 10, y: -29}
-      - {x: 6, y: -32}
-      - {x: 25, y: -32}
-      - {x: 32, y: -27}
-      - {x: 32, y: -10}
-      - {x: 25, y: -18}
-      - {x: 16, y: -24}
+      - {x: 9, y: -28}
+      - {x: 4, y: -32}
+      - {x: 11, y: -32}
+      - {x: 32, y: -14}
+      - {x: 32, y: -8}
+      - {x: 25, y: -16}
+      - {x: 15, y: -23}
     tessellationDetail: 0
   - name: Root_178
     originalName: 
@@ -3421,11 +3509,12 @@ ScriptedImporter:
     spriteID: afc7b0bfb7ba844db91e80df732fd238
     spriteOutline:
     - shape:
-      - {x: -32, y: -25}
-      - {x: -32, y: -12}
-      - {x: -28, y: -7}
-      - {x: -17, y: -7}
-      - {x: -22, y: -16}
+      - {x: -27, y: -9}
+      - {x: -32, y: -14}
+      - {x: -32, y: -7}
+      - {x: -17, y: -4}
+      - {x: -14, y: -7}
+      - {x: -17, y: -9}
     tessellationDetail: 0
   - name: Root_179
     originalName: 
@@ -3483,13 +3572,18 @@ ScriptedImporter:
     spriteID: fc5faa58a459c4540bd2d65bb06a3151
     spriteOutline:
     - shape:
-      - {x: 32, y: 3}
-      - {x: 27, y: 3}
-      - {x: 23, y: -5}
-      - {x: 6, y: -19}
+      - {x: 32, y: 10}
+      - {x: 27, y: 9}
+      - {x: 25, y: 0}
+      - {x: 19, y: -7}
+      - {x: 5, y: -18}
+      - {x: -3, y: -24}
       - {x: -11, y: -32}
-      - {x: 12, y: -32}
-      - {x: 32, y: -12}
+      - {x: -6, y: -32}
+      - {x: 4, y: -23}
+      - {x: 22, y: -11}
+      - {x: 28, y: -2}
+      - {x: 32, y: 7}
     tessellationDetail: 0
   - name: Root_183
     originalName: 
@@ -3505,25 +3599,28 @@ ScriptedImporter:
     spriteID: 03e5a9bcc493541138abc9fd087554e6
     spriteOutline:
     - shape:
-      - {x: 15, y: 23}
+      - {x: 15, y: 24}
       - {x: 1, y: 32}
-      - {x: -32, y: 32}
-      - {x: -32, y: 28}
-      - {x: -18, y: 28}
-      - {x: -4, y: 16}
-      - {x: 6, y: 12}
-      - {x: 19, y: 9}
-      - {x: 32, y: 9}
-      - {x: 32, y: 20}
+      - {x: -4, y: 32}
+      - {x: 1, y: 27}
+      - {x: 12, y: 22}
+      - {x: 15, y: 19}
+      - {x: 32, y: 17}
+      - {x: 32, y: 21}
     - shape:
-      - {x: -11, y: -32}
-      - {x: -27, y: -6}
-      - {x: -32, y: -3}
-      - {x: -32, y: 3}
-      - {x: -18, y: 3}
-      - {x: -15, y: -6}
-      - {x: -6, y: -18}
-      - {x: 8, y: -32}
+      - {x: 4, y: -32}
+      - {x: -10, y: -17}
+      - {x: -18, y: -5}
+      - {x: -21, y: 3}
+      - {x: -25, y: 5}
+      - {x: -32, y: 6}
+      - {x: -32, y: 10}
+      - {x: -25, y: 9}
+      - {x: -20, y: 7}
+      - {x: -16, y: 4}
+      - {x: -14, y: -4}
+      - {x: -5, y: -16}
+      - {x: 9, y: -32}
     tessellationDetail: 0
   - name: Root_184
     originalName: 
@@ -3539,11 +3636,13 @@ ScriptedImporter:
     spriteID: 729835ee5bf4d4669ae81949e201d115
     spriteOutline:
     - shape:
-      - {x: -32, y: 20}
-      - {x: -32, y: 9}
-      - {x: -23, y: 9}
-      - {x: -6, y: 1}
-      - {x: 9, y: -1}
+      - {x: -32, y: 21}
+      - {x: -32, y: 17}
+      - {x: -15, y: 12}
+      - {x: -5, y: 5}
+      - {x: 4, y: 2}
+      - {x: 8, y: -2}
+      - {x: 10, y: 1}
       - {x: 9, y: 4}
       - {x: -2, y: 8}
       - {x: -12, y: 15}
@@ -3577,17 +3676,20 @@ ScriptedImporter:
     spriteID: 70d8eb0bbfb074f2cb0c9a814069dc60
     spriteOutline:
     - shape:
-      - {x: -21, y: -8}
-      - {x: -26, y: -12}
-      - {x: -25, y: -15}
-      - {x: -14, y: -11}
-      - {x: -4, y: -11}
-      - {x: 14, y: -7}
-      - {x: 24, y: -5}
-      - {x: 32, y: -4}
-      - {x: 32, y: 9}
-      - {x: 18, y: 5}
-      - {x: 1, y: -2}
+      - {x: -7, y: -3}
+      - {x: -18, y: -6}
+      - {x: -23, y: -8}
+      - {x: -26, y: -11}
+      - {x: -27, y: -14}
+      - {x: -24, y: -16}
+      - {x: -22, y: -12}
+      - {x: -11, y: -8}
+      - {x: 10, y: -1}
+      - {x: 23, y: 1}
+      - {x: 32, y: 5}
+      - {x: 32, y: 10}
+      - {x: 22, y: 6}
+      - {x: 3, y: 1}
     tessellationDetail: 0
   - name: Root_187
     originalName: 
@@ -3603,23 +3705,21 @@ ScriptedImporter:
     spriteID: ac2bb87ddc45b4c5193b28645802a1b9
     spriteOutline:
     - shape:
-      - {x: 6, y: 32}
-      - {x: -12, y: 18}
+      - {x: 4, y: 32}
+      - {x: -7, y: 23}
       - {x: -32, y: 9}
-      - {x: -32, y: -3}
-      - {x: -19, y: 2}
-      - {x: -5, y: 9}
-      - {x: 10, y: 22}
-      - {x: 18, y: 22}
-      - {x: 24, y: 32}
+      - {x: -32, y: 5}
+      - {x: -20, y: 11}
+      - {x: 5, y: 27}
+      - {x: 11, y: 32}
     - shape:
-      - {x: 23, y: -26}
-      - {x: 14, y: -18}
-      - {x: 9, y: -10}
-      - {x: 21, y: -10}
-      - {x: 26, y: -18}
-      - {x: 32, y: -23}
-      - {x: 32, y: -32}
+      - {x: 18, y: -11}
+      - {x: 6, y: -8}
+      - {x: 7, y: -5}
+      - {x: 21, y: -9}
+      - {x: 28, y: -16}
+      - {x: 32, y: -20}
+      - {x: 32, y: -25}
     tessellationDetail: 0
   - name: Root_188
     originalName: 
@@ -3635,11 +3735,13 @@ ScriptedImporter:
     spriteID: e44b62f560ad040379bebe451eb06051
     spriteOutline:
     - shape:
+      - {x: -20, y: -30}
+      - {x: -10, y: -32}
       - {x: 7, y: -32}
-      - {x: -8, y: -30}
-      - {x: -21, y: -27}
-      - {x: -32, y: -21}
-      - {x: -32, y: -32}
+      - {x: -8, y: -28}
+      - {x: -21, y: -26}
+      - {x: -32, y: -20}
+      - {x: -32, y: -25}
     tessellationDetail: 0
   - name: Root_189
     originalName: 
@@ -3670,8 +3772,8 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: 30, y: -10}
-      - {x: 29, y: -13}
-      - {x: 30, y: -16}
+      - {x: 28, y: -14}
+      - {x: 29, y: -18}
       - {x: 32, y: -18}
       - {x: 32, y: -13}
       - {x: 32, y: -8}
@@ -3691,16 +3793,18 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -19, y: 2}
-      - {x: -32, y: -9}
+      - {x: -27, y: -2}
+      - {x: -32, y: -7}
       - {x: -32, y: -18}
-      - {x: -27, y: -14}
-      - {x: -9, y: -5}
-      - {x: -1, y: -1}
-      - {x: 12, y: -1}
-      - {x: 32, y: 6}
-      - {x: 32, y: 17}
-      - {x: 20, y: 12}
-      - {x: -6, y: 6}
+      - {x: -31, y: -12}
+      - {x: -28, y: -8}
+      - {x: -19, y: -2}
+      - {x: -4, y: 3}
+      - {x: 20, y: 9}
+      - {x: 32, y: 15}
+      - {x: 32, y: 20}
+      - {x: 20, y: 13}
+      - {x: 3, y: 10}
     tessellationDetail: 0
   - name: Root_192
     originalName: 
@@ -3716,13 +3820,12 @@ ScriptedImporter:
     spriteID: aa328c49a9f74448e959b095bc652bc4
     spriteOutline:
     - shape:
-      - {x: -32, y: 6}
-      - {x: -18, y: 12}
-      - {x: 1, y: 24}
-      - {x: 12, y: 32}
+      - {x: -32, y: 15}
+      - {x: -17, y: 23}
+      - {x: -6, y: 32}
       - {x: -11, y: 32}
       - {x: -21, y: 25}
-      - {x: -32, y: 17}
+      - {x: -32, y: 19}
     tessellationDetail: 0
   - name: Root_193
     originalName: 
@@ -3738,15 +3841,13 @@ ScriptedImporter:
     spriteID: b1746fc01530d4146a381e6ca9faee1b
     spriteOutline:
     - shape:
-      - {x: -12, y: 32}
-      - {x: -9, y: 28}
-      - {x: -2, y: 22}
-      - {x: 8, y: 12}
-      - {x: 22, y: -1}
-      - {x: 32, y: -8}
-      - {x: 32, y: 10}
-      - {x: 17, y: 22}
-      - {x: 9, y: 32}
+      - {x: 4, y: 32}
+      - {x: 10, y: 24}
+      - {x: 19, y: 15}
+      - {x: 32, y: 6}
+      - {x: 32, y: 11}
+      - {x: 17, y: 23}
+      - {x: 10, y: 32}
     tessellationDetail: 0
   - name: Root_194
     originalName: 
@@ -3762,15 +3863,15 @@ ScriptedImporter:
     spriteID: 0a6e0e2a7ad9b40e3a6ae24a7e6152e0
     spriteOutline:
     - shape:
-      - {x: -32, y: 10}
-      - {x: -32, y: -9}
-      - {x: 5, y: -26}
-      - {x: 19, y: -30}
-      - {x: 32, y: -32}
-      - {x: 32, y: -23}
-      - {x: 19, y: -20}
-      - {x: 5, y: -14}
-      - {x: -13, y: -4}
+      - {x: -32, y: 11}
+      - {x: -32, y: 6}
+      - {x: -9, y: -10}
+      - {x: 14, y: -21}
+      - {x: 32, y: -26}
+      - {x: 32, y: -21}
+      - {x: 20, y: -18}
+      - {x: 6, y: -13}
+      - {x: -12, y: -3}
     tessellationDetail: 0
   - name: Root_195
     originalName: 
@@ -3786,12 +3887,13 @@ ScriptedImporter:
     spriteID: c4fd89fd4dd4246a0808a096d1b75dfe
     spriteOutline:
     - shape:
-      - {x: -32, y: -23}
-      - {x: -32, y: -32}
-      - {x: 9, y: -32}
-      - {x: -2, y: -31}
-      - {x: -13, y: -28}
-      - {x: -24, y: -25}
+      - {x: -32, y: -22}
+      - {x: -32, y: -26}
+      - {x: -8, y: -32}
+      - {x: 17, y: -32}
+      - {x: -1, y: -29}
+      - {x: -13, y: -26}
+      - {x: -24, y: -24}
     tessellationDetail: 0
   - name: Root_196
     originalName: 
@@ -3835,15 +3937,13 @@ ScriptedImporter:
     spriteID: 9c14dd95b701c465ca39a6326c53061e
     spriteOutline:
     - shape:
-      - {x: -32, y: 32}
-      - {x: -21, y: 28}
-      - {x: -8, y: 24}
-      - {x: 5, y: 24}
-      - {x: 22, y: 18}
-      - {x: 32, y: 16}
+      - {x: -8, y: 32}
+      - {x: 11, y: 27}
+      - {x: 22, y: 24}
+      - {x: 32, y: 17}
       - {x: 32, y: 21}
-      - {x: 20, y: 28}
-      - {x: 7, y: 32}
+      - {x: 20, y: 29}
+      - {x: 11, y: 32}
     tessellationDetail: 0
   - name: Root_199
     originalName: 
@@ -3859,12 +3959,12 @@ ScriptedImporter:
     spriteID: c8c74f4d973554476b53474274d2e908
     spriteOutline:
     - shape:
-      - {x: -32, y: 20}
-      - {x: -32, y: 15}
-      - {x: -22, y: 14}
-      - {x: -20, y: 16}
-      - {x: -22, y: 17}
-      - {x: -27, y: 18}
+      - {x: -32, y: 22}
+      - {x: -32, y: 17}
+      - {x: -23, y: 14}
+      - {x: -19, y: 14}
+      - {x: -19, y: 18}
+      - {x: -27, y: 19}
     tessellationDetail: 0
   - name: Root_200
     originalName: 
@@ -3950,20 +4050,13 @@ ScriptedImporter:
     spriteID: a95d890dbc74c43ee922cd5710aca51d
     spriteOutline:
     - shape:
-      - {x: -32, y: 32}
-      - {x: -32, y: 29}
-      - {x: -12, y: 26}
-      - {x: 15, y: 23}
-      - {x: 25, y: 21}
-      - {x: 32, y: 18}
+      - {x: -10, y: 32}
+      - {x: 21, y: 28}
+      - {x: 27, y: 25}
+      - {x: 32, y: 22}
       - {x: 32, y: 27}
-      - {x: 22, y: 30}
-      - {x: 10, y: 32}
-    - shape:
-      - {x: 32, y: 19}
-      - {x: 32, y: 19}
-      - {x: 32, y: 19}
-      - {x: 32, y: 19}
+      - {x: 25, y: 31}
+      - {x: 22, y: 32}
     tessellationDetail: 0
   - name: Root_206
     originalName: 
@@ -3980,7 +4073,7 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: 27}
-      - {x: -32, y: 18}
+      - {x: -32, y: 22}
       - {x: -26, y: 18}
       - {x: -24, y: 19}
       - {x: -25, y: 22}
@@ -4029,4 +4122,4 @@ ScriptedImporter:
     spriteOutline: []
     tessellationDetail: 0
   _secondaryTextures: []
-  _artifacts: {fileID: -2988177865379244337, guid: db2c2eb1d0520413a9246665c20dfb8d, type: 3}
+  _artifacts: {instanceID: 0}
