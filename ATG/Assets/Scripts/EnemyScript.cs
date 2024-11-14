@@ -12,6 +12,9 @@ public class EnemyScript : MonoBehaviour
     // toggleable bool for enemy to chase player on x axis
     [SerializeField] bool targetsPlayer = false;
 
+    // toggleable bool to stop enemy from moving
+    [SerializeField] bool active = true;
+
     // fine tuning variables
     private float directionFlipGrace;
     private float initializeTime = 1f;
@@ -29,6 +32,12 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!active)
+        {
+            return;
+        }
+
         // enemy will stop moving if with a certain distance of player or at a wall
         if ((IsCloseEnough() || onWall) && targetsPlayer && initializeTime <= 0)
         {
