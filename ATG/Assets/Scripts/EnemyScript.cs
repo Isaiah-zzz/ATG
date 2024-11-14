@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-
+    // movement speed variables
     [SerializeField] float moveSpeed = 3f;
     private float curMoveSpeed;
+
+    // toggleable bool for enemy to chase player on x axis
     [SerializeField] bool targetsPlayer = false;
+
+    // fine tuning variables
     private float directionFlipGrace;
     private float initializeTime = 1f;
     private bool onWall = false;
@@ -68,7 +72,7 @@ public class EnemyScript : MonoBehaviour
         return transform.localScale.x > Mathf.Epsilon;
     }
 
-    // return true if player is to the right of the enemy
+    // return true if enemy is facing player
     private bool IsFacingPlayer()
     {
         if (GameObject.Find("Player").transform.position.x > transform.position.x && IsFacingRight())
@@ -100,9 +104,10 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    // flip the direction if hitting a wall
+    // handle collision with terrain
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // if hitting terrain and still trying to chase player, halt movement
         if (other.CompareTag("Ground") && targetsPlayer && IsFacingPlayer())
         {
             onWall = true;
