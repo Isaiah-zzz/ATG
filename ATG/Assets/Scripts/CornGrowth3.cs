@@ -21,7 +21,7 @@ public class CornGrowth3 : MonoBehaviour
     {
         // if (Input.GetKeyDown(KeyCode.E))
         // {
-        //     isShrinking = true; // Start shrinking the mask
+        //     isShrinking = true; 
         // }
 
         if (revealed && Input.GetKeyDown(KeyCode.R)) {

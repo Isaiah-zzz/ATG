@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PopAndLockScript : MonoBehaviour
 {
-    public float throwForce = 5f;
-    public float growDelay = 2f;
+    public float growDelay = 1f;
     public float growMultiplier = 6f;
 
     private Rigidbody2D rb;
@@ -17,7 +16,7 @@ public class PopAndLockScript : MonoBehaviour
         originalScale = transform.localScale;
 
         // Apply the throw force; adjust direction as needed
-        rb.AddForce(transform.right * throwForce, ForceMode2D.Impulse);
+        //rb.AddForce(transform.right * throwForce, ForceMode2D.Impulse);
 
         // Start the growth coroutine
         StartCoroutine(GrowAfterDelay());
