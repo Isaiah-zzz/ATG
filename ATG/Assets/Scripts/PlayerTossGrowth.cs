@@ -1,48 +1,85 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerTossGrowth : MonoBehaviour
 {
-    public GameObject tossablePrefab; // Reference to the tossable object prefab
-    public GameObject cornPrefab;
-    public float tossForce = 7f; // Upward force for the toss
+    public GameObject miniCornstalkPrefab;
+    [SerializeField] private GameObject cornstalkPrefab;
+    [SerializeField] private GameObject popcornPrefab;
+    [SerializeField] private Transform grainSpawnPoint;
+    private GameObject popcornInst;
+    private GameObject miniCornInst;
 
-    public GameObject throwableCirclePrefab;  // Assign your throwable circle prefab in the inspector
-    public float throwDistance = 6f;
+    public float popcornTossForce = 20f;
+    public float cornTossForce = 15f;
+
+
+    private SpriteRenderer sprite;
+
+    public bool isTossingCornstalk = false;
+    public bool isThrowingPopcorn = false;
+
+
+    void Start()
+    {
+
+        sprite = GetComponent<SpriteRenderer>();
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            TossObject();
+            isThrowingPopcorn = false;
+            ToggleThrow(ref isTossingCornstalk);
         }
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
-            ThrowCircle();
+            isTossingCornstalk = false;
+            ToggleThrow(ref isThrowingPopcorn);
+        }
+
+        if(isTossingCornstalk) {
+            HandleCornstalkThrow();
+        }
+
+        if(isThrowingPopcorn) {
+            HandlePopcornThrow();    
         }
     }
 
-    void ThrowCircle()
+    void ToggleThrow(ref bool isThrowing)
     {
-        float playerDirection = transform.localScale.x > 0 ? 1f : -1f;
-        Vector3 dir = new Vector3(playerDirection, 0, 0);
-        // Instantiate the circle at the specified throw point
-        Instantiate(throwableCirclePrefab, transform.position + dir * throwDistance, transform.rotation);
+        isThrowing = !isThrowing;
     }
 
-    void TossObject()
-    {
-        float playerDirection = transform.localScale.x > 0 ? 1f : -1f;
-        Vector3 dir = new Vector3(playerDirection, 0, 0);
-        
-        GameObject grain = Instantiate(tossablePrefab, transform.position + dir * 0.9f, Quaternion.identity);
-        Rigidbody2D rb = grain.GetComponent<Rigidbody2D>(); 
-        rb.AddForce(new Vector2(playerDirection * 1f, 0.7f) * tossForce, ForceMode2D.Impulse);
+    void HandlePopcornThrow() {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 direction = (mousePosition - grainSpawnPoint.position).normalized;
 
-        // Start coroutine to handle object disappearance on ground impact
-        StartCoroutine(HandleObjectDisappear(grain));
+            popcornInst = Instantiate(popcornPrefab, grainSpawnPoint.position, Quaternion.identity);
+            Rigidbody2D rb = popcornInst.GetComponent<Rigidbody2D>();
+            rb.velocity = direction * popcornTossForce;
+            isThrowingPopcorn = false;  
+        }
+    }
+
+    void HandleCornstalkThrow() {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector2 direction = (mousePosition - grainSpawnPoint.position).normalized;
+
+            miniCornInst = Instantiate(miniCornstalkPrefab, grainSpawnPoint.position, Quaternion.identity);
+            Rigidbody2D rb = miniCornInst.GetComponent<Rigidbody2D>();
+            rb.velocity = direction * cornTossForce;
+            isTossingCornstalk = false;  
+            StartCoroutine(HandleObjectDisappear(miniCornInst));
+        }
     }
 
     IEnumerator HandleObjectDisappear(GameObject grain)
@@ -58,11 +95,11 @@ public class PlayerTossGrowth : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f); // Optional delay for effect
 
-        SpriteRenderer spriteRenderer = grain.GetComponent<SpriteRenderer>();
-        Vector2 spriteSize = spriteRenderer.bounds.size;
+        SpriteRenderer grainRenderer = grain.GetComponent<SpriteRenderer>();
+        Vector2 spriteSize = grainRenderer.bounds.size;
         Vector3 grainPosition = new Vector3(grain.transform.position.x, grain.transform.position.y - spriteSize.y / 2, grain.transform.position.z);  
 
         Destroy(grain);
-        Instantiate(cornPrefab, grainPosition, Quaternion.identity);
+        Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
     }
 }

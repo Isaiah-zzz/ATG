@@ -24,8 +24,7 @@ public class NewBehaviourScript : MonoBehaviour
     private bool longJumpReady = false;
     private float xMomentum = 0;
 
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private TrailRenderer tr;
+    [SerializeField] private LayerMask jumpableLayers;
     private BoxCollider2D boxCollider;
     private float playerScale;
     private Rigidbody2D body;
@@ -264,7 +263,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     // checking if player is grounded with raycast
     private bool IsGrounded(){
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, jumpableLayers);
         return raycastHit.collider != null;
     }
 
