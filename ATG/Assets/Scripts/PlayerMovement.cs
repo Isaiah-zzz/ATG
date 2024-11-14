@@ -54,6 +54,9 @@ public class NewBehaviourScript : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        spawnX = transform.position.x;
+        spawnY = transform.position.y;
+        
     }
 
     private void Awake()

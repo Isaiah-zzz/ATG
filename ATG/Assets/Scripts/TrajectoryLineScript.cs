@@ -26,6 +26,23 @@ public class TrajectoryLineScript : MonoBehaviour
         lineRenderer.positionCount = numSegments;
 
         projectileSpeed = playerTossGrowth.cornTossForce;
+
+        Gradient gradient = new Gradient();
+        GradientColorKey[] colorKey = new GradientColorKey[2];
+        GradientAlphaKey[] alphaKey = new GradientAlphaKey[2];
+
+        colorKey[0].color = Color.white;
+        colorKey[0].time = 0.0f;
+        colorKey[1].color = Color.white;
+        colorKey[1].time = 1.0f;
+
+        alphaKey[0].alpha = 1.0f;
+        alphaKey[0].time = 0.0f;
+        alphaKey[1].alpha = 0.0f;
+        alphaKey[1].time = 0.2f;
+
+        gradient.SetKeys(colorKey, alphaKey);
+        lineRenderer.colorGradient = gradient;
     }
 
     private void Update() {

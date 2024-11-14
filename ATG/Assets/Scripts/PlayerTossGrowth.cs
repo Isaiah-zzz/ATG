@@ -56,9 +56,11 @@ public class PlayerTossGrowth : MonoBehaviour
     }
 
     void HandlePopcornThrow() {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        // click to throw
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Vector2 direction = (mousePosition - grainSpawnPoint.position).normalized;
 
             popcornInst = Instantiate(popcornPrefab, grainSpawnPoint.position, Quaternion.identity);
@@ -66,12 +68,23 @@ public class PlayerTossGrowth : MonoBehaviour
             rb.velocity = direction * popcornTossForce;
             isThrowingPopcorn = false;  
         }
+
+        //flip player
+        if (mousePosition.x - transform.position.x < 0) {
+            // left
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        } else {
+            // right
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
     }
 
     void HandleCornstalkThrow() {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        // click to throw
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             Vector2 direction = (mousePosition - grainSpawnPoint.position).normalized;
 
             miniCornInst = Instantiate(miniCornstalkPrefab, grainSpawnPoint.position, Quaternion.identity);
@@ -79,6 +92,15 @@ public class PlayerTossGrowth : MonoBehaviour
             rb.velocity = direction * cornTossForce;
             isTossingCornstalk = false;  
             StartCoroutine(HandleObjectDisappear(miniCornInst));
+        }
+
+        //flip player
+        if (mousePosition.x - transform.position.x < 0) {
+            // left
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        } else {
+            // right
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
 
