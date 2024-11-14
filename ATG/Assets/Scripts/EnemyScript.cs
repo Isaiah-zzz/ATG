@@ -6,7 +6,12 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
 
-    [SerializeField] float moveSpeed = 1f;
+    [SerializeField] float moveSpeed = 3f;
+    private float curMoveSpeed;
+    [SerializeField] bool targetsPlayer = false;
+    private float directionFlipGrace;
+    private float initializeTime = 1f;
+    private bool onWall = false;
 
     Rigidbody2D body;
 
@@ -14,29 +19,98 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        curMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(IsFacingRight())
+        // enemy will stop moving if with a certain distance of player or at a wall
+        if ((IsCloseEnough() || onWall) && targetsPlayer && initializeTime <= 0)
         {
-            body.velocity = new Vector2(moveSpeed, 0f);
+            curMoveSpeed = 0f;
+        } else { curMoveSpeed = moveSpeed; }
+
+        // flip enemy to chase player on x axis if not already doing so
+        if (!IsFacingPlayer() && targetsPlayer)
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            onWall = false;
+        }
+
+        // update movement depending on which way enemy is facing
+        if (IsFacingRight())
+        {
+            body.velocity = new Vector2(curMoveSpeed, 0f);
         }
         else
         {
-            body.velocity = new Vector2(-moveSpeed, 0f);
+            body.velocity = new Vector2(-curMoveSpeed, 0f);
+        }
+
+        // update grace time between flipping direction
+        if (directionFlipGrace > 0)
+        {
+            directionFlipGrace -= Time.deltaTime;
+        } else { directionFlipGrace = 0f; }
+
+        if (initializeTime > 0)
+        {
+            onWall = false;
+            initializeTime -= Time.deltaTime;
         }
 
     }
 
+    // return true if enemy is facing right
     private bool IsFacingRight()
     {
         return transform.localScale.x > Mathf.Epsilon;
     }
 
+    // return true if player is to the right of the enemy
+    private bool IsFacingPlayer()
+    {
+        if (GameObject.Find("Player").transform.position.x > transform.position.x && IsFacingRight())
+        {
+            return true;
+        }
+        
+        if (GameObject.Find("Player").transform.position.x < transform.position.x && !IsFacingRight())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    // return true if player and enemy x positions are within .05
+    private bool IsCloseEnough()
+    {
+        return Math.Abs(GameObject.Find("Player").transform.position.x - transform.position.x) < .05;
+    }
+
+    // swap the direction if about to walk off an edge
     private void OnTriggerExit2D(Collider2D other)
     {
-        transform.localScale = new Vector2(-((Mathf.Sign(body.velocity.x)) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+        if (other.CompareTag("Ground") && directionFlipGrace == 0)
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            directionFlipGrace = 1f;
+        }
+    }
+
+    // flip the direction if hitting a wall
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground") && targetsPlayer && IsFacingPlayer())
+        {
+            onWall = true;
+        }
+        else if (other.CompareTag("Ground") && directionFlipGrace == 0)
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            directionFlipGrace = 1f;
+        }
     }
 }
