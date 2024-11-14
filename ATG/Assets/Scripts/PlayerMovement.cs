@@ -13,6 +13,14 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private float gravMultiplier;
     [SerializeField] private float maxFallSpeed = 26f;
 
+    // variables for enemy interaction
+    private static int maxHealth = 5;
+    [SerializeField] private int health = maxHealth;
+    private bool damageLock = false;
+    [SerializeField] private float spawnX;
+    [SerializeField] private float spawnY;
+    [SerializeField] private bool invincible = false;
+
     // coyote time and jump buffer variables
     [SerializeField] private float coyoteTime;
     private float coyoteTimeCounter;
@@ -28,7 +36,7 @@ public class NewBehaviourScript : MonoBehaviour
     private float xMomentum = 0;
     Vector2 PlayerPosition;
 
-    // need this stuff ig
+    // need this stuff
     [SerializeField] private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
     private Rigidbody2D body;
@@ -37,7 +45,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private GameObject cam1;
     //[SerializeField] private GameObject cam2
 
-    // variables for NPC interaction
+    // variables to store references for NPC interaction
     public GameObject npcObj = null;
     public NpcTalk npcScript = null;
 
@@ -120,9 +128,27 @@ public class NewBehaviourScript : MonoBehaviour
             jumpBufferCounter -= Time.deltaTime;
         }
         
+        // NOTE: For testing only
+        // set spawnpoint
         if (Input.GetKeyDown(KeyCode.H)){
-            transform.position = new Vector2(-10f, -0.50f);
+            spawnX = transform.position.x;
+            spawnY = transform.position.y;
         }
+
+        // NOTE: For testing only
+        // "respawn" player
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Respawn();
+        }
+
+        // NOTE: For testing only
+        // respawn player if falling into void
+        if (transform.position.y < -20)
+        {
+            Respawn();
+        }
+
 
         // check if Lshift is held
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -210,30 +236,24 @@ public class NewBehaviourScript : MonoBehaviour
         body.velocity = _velocity;
     }
 
-    // FIXME: spaghetti code to just make the player get flipped upside down when touching an enemy
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.name == "Enemy")
-    //     {
-    //         transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
-    //     }
-    // }
-    // private void OnTriggerExit2D(Collider2D other)
-    // {
-    //     if (other.name == "Enemy")
-    //     {
-    //         transform.localScale = new Vector3(playerScale, -playerScale, playerScale);
-    //     }
-    // }
-
     // detect when the player has entered the range of an npc
     void OnTriggerEnter2D (Collider2D other)
     {
+        // if player is within range of NPC
         if (other.CompareTag("NPC"))
         {
             npcObj = other.gameObject;
             npcScript = npcObj.GetComponent<NpcTalk>();
+        }
 
+        // if player makes contact with enemy
+        if (other.CompareTag("Enemy"))
+        {
+            if (!damageLock && !invincible)
+            {
+                damageLock = true;
+                DamagePlayer();
+            }
         }
     }
 
@@ -243,6 +263,32 @@ public class NewBehaviourScript : MonoBehaviour
     {
         npcObj = null;
         npcScript = null;
+    }
+
+    void Respawn()
+    {
+        transform.position = new Vector2(spawnX, spawnY);
+        body.velocity = new Vector2(0, 0);
+        xMomentum = 0;
+    }
+
+    void DamagePlayer()
+    {
+        health--;
+        if(health != 0)
+        {
+            Respawn();
+        }
+        else
+        {
+            // TODO: respawn player on game over
+            // Game over, respawn at last "save point"
+            // maybe make the dude explode into wheat or something along those
+            // lines that isn't too hard to animate
+            print("Game over!");
+        }
+
+        damageLock = false;
     }
 
     // checking if player is grounded with raycast
