@@ -117,11 +117,11 @@ public class EnemyScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // if hitting terrain and still trying to chase player, halt movement
-        if (other.CompareTag("Ground") && targetsPlayer && IsFacingPlayer())
+        if ((other.CompareTag("Ground") || other.CompareTag("Popcorn") || other.CompareTag("Cornstalk")) && targetsPlayer && IsFacingPlayer())
         {
             onWall = true;
         }
-        else if (other.CompareTag("Ground") && directionFlipGrace == 0)
+        else if ((other.CompareTag("Ground") || other.CompareTag("Popcorn") || other.CompareTag("Cornstalk")) && directionFlipGrace == 0)
         {
             transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
             directionFlipGrace = 1f;

@@ -9,6 +9,8 @@ TagManager:
   - cam2Layer
   - NPC
   - Enemy
+  - Cornstalk
+  - Popcorn
   layers:
   - Default
   - TransparentFX
