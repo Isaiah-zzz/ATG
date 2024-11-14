@@ -131,8 +131,8 @@ public class NewBehaviourScript : MonoBehaviour
         // NOTE: For testing only
         // set spawnpoint
         if (Input.GetKeyDown(KeyCode.H)){
-            spawnX = transform.position.x;
-            spawnY = transform.position.y;
+            spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
 
         // NOTE: For testing only
@@ -144,7 +144,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         // NOTE: For testing only
         // respawn player if falling into void
-        if (transform.position.y < -20)
+        if (transform.position.y < -120)
         {
             Respawn();
         }
