@@ -115,7 +115,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 9f3abf2f88dcc46d59349aa2a088ac40
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 28, y: -32}
+      - {x: 25, y: -32}
+      - {x: 32, y: -21}
+      - {x: 32, y: -28}
     tessellationDetail: 0
   - name: Wheat_6
     originalName: 
@@ -129,7 +134,17 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 597e490d3dd52401088a6c39f5dbafc3
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -7, y: 0}
+      - {x: -13, y: -5}
+      - {x: -32, y: -27}
+      - {x: -32, y: -21}
+      - {x: -24, y: -13}
+      - {x: -16, y: -2}
+      - {x: -8, y: 4}
+      - {x: -3, y: 4}
+      - {x: -2, y: 1}
     tessellationDetail: 0
   - name: Wheat_7
     originalName: 
@@ -157,7 +172,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: b5b40ec07466943fa959fd9f92e5e330
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -21, y: 13}
+      - {x: -19, y: 9}
+      - {x: -5, y: 18}
+      - {x: 16, y: 22}
+      - {x: 32, y: 22}
+      - {x: 32, y: 26}
+      - {x: 14, y: 26}
+      - {x: -8, y: 22}
     tessellationDetail: 0
   - name: Wheat_9
     originalName: 
@@ -171,7 +195,14 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 708ab10b3315d4872a31aceafe9a2e14
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -17, y: 21}
+      - {x: -32, y: 22}
+      - {x: -32, y: 26}
+      - {x: -17, y: 25}
+      - {x: 32, y: 15}
+      - {x: 32, y: 11}
     tessellationDetail: 0
   - name: Wheat_10
     originalName: 
@@ -185,7 +216,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 4366442548b744ee79c3173b062bf2a3
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 2, y: 5}
+      - {x: -8, y: 8}
+      - {x: -32, y: 12}
+      - {x: -32, y: 15}
+      - {x: -8, y: 12}
+      - {x: 6, y: 7}
+      - {x: 32, y: 4}
+      - {x: 32, y: 0}
     tessellationDetail: 0
   - name: Wheat_11
     originalName: 
@@ -199,7 +239,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: e9c9e84db3eba43c2b32fe963ed48938
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 0}
+      - {x: -32, y: 4}
+      - {x: 32, y: -10}
+      - {x: 32, y: -14}
     tessellationDetail: 0
   - name: Wheat_12
     originalName: 
@@ -213,7 +258,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: a455bdef9b2f84b0180c82fc804e7714
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: -13}
+      - {x: -32, y: -10}
+      - {x: -2, y: -13}
+      - {x: -1, y: -17}
     tessellationDetail: 0
   - name: Wheat_13
     originalName: 
@@ -418,7 +468,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: beb025d45e6424d09a10b4b69d3fabe9
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 29, y: -3}
+      - {x: 10, y: -3}
+      - {x: 5, y: -4}
+      - {x: 5, y: 0}
+      - {x: 8, y: 1}
+      - {x: 29, y: 1}
+      - {x: 32, y: 0}
+      - {x: 32, y: -4}
     tessellationDetail: 0
   - name: Wheat_24
     originalName: 
@@ -432,7 +491,28 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: dca352bd179e8400c8768cba603b7e1d
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 14, y: -32}
+      - {x: 3, y: -22}
+      - {x: -8, y: -14}
+      - {x: -19, y: -8}
+      - {x: -32, y: -3}
+      - {x: -32, y: 0}
+      - {x: -19, y: -4}
+      - {x: -7, y: -11}
+      - {x: 8, y: -21}
+      - {x: 19, y: -32}
+    - shape:
+      - {x: 30, y: -5}
+      - {x: 28, y: -2}
+      - {x: 32, y: 2}
+      - {x: 32, y: -3}
+    - shape:
+      - {x: 26, y: 30}
+      - {x: 25, y: 32}
+      - {x: 29, y: 32}
+      - {x: 28, y: 30}
     tessellationDetail: 0
   - name: Wheat_25
     originalName: 
@@ -446,7 +526,20 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: d4470dbd4ff5d4b5994ba51a1e564de5
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 22, y: 24}
+      - {x: 11, y: 22}
+      - {x: -6, y: 16}
+      - {x: -23, y: 6}
+      - {x: -32, y: -3}
+      - {x: -32, y: 2}
+      - {x: -23, y: 10}
+      - {x: -4, y: 21}
+      - {x: 10, y: 26}
+      - {x: 21, y: 28}
+      - {x: 32, y: 28}
+      - {x: 32, y: 24}
     tessellationDetail: 0
   - name: Wheat_26
     originalName: 
@@ -460,7 +553,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 2730cf3ccee894581a2425be05eb85c1
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 24}
+      - {x: -32, y: 28}
+      - {x: -11, y: 28}
+      - {x: -11, y: 24}
     tessellationDetail: 0
   - name: Wheat_27
     originalName: 
@@ -474,7 +572,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: fb79c8abe978e4dec976de44ba7fa5e6
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 23, y: 10}
+      - {x: 23, y: 14}
+      - {x: 32, y: 14}
+      - {x: 32, y: 10}
     tessellationDetail: 0
   - name: Wheat_28
     originalName: 
@@ -488,7 +591,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: b718bd42a8c6b40878618e3207877d97
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -5, y: 8}
+      - {x: -21, y: 8}
+      - {x: -32, y: 11}
+      - {x: -32, y: 14}
+      - {x: -21, y: 11}
+      - {x: -6, y: 11}
+      - {x: 32, y: 14}
+      - {x: 32, y: 11}
     tessellationDetail: 0
   - name: Wheat_29
     originalName: 
@@ -502,7 +614,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 73d4e01d34be446798a060390c3a0867
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 23, y: 6}
+      - {x: -6, y: 11}
+      - {x: -32, y: 11}
+      - {x: -32, y: 15}
+      - {x: -6, y: 15}
+      - {x: 23, y: 9}
+      - {x: 32, y: 6}
+      - {x: 32, y: 2}
     tessellationDetail: 0
   - name: Wheat_30
     originalName: 
@@ -516,7 +637,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 680135b86f5a44c53bdfcdc24d1f798a
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 4, y: -4}
+      - {x: -16, y: -1}
+      - {x: -32, y: 2}
+      - {x: -32, y: 6}
+      - {x: -15, y: 2}
+      - {x: 5, y: 0}
+      - {x: 32, y: 0}
+      - {x: 32, y: -4}
     tessellationDetail: 0
   - name: Wheat_31
     originalName: 
@@ -530,7 +660,14 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 9069759de4831418dab18a67e5fc41c6
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -20, y: -4}
+      - {x: -32, y: -4}
+      - {x: -32, y: 0}
+      - {x: -19.42627, y: -0.38098145}
+      - {x: 0, y: -7}
+      - {x: 0, y: -10}
     tessellationDetail: 0
   - name: Wheat_32
     originalName: 
@@ -736,7 +873,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 9055bbea58d524e2ba80e680e473d53d
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 21, y: 13}
+      - {x: -9, y: 13}
+      - {x: -9, y: 16}
+      - {x: -2, y: 17}
+      - {x: 12, y: 17}
+      - {x: 22, y: 17}
+      - {x: 32, y: 13}
+      - {x: 32, y: 9}
     tessellationDetail: 0
   - name: Wheat_43
     originalName: 
@@ -750,7 +896,23 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: e9388b66ea2a24687980a0b5dc7ce466
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 22, y: 23}
+      - {x: 14, y: 32}
+      - {x: 19, y: 32}
+      - {x: 24, y: 26}
+    - shape:
+      - {x: 13, y: -32}
+      - {x: 4, y: -21}
+      - {x: -7, y: -9}
+      - {x: -23, y: 5}
+      - {x: -32, y: 9}
+      - {x: -32, y: 13}
+      - {x: -23, y: 9}
+      - {x: -7, y: -4}
+      - {x: 5, y: -16}
+      - {x: 18, y: -32}
     tessellationDetail: 0
   - name: Wheat_44
     originalName: 
@@ -764,7 +926,17 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: da876232b2156424d9391ed222557804
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 12, y: 20}
+      - {x: -3, y: 13}
+      - {x: -19, y: 2}
+      - {x: -32, y: -11}
+      - {x: -32, y: -16}
+      - {x: -14, y: 2}
+      - {x: 14, y: 17}
+      - {x: 32, y: 22}
+      - {x: 32, y: 26}
     tessellationDetail: 0
   - name: Wheat_45
     originalName: 
@@ -778,7 +950,19 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 9034ad2438c1043588121665e72f5e99
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 10, y: -32}
+      - {x: 9, y: -31}
+      - {x: -11, y: -31}
+      - {x: -13, y: -32}
+    - shape:
+      - {x: -3, y: 32}
+      - {x: -12, y: 32}
+      - {x: -32, y: 26}
+      - {x: -32, y: 22}
+      - {x: -12, y: 28}
+      - {x: -2, y: 29}
     tessellationDetail: 0
   - name: Wheat_46
     originalName: 
@@ -848,7 +1032,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 6824431a6d3f0441cb9d24d0cbe57904
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -17, y: -32}
+      - {x: -15, y: -31}
+      - {x: 0, y: -31}
+      - {x: 1, y: -32}
     tessellationDetail: 0
   - name: Wheat_51
     originalName: 
@@ -1045,7 +1234,14 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 0d455dc08978f40fdb23aa17d909f702
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -22, y: 21}
+      - {x: -24, y: 17}
+      - {x: -5, y: 17}
+      - {x: 32, y: 3}
+      - {x: 32, y: 7}
+      - {x: -6, y: 21}
     tessellationDetail: 0
   - name: Wheat_62
     originalName: 
@@ -1059,7 +1255,19 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 7c76bf4b6406c484490d6d990ee70e8c
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -16, y: -1}
+      - {x: -32, y: 7}
+      - {x: -32, y: 3}
+      - {x: -13, y: -8}
+      - {x: 17, y: -32}
+      - {x: 23, y: -32}
+    - shape:
+      - {x: 21, y: 22}
+      - {x: 13, y: 32}
+      - {x: 18, y: 32}
+      - {x: 22, y: 26}
     tessellationDetail: 0
   - name: Wheat_63
     originalName: 
@@ -1073,7 +1281,15 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: e84801c2d724443b0b0eb362538cb901
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: -13}
+      - {x: -30, y: -16}
+      - {x: -3, y: 6}
+      - {x: 32, y: 21}
+      - {x: 32, y: 25}
+      - {x: 2, y: 13}
+      - {x: -13, y: 4}
     tessellationDetail: 0
   - name: Wheat_64
     originalName: 
@@ -1087,7 +1303,14 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: e5cc764ddb43e434190b945c05bd1389
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -16, y: 32}
+      - {x: -32, y: 25}
+      - {x: -32, y: 21}
+      - {x: -14, y: 29}
+      - {x: 9, y: 29}
+      - {x: 9, y: 32}
     tessellationDetail: 0
   - name: Wheat_65
     originalName: 
@@ -1115,7 +1338,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: c8292f36c270240aaa2830dedb36657e
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 12, y: -32}
+      - {x: 1, y: -32}
+      - {x: 32, y: -20}
+      - {x: 32, y: -25}
     tessellationDetail: 0
   - name: Wheat_67
     originalName: 
@@ -1129,7 +1357,14 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: a8e08bc42f43145b28707108f7856e88
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -10, y: -14}
+      - {x: -32, y: -24}
+      - {x: -32, y: -20}
+      - {x: -15, y: -12}
+      - {x: 32, y: 4}
+      - {x: 32, y: 0}
     tessellationDetail: 0
   - name: Wheat_68
     originalName: 
@@ -1143,7 +1378,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: f7aa36271d9744da7913fab5f05b96d5
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 1}
+      - {x: -32, y: 6}
+      - {x: 32, y: 29}
+      - {x: 32, y: 25}
     tessellationDetail: 0
   - name: Wheat_69
     originalName: 
@@ -1157,7 +1397,22 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 4863ee488d43b4fdfbd3aeb3976256d4
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 4, y: 29}
+      - {x: -18, y: 29}
+      - {x: -32, y: 25}
+      - {x: -32, y: 29}
+      - {x: -20, y: 32}
+      - {x: 5, y: 32}
+      - {x: 11, y: 30}
+      - {x: 11, y: 25}
+    - shape:
+      - {x: -27, y: -32}
+      - {x: -32, y: -32}
+      - {x: -32, y: -31}
+      - {x: -19, y: -23}
+      - {x: -16, y: -25}
     tessellationDetail: 0
   - name: Wheat_70
     originalName: 
@@ -1396,7 +1651,17 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 31570ab95789d4ff8b1585e81abeb643
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -1, y: 30}
+      - {x: 2, y: 32}
+      - {x: 12, y: 32}
+      - {x: 2, y: 28}
+    - shape:
+      - {x: 4, y: -19}
+      - {x: 1, y: -16}
+      - {x: 32, y: -9}
+      - {x: 32, y: -13}
     tessellationDetail: 0
   - name: Wheat_86
     originalName: 
@@ -1410,7 +1675,15 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 6b00adb2f92314e9684c3a15af20fb14
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -7, y: -6}
+      - {x: -12, y: -10}
+      - {x: -32, y: -13}
+      - {x: -32, y: -9}
+      - {x: -16, y: -7}
+      - {x: 32, y: 14}
+      - {x: 32, y: 9}
     tessellationDetail: 0
   - name: Wheat_87
     originalName: 
@@ -1424,7 +1697,16 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 5801687afdb7e431d9d5d96af5c7c52e
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 11, y: 22}
+      - {x: -14, y: 17}
+      - {x: -32, y: 10}
+      - {x: -32, y: 14}
+      - {x: -20, y: 19}
+      - {x: 15, y: 27}
+      - {x: 32, y: 32}
+      - {x: 32, y: 29}
     tessellationDetail: 0
   - name: Wheat_88
     originalName: 
