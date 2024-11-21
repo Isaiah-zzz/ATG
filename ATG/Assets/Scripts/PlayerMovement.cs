@@ -146,6 +146,13 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         // NOTE: For testing only
+        // talking animation
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            animator.SetTrigger("talkTrigger");
+        }
+
+        // NOTE: For testing only
         // respawn player if falling into void
         if (transform.position.y < -120)
         {
@@ -157,10 +164,15 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             catapultReady = true;
+            animator.SetTrigger("leafJumpReadyTrigger");
+            if (Input.GetKeyDown(KeyCode.Space)){
+                animator.SetTrigger("leafJumpReleaseTrigger");
+            }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             catapultReady = false;
+            animator.Play("Still&Walk");
         }
 
         // catapult functionality
