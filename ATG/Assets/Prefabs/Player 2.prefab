@@ -103,6 +103,9 @@ MonoBehaviour:
   cam1: {fileID: 0}
   npcObj: {fileID: 0}
   npcScript: {fileID: 0}
+  hurtClip: {fileID: 0}
+  jumpClip: {fileID: 0}
+  catapultClip: {fileID: 0}
 --- !u!212 &928619306355276072
 SpriteRenderer:
   m_ObjectHideFlags: 0

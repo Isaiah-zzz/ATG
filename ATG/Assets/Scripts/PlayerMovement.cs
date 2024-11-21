@@ -49,6 +49,12 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject npcObj = null;
     public NpcTalk npcScript = null;
 
+    // Sound FX clips
+    [SerializeField] private AudioClip hurtClip;
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip catapultClip;
+    private AudioSource footStepsSound;
+
     Animator animator;
 
     private void Start()
@@ -56,7 +62,6 @@ public class NewBehaviourScript : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         spawnX = transform.position.x;
         spawnY = transform.position.y;
-        
     }
 
     private void Awake()
@@ -64,6 +69,7 @@ public class NewBehaviourScript : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        footStepsSound = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -203,12 +209,24 @@ public class NewBehaviourScript : MonoBehaviour
         {
             npcScript.Talk();
         }
-        
+
+        //Play walking sound FX
+        if (IsGrounded() && (horizontalInput > 0.01f || horizontalInput < -0.01f))
+        {
+            footStepsSound.enabled = true;
+        }
+        else
+        {
+            footStepsSound.enabled = false;
+        }
     }
 
     // basic jump implementation
     private void Jump(){
         body.velocity = new Vector2(body.velocity.x, jumpPower);
+
+        //Play Sound FX
+        SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
     }
 
     // TODO: Attach animations so player orientation faces the right way on launch
@@ -237,6 +255,9 @@ public class NewBehaviourScript : MonoBehaviour
         xMomentum = xPow;
         Vector2 _velocity = new(xPow, yPow);
         body.velocity = _velocity;
+
+        //Play Sound FX
+        SoundFXManager.instance.PlaySoundFXClip(catapultClip, transform, .75f);
     }
 
     // detect when the player has entered the range of an npc
@@ -278,6 +299,10 @@ public class NewBehaviourScript : MonoBehaviour
     void DamagePlayer()
     {
         health--;
+
+        //Play sound FX
+        SoundFXManager.instance.PlaySoundFXClip(hurtClip, transform, 1f);
+
         if(health != 0)
         {
             Respawn();
