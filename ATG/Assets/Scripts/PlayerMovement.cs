@@ -43,7 +43,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     // cameras being used in test scene
     [SerializeField] private GameObject cam1;
-    //[SerializeField] private GameObject cam2
+    //[SerializeField] private GameObject cam2;
 
     // variables to store references for NPC interaction
     public GameObject npcObj = null;
@@ -79,15 +79,6 @@ public class NewBehaviourScript : MonoBehaviour
         else if (horizontalInput < -0.01f)
         {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
-
-        // cause player to fall faster after being up in air for a bit
-        if (body.velocity.y < 0)
-        {
-            body.gravityScale = grav * gravMultiplier;
-
-            // cap max fall speed
-            body.velocity = new Vector2(body.velocity.x, Mathf.Max(body.velocity.y, -maxFallSpeed));
         }
 
         // when player reaches ground, reset gravity and update coyoteTime
@@ -130,12 +121,14 @@ public class NewBehaviourScript : MonoBehaviour
         {
             jumpBufferCounter -= Time.deltaTime;
         }
-        
+
         // NOTE: For testing only
         // set spawnpoint
-        if (Input.GetKeyDown(KeyCode.H)){
-            spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-            spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            spawnX = MousePosition.x;
+            spawnY = MousePosition.y;
         }
 
         // NOTE: For testing only
@@ -147,7 +140,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         // NOTE: For testing only
         // respawn player if falling into void
-        if (transform.position.y < -120)
+        if (transform.position.y < -200)
         {
             Respawn();
         }
@@ -175,6 +168,8 @@ public class NewBehaviourScript : MonoBehaviour
         // normal jump functionality
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
+            // body.velocity = new Vector2(horizontalInput * speed + xMomentum, 0);
+            coyoteTimeCounter = 0f;
             Jump();
             jumpBufferCounter = 0f;
         }
@@ -182,8 +177,17 @@ public class NewBehaviourScript : MonoBehaviour
         // control variable jump height
         if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0f)
         {
-            body.gravityScale = grav *  4f;
+            body.gravityScale = grav * 4f;
             coyoteTimeCounter = 0f;
+        }
+
+        // cause player to fall faster after being up in air for a bit
+        if (body.velocity.y < 0)
+        {
+            body.gravityScale = grav * gravMultiplier;
+
+            // cap max fall speed
+            body.velocity = new Vector2(body.velocity.x, Mathf.Max(body.velocity.y, -maxFallSpeed));
         }
 
         // update player velocity
@@ -203,11 +207,12 @@ public class NewBehaviourScript : MonoBehaviour
         {
             npcScript.Talk();
         }
-        
+
     }
 
     // basic jump implementation
-    private void Jump(){
+    private void Jump()
+    {
         body.velocity = new Vector2(body.velocity.x, jumpPower);
     }
 
@@ -240,7 +245,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     // detect when the player has entered the range of an npc
-    void OnTriggerEnter2D (Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         // if player is within range of NPC
         if (other.CompareTag("NPC"))
@@ -273,29 +278,31 @@ public class NewBehaviourScript : MonoBehaviour
         transform.position = new Vector2(spawnX, spawnY);
         body.velocity = new Vector2(0, 0);
         xMomentum = 0;
+        health = 5;
     }
 
     void DamagePlayer()
     {
         health--;
-        if(health != 0)
+        if (health == 0)
         {
             Respawn();
         }
-        else
-        {
-            // TODO: respawn player on game over
-            // Game over, respawn at last "save point"
-            // maybe make the dude explode into wheat or something along those
-            // lines that isn't too hard to animate
-            print("Game over!");
-        }
+        // else
+        // {
+        //     // TODO: respawn player on game over
+        //     // Game over, respawn at last "save point"
+        //     // maybe make the dude explode into wheat or something along those
+        //     // lines that isn't too hard to animate
+        //     print("Game over!");
+        // }
 
         damageLock = false;
     }
 
     // checking if player is grounded with raycast
-    private bool IsGrounded(){
+    private bool IsGrounded()
+    {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
