@@ -43,7 +43,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     // cameras being used in test scene
     [SerializeField] private GameObject cam1;
-    //[SerializeField] private GameObject cam2;
+    //[SerializeField] private GameObject cam2
 
     // variables to store references for NPC interaction
     public GameObject npcObj = null;
@@ -54,6 +54,9 @@ public class NewBehaviourScript : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        spawnX = transform.position.x;
+        spawnY = transform.position.y;
+        
     }
 
     private void Awake()
@@ -131,8 +134,8 @@ public class NewBehaviourScript : MonoBehaviour
         // NOTE: For testing only
         // set spawnpoint
         if (Input.GetKeyDown(KeyCode.H)){
-            spawnX = transform.position.x;
-            spawnY = transform.position.y;
+            spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
 
         // NOTE: For testing only
@@ -144,7 +147,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         // NOTE: For testing only
         // respawn player if falling into void
-        if (transform.position.y < -20)
+        if (transform.position.y < -120)
         {
             Respawn();
         }

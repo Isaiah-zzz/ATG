@@ -26,8 +26,7 @@ ScriptedImporter:
     spriteID: a1a9853b73e8f4d23a5b7436a54d1b3a
     spriteOutline:
     - shape:
-      - {x: -28, y: 32}
-      - {x: -32, y: 29}
+      - {x: -32, y: 32}
       - {x: -32, y: -32}
       - {x: 32, y: -32}
       - {x: 32, y: 32}
@@ -303,8 +302,7 @@ ScriptedImporter:
     spriteOutline:
     - shape:
       - {x: -32, y: 32}
-      - {x: -32, y: -29}
-      - {x: -28, y: -32}
+      - {x: -32, y: -32}
       - {x: 32, y: -32}
       - {x: 32, y: 32}
     tessellationDetail: 0
@@ -359,7 +357,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 49de05dc2a89b4d65b076819de9c944e
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_20
     originalName: 
@@ -373,7 +376,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 6b93835e1f600403cb4f559bee63e27e
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_21
     originalName: 
@@ -429,7 +437,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 5b2082b8659e949ec9b42bed9729a243
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_25
     originalName: 
@@ -443,7 +456,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: b9ab2eb66de704332882c7028f767cfa
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_26
     originalName: 
@@ -457,7 +475,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 878616bdc25e24173bdaad017f78ef4c
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: 32, y: 32}
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
     tessellationDetail: 0
   - name: DirtTileset_27
     originalName: 
@@ -471,7 +494,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: b1364107959644020bebc1bb16ba43af
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_28
     originalName: 
@@ -485,7 +513,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 9ffe87a3360f44685aada927a86d1d04
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_29
     originalName: 
@@ -541,7 +574,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 846cf5011962c4ea989127a0bdcec71f
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_33
     originalName: 
@@ -555,7 +593,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 7a3a6a057053742a39943ed462d720df
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_34
     originalName: 
@@ -569,7 +612,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 3c2af0e7b59bf4354ae4749682a28a8b
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_35
     originalName: 
@@ -583,7 +631,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: e5ab2d5109a23433481c5514691a8fd9
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_36
     originalName: 
@@ -597,7 +650,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 4f8100a38393d465796b87845f895955
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_37
     originalName: 
@@ -653,7 +711,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 0082ae6fc749c41d29125ea48d644cf9
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_41
     originalName: 
@@ -667,7 +730,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 83e35c2ce1cc34e3abf66626cae5f46e
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_42
     originalName: 
@@ -681,7 +749,13 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 21decd690e1824db4a174a49cc3b0461
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 29, y: -32}
+      - {x: 32, y: -29}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_43
     originalName: 
@@ -695,7 +769,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 22cf8ca2827704ae280ceab2db47c509
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_44
     originalName: 
@@ -709,7 +788,12 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 9f3f5a91fe08f4479b72819c679e0e3e
-    spriteOutline: []
+    spriteOutline:
+    - shape:
+      - {x: -32, y: 32}
+      - {x: -32, y: -32}
+      - {x: 32, y: -32}
+      - {x: 32, y: 32}
     tessellationDetail: 0
   - name: DirtTileset_45
     originalName: 
