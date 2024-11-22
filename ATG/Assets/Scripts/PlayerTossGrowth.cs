@@ -21,6 +21,9 @@ public class PlayerTossGrowth : MonoBehaviour
     public bool isTossingCornstalk = false;
     public bool isThrowingPopcorn = false;
 
+    //Sound FX Clips
+    [SerializeField] private AudioClip growthClip;
+
 
     void Start()
     {
@@ -123,5 +126,8 @@ public class PlayerTossGrowth : MonoBehaviour
 
         Destroy(grain);
         Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
+
+        //Play Sound FX
+        SoundFXManager.instance.PlaySoundFXClip(growthClip, transform, .5f);
     }
 }

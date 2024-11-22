@@ -10,6 +10,9 @@ public class PopAndLockScript : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 originalScale;
 
+    //Sound FX Clips
+    [SerializeField] private AudioClip popClip;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,5 +31,8 @@ public class PopAndLockScript : MonoBehaviour
         
         // Increase size
         transform.localScale = originalScale * growMultiplier;
+
+        //Play Sound FX
+        SoundFXManager.instance.PlaySoundFXClip(popClip, transform, .5f);
     }
 }

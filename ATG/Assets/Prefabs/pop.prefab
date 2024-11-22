@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   growDelay: 1
   growMultiplier: 6
+  popClip: {fileID: 8300000, guid: 6b7ae34198a7e4fb6bd71aff72853ede, type: 3}
 --- !u!58 &-8387987739180263373
 CircleCollider2D:
   m_ObjectHideFlags: 0
