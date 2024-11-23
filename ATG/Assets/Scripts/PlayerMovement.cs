@@ -16,6 +16,7 @@ public class NewBehaviourScript : MonoBehaviour
     // variables for enemy interaction
     private static int maxHealth = 5;
     [SerializeField] private int health = maxHealth;
+    public int CurrentHealth => health;
     private bool damageLock = false;
     [SerializeField] private float spawnX;
     [SerializeField] private float spawnY;
