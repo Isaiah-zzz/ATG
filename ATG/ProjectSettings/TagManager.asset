@@ -11,6 +11,10 @@ TagManager:
   - Enemy
   - Cornstalk
   - Popcorn
+  - Collectible
+  - PopcornCollectible
+  - CatapultCollectible
+  - WheatstalkCollectible
   layers:
   - Default
   - TransparentFX
