@@ -12,29 +12,47 @@ public class EnemyScript : MonoBehaviour
     // toggleable bool for enemy to chase player on x axis
     [SerializeField] bool targetsPlayer = false;
 
+    // Player object to chase
+    GameObject player;
+
     // toggleable bool to stop enemy from moving
     [SerializeField] bool active = true;
 
+    // distance from player at which enemy becomes active 
+    [SerializeField] float activeDistance = 50f;
+
+    // variables for when enemy is hit by popcorn
+    [SerializeField] float knockback = 10f;
+    private float stunTime = 0f;
+
     // fine tuning variables
-    private float directionFlipGrace;
+    private float directionFlipGrace = 0f;
     private float initializeTime = 1f;
     private bool onWall = false;
 
+    [SerializeField] private LayerMask groundLayer;
     Rigidbody2D body;
+    BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
         curMoveSpeed = moveSpeed;
+    }
+
+    void Awake()
+    {
+        body = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (!active)
+        if (!active || !PlayerInRange())
         {
+            body.velocity = new Vector2(0, 0);
             return;
         }
 
@@ -47,32 +65,50 @@ public class EnemyScript : MonoBehaviour
         // flip enemy to chase player on x axis if not already doing so
         if (!IsFacingPlayer() && targetsPlayer)
         {
-            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            //transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            Flip();
             onWall = false;
         }
 
         // update movement depending on which way enemy is facing
-        if (IsFacingRight())
+        if (IsGrounded() && stunTime <= 0)
         {
-            body.velocity = new Vector2(curMoveSpeed, 0f);
-        }
-        else
-        {
-            body.velocity = new Vector2(-curMoveSpeed, 0f);
+            if (IsFacingRight())
+            {
+                body.velocity = new Vector2(curMoveSpeed, 0f);
+            }
+            else
+            {
+                body.velocity = new Vector2(-curMoveSpeed, 0f);
+            }
         }
 
         // update grace time between flipping direction
-        if (directionFlipGrace > 0)
-        {
-            directionFlipGrace -= Time.deltaTime;
-        } else { directionFlipGrace = 0f; }
+        directionFlipGrace = Mathf.Max(directionFlipGrace - Time.deltaTime, 0f);
+
+        // update stunTime
+        stunTime = Mathf.Max(stunTime - Time.deltaTime, 0f);
 
         if (initializeTime > 0)
         {
             onWall = false;
             initializeTime -= Time.deltaTime;
         }
+    }
 
+    // Checks distance between this enemy and player
+    private bool PlayerInRange()
+    {
+        return Vector2.Distance(transform.position, player.transform.position) < activeDistance;
+    }
+
+    private void Flip()
+    {
+        if (directionFlipGrace == 0)
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            directionFlipGrace = 1f;
+        }
     }
 
     // return true if enemy is facing right
@@ -84,12 +120,12 @@ public class EnemyScript : MonoBehaviour
     // return true if enemy is facing player
     private bool IsFacingPlayer()
     {
-        if (GameObject.Find("Player").transform.position.x > transform.position.x && IsFacingRight())
+        if (player.transform.position.x > transform.position.x && IsFacingRight())
         {
             return true;
         }
         
-        if (GameObject.Find("Player").transform.position.x < transform.position.x && !IsFacingRight())
+        if (player.transform.position.x < transform.position.x && !IsFacingRight())
         {
             return true;
         }
@@ -100,31 +136,60 @@ public class EnemyScript : MonoBehaviour
     // return true if player and enemy x positions are within .05
     private bool IsCloseEnough()
     {
-        return Math.Abs(GameObject.Find("Player").transform.position.x - transform.position.x) < .05;
+        return Math.Abs(player.transform.position.x - transform.position.x) < .05;
     }
 
-    // swap the direction if about to walk off an edge
+    // If enemy is about to walk off ledge
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Ground") && directionFlipGrace == 0)
+        if (ColliderIsGround(other))
         {
-            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
-            directionFlipGrace = 1f;
+            //If targets player, stop
+            if (targetsPlayer && IsFacingPlayer())
+            {
+                onWall = true;
+            }
+            //Else flip
+            else
+            {
+                Flip();
+            }
         }
     }
 
     // handle collision with terrain
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        // if hitting terrain and still trying to chase player, halt movement
-        if ((other.CompareTag("Ground") || other.CompareTag("Popcorn") || other.CompareTag("Cornstalk")) && targetsPlayer && IsFacingPlayer())
+        //If ground or cornstalk, either flips or stops depending on tracking
+        if (ColliderIsGround(other.collider) || other.gameObject.CompareTag("Cornstalk"))
         {
-            onWall = true;
+            // if hitting terrain and still trying to chase player, halt movement
+            if (targetsPlayer && IsFacingPlayer())
+            {
+                onWall = true;
+            }
+            else
+            {
+                Flip();
+            }
         }
-        else if ((other.CompareTag("Ground") || other.CompareTag("Popcorn") || other.CompareTag("Cornstalk")) && directionFlipGrace == 0)
+        // if popcorn, knockback and stun
+        else if (other.gameObject.CompareTag("Popcorn"))
         {
-            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
-            directionFlipGrace = 1f;
+            float direction = other.gameObject.GetComponent<Rigidbody2D>().velocity.normalized.x;
+            body.velocity = new Vector2(knockback * direction, knockback);
+            stunTime = 5f;
         }
+    }
+
+    // check if enemy is grounded
+    private bool IsGrounded(){
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
+    // checks if layer attached to collider is groundLayer
+    private bool ColliderIsGround(Collider2D other) {
+        return (groundLayer & (1 << other.gameObject.layer)) != 0;
     }
 }

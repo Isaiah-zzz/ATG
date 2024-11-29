@@ -24,8 +24,11 @@ public class PlayerTossGrowth : MonoBehaviour
     [SerializeField] private int popcornCollectLimit = 3;
     private int catapultCollectLimit = 2;
     private int cornCount;
+    public int CurrentCornCount => cornCount;
     private int popcornCount;
+    public int CurrentPopcornCount => popcornCount;
     private int catapultCount;
+    public int CurrentCatapulCount => catapultCount;
 
     //Sound FX Clips
     [SerializeField] private AudioClip growthClip;
