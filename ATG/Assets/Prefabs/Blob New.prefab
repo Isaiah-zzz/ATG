@@ -138,6 +138,7 @@ MonoBehaviour:
   targetsPlayer: 0
   active: 1
   activeDistance: 50
+  knockback: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -177,7 +178,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1040067200407464706}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 34192b1052ae9c8eba250fceb2879d89, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -222,7 +223,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1040067200407464706}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 7f89392759961b5a19263eac45b5cf5d, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -267,7 +268,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1040067200407464706}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 7f89392759961b5a19263eac45b5cf5d, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

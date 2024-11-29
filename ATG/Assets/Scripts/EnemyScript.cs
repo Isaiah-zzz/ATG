@@ -13,7 +13,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] bool targetsPlayer = false;
 
     // Player object to chase
-    /*[SerializeField]*/ GameObject player;
+    GameObject player;
 
     // toggleable bool to stop enemy from moving
     [SerializeField] bool active = true;
@@ -22,9 +22,8 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] float activeDistance = 50f;
 
     // variables for when enemy is hit by popcorn
-    private float popcornSpeed = 0;
-    private float popcornDirection = 0;
-    private bool popcornHit = false;
+    [SerializeField] float knockback = 10f;
+    private float stunTime = 0f;
 
     // fine tuning variables
     private float directionFlipGrace = 0f;
@@ -72,13 +71,9 @@ public class EnemyScript : MonoBehaviour
         }
 
         // update movement depending on which way enemy is facing
-        if (IsGrounded())
+        if (IsGrounded() && stunTime <= 0)
         {
-            if (popcornHit)
-            {
-                body.velocity = new Vector2(popcornDirection * popcornSpeed, 0f);
-            }
-            else if (IsFacingRight())
+            if (IsFacingRight())
             {
                 body.velocity = new Vector2(curMoveSpeed, 0f);
             }
@@ -89,10 +84,10 @@ public class EnemyScript : MonoBehaviour
         }
 
         // update grace time between flipping direction
-        if (directionFlipGrace > 0)
-        {
-            directionFlipGrace -= Time.deltaTime;
-        } else { directionFlipGrace = 0f; }
+        directionFlipGrace = Mathf.Max(directionFlipGrace - Time.deltaTime, 0f);
+
+        // update stunTime
+        stunTime = Mathf.Max(stunTime - Time.deltaTime, 0f);
 
         if (initializeTime > 0)
         {
@@ -178,22 +173,12 @@ public class EnemyScript : MonoBehaviour
                 Flip();
             }
         }
-        // if popcorn, transfer velocity
+        // if popcorn, knockback and stun
         else if (other.gameObject.CompareTag("Popcorn"))
         {
-            Vector2 popcornVelocity = other.gameObject.GetComponent<Rigidbody2D>().velocity;
-            popcornSpeed = popcornVelocity.x;
-            popcornDirection = popcornVelocity.normalized.x;
-            popcornHit = true;
-        }
-    }
-
-    // handle exit collision with popcorn
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Popcorn"))
-        {
-            popcornHit = false;
+            float direction = other.gameObject.GetComponent<Rigidbody2D>().velocity.normalized.x;
+            body.velocity = new Vector2(knockback * direction, knockback);
+            stunTime = 5f;
         }
     }
 
