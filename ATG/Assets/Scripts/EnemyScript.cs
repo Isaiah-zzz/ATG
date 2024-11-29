@@ -13,10 +13,18 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] bool targetsPlayer = false;
 
     // Player object to chase
-    [SerializeField] GameObject player;
+    /*[SerializeField]*/ GameObject player;
 
     // toggleable bool to stop enemy from moving
     [SerializeField] bool active = true;
+
+    // distance from player at which enemy becomes active 
+    [SerializeField] float activeDistance = 50f;
+
+    // variables for when enemy is hit by popcorn
+    private float popcornSpeed = 0;
+    private float popcornDirection = 0;
+    private bool popcornHit = false;
 
     // fine tuning variables
     private float directionFlipGrace = 0f;
@@ -37,14 +45,15 @@ public class EnemyScript : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (!active)
+        if (!active || !PlayerInRange())
         {
+            body.velocity = new Vector2(0, 0);
             return;
         }
 
@@ -57,14 +66,19 @@ public class EnemyScript : MonoBehaviour
         // flip enemy to chase player on x axis if not already doing so
         if (!IsFacingPlayer() && targetsPlayer)
         {
-            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            //transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            Flip();
             onWall = false;
         }
 
         // update movement depending on which way enemy is facing
         if (IsGrounded())
         {
-            if (IsFacingRight())
+            if (popcornHit)
+            {
+                body.velocity = new Vector2(popcornDirection * popcornSpeed, 0f);
+            }
+            else if (IsFacingRight())
             {
                 body.velocity = new Vector2(curMoveSpeed, 0f);
             }
@@ -84,6 +98,21 @@ public class EnemyScript : MonoBehaviour
         {
             onWall = false;
             initializeTime -= Time.deltaTime;
+        }
+    }
+
+    // Checks distance between this enemy and player
+    private bool PlayerInRange()
+    {
+        return Vector2.Distance(transform.position, player.transform.position) < activeDistance;
+    }
+
+    private void Flip()
+    {
+        if (directionFlipGrace == 0)
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
+            directionFlipGrace = 1f;
         }
     }
 
@@ -115,28 +144,56 @@ public class EnemyScript : MonoBehaviour
         return Math.Abs(player.transform.position.x - transform.position.x) < .05;
     }
 
-    // swap the direction if about to walk off an edge
+    // If enemy is about to walk off ledge
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (/*other.CompareTag("Ground")*/(groundLayer & (1 << other.gameObject.layer)) != 0 && directionFlipGrace == 0)
+        if (ColliderIsGround(other))
         {
-            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
-            directionFlipGrace = 1f;
+            //If targets player, stop
+            if (targetsPlayer && IsFacingPlayer())
+            {
+                onWall = true;
+            }
+            //Else flip
+            else
+            {
+                Flip();
+            }
         }
     }
 
     // handle collision with terrain
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        // if hitting terrain and still trying to chase player, halt movement
-        if ((ColliderIsGround(other) || other.CompareTag("Popcorn") || other.CompareTag("Cornstalk")) && targetsPlayer && IsFacingPlayer())
+        //If ground or cornstalk, either flips or stops depending on tracking
+        if (ColliderIsGround(other.collider) || other.gameObject.CompareTag("Cornstalk"))
         {
-            onWall = true;
+            // if hitting terrain and still trying to chase player, halt movement
+            if (targetsPlayer && IsFacingPlayer())
+            {
+                onWall = true;
+            }
+            else
+            {
+                Flip();
+            }
         }
-        else if ((ColliderIsGround(other) || other.CompareTag("Popcorn") || other.CompareTag("Cornstalk")) && directionFlipGrace == 0)
+        // if popcorn, transfer velocity
+        else if (other.gameObject.CompareTag("Popcorn"))
         {
-            transform.localScale = new Vector2(-(Mathf.Sign(body.velocity.x) * Mathf.Abs(transform.localScale.x)), transform.localScale.y);
-            directionFlipGrace = 1f;
+            Vector2 popcornVelocity = other.gameObject.GetComponent<Rigidbody2D>().velocity;
+            popcornSpeed = popcornVelocity.x;
+            popcornDirection = popcornVelocity.normalized.x;
+            popcornHit = true;
+        }
+    }
+
+    // handle exit collision with popcorn
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Popcorn"))
+        {
+            popcornHit = false;
         }
     }
 

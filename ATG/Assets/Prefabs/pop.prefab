@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6751373405455174573}
   m_Layer: 11
   m_Name: pop
-  m_TagString: Untagged
+  m_TagString: Popcorn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   growDelay: 1
   growMultiplier: 6
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
   popClip: {fileID: 8300000, guid: 6b7ae34198a7e4fb6bd71aff72853ede, type: 3}
 --- !u!58 &-8387987739180263373
 CircleCollider2D:

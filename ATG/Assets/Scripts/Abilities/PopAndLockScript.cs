@@ -9,6 +9,9 @@ public class PopAndLockScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector3 originalScale;
+    private float speed = 2f;
+    private float direction = 1f;
+    [SerializeField] LayerMask groundLayer;
 
     //Sound FX Clips
     [SerializeField] private AudioClip popClip;
@@ -32,7 +35,27 @@ public class PopAndLockScript : MonoBehaviour
         // Increase size
         transform.localScale = originalScale * growMultiplier;
 
+        direction = rb.velocity.normalized.x;
+
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(popClip, transform, .5f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (ColliderIsGround(other.collider) && speed == 2f)
+        {
+            speed = Mathf.Abs(rb.velocity.x);
+            direction = rb.velocity.normalized.x;
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            rb.velocity = new Vector2(speed * direction, 0f);
+        }
+    }
+
+    // checks if layer attached to collider is groundLayer
+    private bool ColliderIsGround(Collider2D other) {
+        return (groundLayer & (1 << other.gameObject.layer)) != 0;
     }
 }
