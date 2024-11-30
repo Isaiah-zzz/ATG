@@ -66,14 +66,7 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: d017f25e0174c4004bdcd2e2b940a613
-    spriteOutline:
-    - shape:
-      - {x: -18, y: -29}
-      - {x: -18, y: -32}
-      - {x: 8, y: -32}
-      - {x: 5, y: -30}
-      - {x: -4, y: -29}
-      - {x: -15, y: -27}
+    spriteOutline: []
     tessellationDetail: 0
   - name: Root_4
     originalName: 
@@ -87,15 +80,7 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: e88e242adf9a44a54bd01aedd35ce161
-    spriteOutline:
-    - shape:
-      - {x: 17, y: -18}
-      - {x: 16, y: -23}
-      - {x: 17, y: -29}
-      - {x: 17, y: -32}
-      - {x: 32, y: -32}
-      - {x: 32, y: -21}
-      - {x: 24, y: -20}
+    spriteOutline: []
     tessellationDetail: 0
   - name: Root_5
     originalName: 
@@ -109,13 +94,7 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 10e6f8f4574e5429997ebdf29a835b61
-    spriteOutline:
-    - shape:
-      - {x: -32, y: -32}
-      - {x: -22, y: -32}
-      - {x: -22, y: -22}
-      - {x: -26, y: -21}
-      - {x: -32, y: -20}
+    spriteOutline: []
     tessellationDetail: 0
   - name: Root_6
     originalName: 
@@ -129,14 +108,7 @@ ScriptedImporter:
       width: 64
       height: 64
     spriteID: 1bb5e900ef07e46f2b0b1c689da16f99
-    spriteOutline:
-    - shape:
-      - {x: -14, y: -25}
-      - {x: -14, y: -32}
-      - {x: 6, y: -32}
-      - {x: 6, y: -26}
-      - {x: 3, y: -23}
-      - {x: -11, y: -23}
+    spriteOutline: []
     tessellationDetail: 0
   - name: Root_7
     originalName: 
@@ -4122,4 +4094,4 @@ ScriptedImporter:
     spriteOutline: []
     tessellationDetail: 0
   _secondaryTextures: []
-  _artifacts: {instanceID: 0}
+  _artifacts: {fileID: -2988177865379244337, guid: db2c2eb1d0520413a9246665c20dfb8d, type: 3}
