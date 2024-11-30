@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 8317893946947660109}
   m_Layer: 0
   m_Name: Player 2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,9 @@ MonoBehaviour:
   cam1: {fileID: 0}
   npcObj: {fileID: 0}
   npcScript: {fileID: 0}
+  hurtClip: {fileID: 0}
+  jumpClip: {fileID: 0}
+  catapultClip: {fileID: 0}
 --- !u!212 &928619306355276072
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -268,6 +271,9 @@ MonoBehaviour:
   cornTossForce: 15
   isTossingCornstalk: 0
   isThrowingPopcorn: 0
+  cornCollectLimit: 1
+  popcornCollectLimit: 3
+  growthClip: {fileID: 0}
 --- !u!1 &5634009031924196198
 GameObject:
   m_ObjectHideFlags: 0
