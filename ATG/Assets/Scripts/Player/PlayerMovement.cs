@@ -12,6 +12,9 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private float grav;
     [SerializeField] private float gravMultiplier;
     [SerializeField] private float maxFallSpeed = 26f;
+    [SerializeField] float acceleration = 3f;
+    [SerializeField] float deceleration = 5f;
+    [SerializeField] float velPower = 1.1f;
 
     // variables for enemy interaction
     private static int maxHealth = 5;
@@ -44,7 +47,6 @@ public class NewBehaviourScript : MonoBehaviour
 
     // cameras being used in test scene
     [SerializeField] private GameObject cam1;
-    //[SerializeField] private GameObject cam2
 
     // variables to store references for NPC interaction
     public GameObject npcObj = null;
@@ -89,12 +91,15 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         // cause player to fall faster after being up in air for a bit
-        if (body.velocity.y < 0)
+        if (body.velocity.y < 0 && coyoteTimeCounter == 0)
         {
             body.gravityScale = grav * gravMultiplier;
+        }
 
-            // cap max fall speed
-            body.velocity = new Vector2(body.velocity.x, Mathf.Max(body.velocity.y, -maxFallSpeed));
+        // cap max fall speed
+        if (body.velocity.y < -maxFallSpeed)
+        {
+            body.velocity = new Vector2(body.velocity.x, -maxFallSpeed);
         }
 
         // when player reaches ground, reset gravity and update coyoteTime
@@ -110,6 +115,7 @@ public class NewBehaviourScript : MonoBehaviour
             animator.SetBool("isJumping", true);
         }
 
+        // FIXME:
         // allow player to actually fight momentum while in midair
         if (!IsGrounded() && (Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
         {
@@ -140,7 +146,7 @@ public class NewBehaviourScript : MonoBehaviour
         
         // NOTE: For testing only
         // set spawnpoint
-        if (Input.GetKeyDown(KeyCode.H)){
+        if (Input.GetKeyDown(KeyCode.Mouse1)){
             spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
@@ -185,9 +191,8 @@ public class NewBehaviourScript : MonoBehaviour
         // catapult functionality
         if (IsGrounded() && catapultReady && jumpBufferCounter > 0f)
         {
-            catapult();
-
             catapultReady = false;
+            catapult();
             jumpBufferCounter = 0f;
         }
 
@@ -201,18 +206,27 @@ public class NewBehaviourScript : MonoBehaviour
         // control variable jump height
         if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0f)
         {
-            body.gravityScale = grav *  4f;
+            body.gravityScale = grav *  gravMultiplier;
             coyoteTimeCounter = 0f;
         }
 
         // update player velocity
         if (catapultReady && IsGrounded())
         {
-            body.velocity = new Vector2(0, body.velocity.y);
+            body.velocity = new Vector2(0, 0);
         }
         else
         {
-            body.velocity = new Vector2(horizontalInput * speed + xMomentum, body.velocity.y);
+            // FIXME:
+            // body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            // body.velocity = new Vector2(horizontalInput * speed + xMomentum, body.velocity.y);
+
+            float targetSpeed = horizontalInput * speed;
+            float speedDif = targetSpeed - body.velocity.x;
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
+            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+            body.AddForce(movement * Vector2.right);
+
             animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         }
 
@@ -236,7 +250,11 @@ public class NewBehaviourScript : MonoBehaviour
 
     // basic jump implementation
     private void Jump(){
-        body.velocity = new Vector2(body.velocity.x, jumpPower);
+
+        // body.velocity = new Vector2(body.velocity.x, jumpPower);
+        body.velocity = new Vector2(body.velocity.x, 0);
+        body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+        coyoteTimeCounter = 0f;
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
@@ -249,25 +267,29 @@ public class NewBehaviourScript : MonoBehaviour
         // store player and mouse positions
         PlayerPosition = transform.position;
         Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float xSign = 1;
-        float ySign = 1;
+        // float xSign = 1;
+        float xSign = Mathf.Sign(MousePosition.x - PlayerPosition.x);
+        float ySign = Mathf.Sign(MousePosition.y - PlayerPosition.y);
+        // float ySign = 1;
 
         // determine pos/neg sign for x & y directions
-        if (MousePosition.x < PlayerPosition.x)
-        {
-            xSign = -1;
-        }
-        if (MousePosition.y < PlayerPosition.y)
-        {
-            ySign = -1;
-        }
+        // if (MousePosition.x < PlayerPosition.x)
+        // {
+        //     xSign = -1;
+        // }
+        // if (MousePosition.y < PlayerPosition.y)
+        // {
+        //     ySign = -1;
+        // }
 
         // update player velocity
         float xPow = Mathf.Min(catapultXCap, Mathf.Abs(MousePosition.x - PlayerPosition.x) * catapultXPower) * xSign;
         float yPow = Mathf.Min(catapultYCap, Mathf.Abs(MousePosition.y - PlayerPosition.y) * catapultYPower) * ySign;
         xMomentum = xPow;
-        Vector2 _velocity = new(xPow, yPow);
-        body.velocity = _velocity;
+        // Vector2 _velocity = new(xPow, yPow);
+        // body.velocity = _velocity;
+        body.AddForce(transform.right * xPow, ForceMode2D.Impulse);
+        body.AddForce(transform.up * yPow, ForceMode2D.Impulse);
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(catapultClip, transform, .75f);
