@@ -45,6 +45,7 @@ public class EnemyScript : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         player = GameObject.FindWithTag("Player");
+        if (player == null) print("Could not find player");
     }
 
     // Update is called once per frame
@@ -160,8 +161,15 @@ public class EnemyScript : MonoBehaviour
     // handle collision with terrain
     private void OnCollisionEnter2D(Collision2D other)
     {
+        print(other.GetContact(0).normal);
+        var normal = other.GetContact(0).normal;
+        //If not from the side, do nothing
+        if (normal.y == 1f || normal.y == -1f)
+        {
+            return;
+        }
         //If ground or cornstalk, either flips or stops depending on tracking
-        if (ColliderIsGround(other.collider) || other.gameObject.CompareTag("Cornstalk"))
+        else if (ColliderIsGround(other.collider) || other.gameObject.CompareTag("Cornstalk"))
         {
             // if hitting terrain and still trying to chase player, halt movement
             if (targetsPlayer && IsFacingPlayer())
