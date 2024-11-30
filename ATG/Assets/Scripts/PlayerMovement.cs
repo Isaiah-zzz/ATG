@@ -279,6 +279,7 @@ public class NewBehaviourScript : MonoBehaviour
         body.velocity = new Vector2(0, 0);
         xMomentum = 0;
         health = 5;
+        health = 5;
     }
 
     void DamagePlayer()
@@ -288,14 +289,14 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Respawn();
         }
-        // else
-        // {
-        //     // TODO: respawn player on game over
-        //     // Game over, respawn at last "save point"
-        //     // maybe make the dude explode into wheat or something along those
-        //     // lines that isn't too hard to animate
-        //     print("Game over!");
-        // }
+        // // else
+        // // {
+        // //     // TODO: respawn player on game over
+        // //     // Game over, respawn at last "save point"
+        // //     // maybe make the dude explode into wheat or something along those
+        // //     // lines that isn't too hard to animate
+        // //     print("Game over!");
+        // // }
 
         damageLock = false;
     }
