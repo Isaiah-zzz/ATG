@@ -14,6 +14,7 @@ public class CollectibleScript : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collide = GetComponent<Collider2D>();
+        playerTossGrowth = GameObject.FindWithTag("Player").GetComponent<PlayerTossGrowth>();
     }
 
     void OnTriggerEnter2D(Collider2D other)

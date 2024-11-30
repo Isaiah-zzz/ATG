@@ -14,7 +14,7 @@ TagManager:
   - Collectible
   - PopcornCollectible
   - CatapultCollectible
-  - WheatstalkCollectible
+  - CornCollectible
   layers:
   - Default
   - TransparentFX
