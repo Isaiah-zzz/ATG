@@ -161,7 +161,6 @@ public class EnemyScript : MonoBehaviour
     // handle collision with terrain
     private void OnCollisionEnter2D(Collision2D other)
     {
-        print(other.GetContact(0).normal);
         var normal = other.GetContact(0).normal;
         //If not from the side, do nothing
         if (normal.y == 1f || normal.y == -1f)

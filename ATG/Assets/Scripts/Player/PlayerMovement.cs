@@ -307,6 +307,16 @@ public class NewBehaviourScript : MonoBehaviour
         transform.position = new Vector2(spawnX, spawnY);
         body.velocity = new Vector2(0, 0);
         xMomentum = 0;
+
+        //Despawn all cornstalk and popcorn objects
+        foreach (var cornstalk in GameObject.FindGameObjectsWithTag("Cornstalk"))
+        {
+            Destroy(cornstalk);
+        }
+        foreach (var popcorn in GameObject.FindGameObjectsWithTag("Popcorn"))
+        {
+            Destroy(popcorn);
+        }
     }
 
     void DamagePlayer()
