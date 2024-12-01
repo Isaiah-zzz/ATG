@@ -40,6 +40,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private float fightMomentum = 1.2f;
     private bool catapultReady = false;
     private float catapultCharging = 0f;
+    private bool shiftPressed = false;
     [SerializeField] private float catapultTimeThresh = 0.6f;
     private float xMomentum = 0;
     Vector2 PlayerPosition;
@@ -101,6 +102,19 @@ public class NewBehaviourScript : MonoBehaviour
         if (catapultCharging > 0f && IsGrounded())
         {
             body.velocity = new Vector2(0, 0);
+
+            PlayerPosition = transform.position;
+            Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float xSign = Mathf.Sign(MousePosition.x - PlayerPosition.x);
+
+            if (xSign > 0.01f)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (xSign < -0.01f)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
         }
         else
         {
@@ -127,7 +141,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         //Play walking sound FX
-        if (IsGrounded() && (horizontalInput > 0.01f || horizontalInput < -0.01f))
+        if (IsGrounded() && (Mathf.Abs(horizontalInput) > 0.01f))
         {
             footStepsSound.enabled = true;
         }
@@ -181,19 +195,22 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) { jumpBufferCounter = jumpBufferTime;}
         else { jumpBufferCounter -= Time.deltaTime; }
 
+        // increment catapult charging while shift is held
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && !catapultReady && shiftPressed)
+        {
+            catapultCharging += Time.deltaTime;
+        }
+
+        // if catapult has been charges for long enough, set it to be ready
         if (catapultCharging >= catapultTimeThresh && IsGrounded())
         {
             catapultReady = true;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
-        {
-            catapultCharging += Time.deltaTime;
-        }
-
         // check if Lshift is held
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
         {
+            shiftPressed = true;
             animator.SetTrigger("leafJumpReadyTrigger");
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && catapultReady)
             {
@@ -204,18 +221,16 @@ public class NewBehaviourScript : MonoBehaviour
         // catapult is not ready if shift released
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            shiftPressed = false;
             catapultCharging = 0f;
             catapultReady = false;
             animator.Play("Still&Walk");
         }
 
-        // FIXME: make catapult work 100% of the time
         // catapult functionality
         if (IsGrounded() && catapultReady && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
-            catapultReady = false;
-            catapultCharging = 0f;
-            catapult();
+            Catapult();
             jumpBufferCounter = 0f;
         }
 
@@ -298,7 +313,7 @@ public class NewBehaviourScript : MonoBehaviour
     // make the player turn to face the arrow while charging the catapult
 
     // long jump functionality
-    private void catapult()
+    private void Catapult()
     {
         // store player and mouse positions
         PlayerPosition = transform.position;
@@ -306,13 +321,19 @@ public class NewBehaviourScript : MonoBehaviour
         float xSign = Mathf.Sign(MousePosition.x - PlayerPosition.x);
         float ySign = Mathf.Sign(MousePosition.y - PlayerPosition.y);
 
-        // update player velocity
+        // update store appropriate values for launch power
         float xPow = Mathf.Min(catapultXCap, Mathf.Abs(MousePosition.x - PlayerPosition.x) * catapultXPower) * xSign;
         float yPow = Mathf.Min(catapultYCap, Mathf.Abs(MousePosition.y - PlayerPosition.y) * catapultYPower) * ySign;
         xMomentum = xPow;
 
+        // add launch force to player
         body.AddForce(transform.right * xPow, ForceMode2D.Impulse);
         body.AddForce(transform.up * yPow, ForceMode2D.Impulse);
+
+        // reset catapult charging
+        shiftPressed = false;
+        catapultCharging = 0f;
+        catapultReady = false;
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(catapultClip, transform, .75f);
