@@ -212,7 +212,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         // control variable jump height
-        if (((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W)) || !Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W)) && body.velocity.y > 0f)
+        if ((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W) || (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W))) && body.velocity.y > 0f)
         {
             body.gravityScale = grav *  gravMultiplier;
             coyoteTimeCounter = 0f;
