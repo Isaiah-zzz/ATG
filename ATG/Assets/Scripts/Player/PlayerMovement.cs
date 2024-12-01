@@ -39,6 +39,8 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private float catapultYCap;
     [SerializeField] private float fightMomentum = 1.2f;
     private bool catapultReady = false;
+    private float catapultCharging = 0f;
+    [SerializeField] private float catapultTimeThresh = 0.6f;
     private float xMomentum = 0;
     Vector2 PlayerPosition;
 
@@ -96,7 +98,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         // update player velocity
-        if (catapultReady && IsGrounded())
+        if (catapultCharging > 0f && IsGrounded())
         {
             body.velocity = new Vector2(0, 0);
         }
@@ -165,8 +167,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         animator.SetFloat("yVelocity", body.velocity.y);
 
-        // FIXME:
-        // friction for velocity on x axis
+        // friction for momentum on x axis
         if (coyoteTimeCounter != 0 && IsGrounded())
         {
             if (Mathf.Abs(xMomentum) < 0.1f)
@@ -180,12 +181,21 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) { jumpBufferCounter = jumpBufferTime;}
         else { jumpBufferCounter -= Time.deltaTime; }
 
+        if (catapultCharging >= catapultTimeThresh && IsGrounded())
+        {
+            catapultReady = true;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded())
+        {
+            catapultCharging += Time.deltaTime;
+        }
+
         // check if Lshift is held
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            catapultReady = true;
             animator.SetTrigger("leafJumpReadyTrigger");
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && catapultReady)
             {
                 animator.SetTrigger("leafJumpReleaseTrigger");
             }
@@ -194,20 +204,23 @@ public class NewBehaviourScript : MonoBehaviour
         // catapult is not ready if shift released
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            catapultCharging = 0f;
             catapultReady = false;
             animator.Play("Still&Walk");
         }
 
+        // FIXME: make catapult work 100% of the time
         // catapult functionality
-        if (IsGrounded() && catapultReady && jumpBufferCounter > 0f)
+        if (IsGrounded() && catapultReady && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
             catapultReady = false;
+            catapultCharging = 0f;
             catapult();
             jumpBufferCounter = 0f;
         }
 
         // normal jump functionality
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && catapultCharging == 0f)
         {
             Jump();
             jumpBufferCounter = 0f;
@@ -282,6 +295,8 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     // TODO: Attach animations so player orientation faces the right way on launch
+    // make the player turn to face the arrow while charging the catapult
+
     // long jump functionality
     private void catapult()
     {
