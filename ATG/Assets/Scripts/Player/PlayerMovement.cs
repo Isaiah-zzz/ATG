@@ -307,9 +307,6 @@ public class NewBehaviourScript : MonoBehaviour
         SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
     }
 
-    // TODO: Attach animations so player orientation faces the right way on launch
-    // make the player turn to face the arrow while charging the catapult
-
     // long jump functionality
     private void Catapult()
     {
