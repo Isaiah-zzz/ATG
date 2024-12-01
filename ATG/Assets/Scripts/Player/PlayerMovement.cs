@@ -15,6 +15,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] float acceleration = 3f;
     [SerializeField] float deceleration = 5f;
     [SerializeField] float velPower = 1.1f;
+    [SerializeField] float friction = 0.2f;
 
     // variables for enemy interaction
     private static int maxHealth = 5;
@@ -77,6 +78,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+
+        #region Walking
+
         // get and store horizontal input
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -90,8 +94,45 @@ public class NewBehaviourScript : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
+        // update player velocity
+        if (catapultReady && IsGrounded())
+        {
+            body.velocity = new Vector2(0, 0);
+        }
+        else
+        {
+            float targetSpeed = horizontalInput * speed;
+            float speedDif = targetSpeed - body.velocity.x;
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
+            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+            body.AddForce(movement * Vector2.right);
+
+            animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
+        }
+
+        if (IsGrounded() && Mathf.Abs(horizontalInput) < 0.01f)
+        {
+            float amount = Mathf.Min(Mathf.Abs(body.velocity.x), Mathf.Abs(friction));
+            amount *= Mathf.Sign(body.velocity.x);
+            body.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+        }
+
+        //Play walking sound FX
+        if (IsGrounded() && (horizontalInput > 0.01f || horizontalInput < -0.01f))
+        {
+            footStepsSound.enabled = true;
+        }
+        else
+        {
+            footStepsSound.enabled = false;
+        }
+
+        #endregion
+
+        #region Jumping
+
         // cause player to fall faster after being up in air for a bit
-        if (body.velocity.y < 0 && coyoteTimeCounter == 0)
+        if (body.velocity.y < 0 && coyoteTimeCounter <= 0)
         {
             body.gravityScale = grav * gravMultiplier;
         }
@@ -117,68 +158,35 @@ public class NewBehaviourScript : MonoBehaviour
 
         // FIXME:
         // allow player to actually fight momentum while in midair
-        if (!IsGrounded() && (Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
-        {
-            xMomentum /= 1.1f;
-        }
+        // if (!IsGrounded() && (Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
+        // {
+        //     xMomentum /= 1.1f;
+        // }
 
         animator.SetFloat("yVelocity", body.velocity.y);
 
+        // FIXME:
         // friction for velocity on x axis
-        if (coyoteTimeCounter != 0 && IsGrounded())
-        {
-            if (Mathf.Abs(xMomentum) < 0.1f)
-            {
-                xMomentum = 0f;
-            }
-            xMomentum /= 1.1f;
-        }
+        // if (coyoteTimeCounter != 0 && IsGrounded())
+        // {
+        //     if (Mathf.Abs(xMomentum) < 0.1f)
+        //     {
+        //         xMomentum = 0f;
+        //     }
+        //     xMomentum /= 1.1f;
+        // }
 
         // update jump buffer
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
-        
-        // NOTE: For testing only
-        // set spawnpoint
-        if (Input.GetKeyDown(KeyCode.Mouse1)){
-            spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-            spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-        }
-
-        // NOTE: For testing only
-        // "respawn" player
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
-
-        // NOTE: For testing only
-        // talking animation
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            animator.SetTrigger("talkTrigger");
-        }
-
-        // NOTE: For testing only
-        // respawn player if falling into void
-        if (transform.position.y < -120)
-        {
-            Respawn();
-        }
-
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) { jumpBufferCounter = jumpBufferTime;}
+        else { jumpBufferCounter -= Time.deltaTime; }
 
         // check if Lshift is held
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             catapultReady = true;
             animator.SetTrigger("leafJumpReadyTrigger");
-            if (Input.GetKeyDown(KeyCode.Space)){
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+            {
                 animator.SetTrigger("leafJumpReleaseTrigger");
             }
         }
@@ -204,31 +212,15 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         // control variable jump height
-        if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0f)
+        if (((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W)) || !Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W)) && body.velocity.y > 0f)
         {
             body.gravityScale = grav *  gravMultiplier;
             coyoteTimeCounter = 0f;
         }
 
-        // update player velocity
-        if (catapultReady && IsGrounded())
-        {
-            body.velocity = new Vector2(0, 0);
-        }
-        else
-        {
-            // FIXME:
-            // body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-            // body.velocity = new Vector2(horizontalInput * speed + xMomentum, body.velocity.y);
+        #endregion
 
-            float targetSpeed = horizontalInput * speed;
-            float speedDif = targetSpeed - body.velocity.x;
-            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
-            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
-            body.AddForce(movement * Vector2.right);
-
-            animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
-        }
+        #region NPC Interaction
 
         //TODO: show some kind of indication when the player can talk
         // activate NPC dialog if available
@@ -237,15 +229,36 @@ public class NewBehaviourScript : MonoBehaviour
             npcScript.Talk();
         }
 
-        //Play walking sound FX
-        if (IsGrounded() && (horizontalInput > 0.01f || horizontalInput < -0.01f))
+        #endregion
+
+        #region Debug
+
+        // set spawnpoint
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            footStepsSound.enabled = true;
+            spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
-        else
+
+        // "respawn" player
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            footStepsSound.enabled = false;
+            Respawn();
         }
+
+        // talking animation
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            animator.SetTrigger("talkTrigger");
+        }
+
+        // respawn player if falling into void
+        if (transform.position.y < -120)
+        {
+            Respawn();
+        }
+
+        #endregion
     }
 
     // basic jump implementation
@@ -256,8 +269,14 @@ public class NewBehaviourScript : MonoBehaviour
         body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
         coyoteTimeCounter = 0f;
 
-        //Play Sound FX
-        SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
+        // short hop if jump buffer used and jump key not held
+        if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W))
+        {
+            body.gravityScale = grav * gravMultiplier;
+        }
+
+            //Play Sound FX
+            SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
     }
 
     // TODO: Attach animations so player orientation faces the right way on launch
@@ -267,27 +286,14 @@ public class NewBehaviourScript : MonoBehaviour
         // store player and mouse positions
         PlayerPosition = transform.position;
         Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // float xSign = 1;
         float xSign = Mathf.Sign(MousePosition.x - PlayerPosition.x);
         float ySign = Mathf.Sign(MousePosition.y - PlayerPosition.y);
-        // float ySign = 1;
-
-        // determine pos/neg sign for x & y directions
-        // if (MousePosition.x < PlayerPosition.x)
-        // {
-        //     xSign = -1;
-        // }
-        // if (MousePosition.y < PlayerPosition.y)
-        // {
-        //     ySign = -1;
-        // }
 
         // update player velocity
         float xPow = Mathf.Min(catapultXCap, Mathf.Abs(MousePosition.x - PlayerPosition.x) * catapultXPower) * xSign;
         float yPow = Mathf.Min(catapultYCap, Mathf.Abs(MousePosition.y - PlayerPosition.y) * catapultYPower) * ySign;
         xMomentum = xPow;
-        // Vector2 _velocity = new(xPow, yPow);
-        // body.velocity = _velocity;
+
         body.AddForce(transform.right * xPow, ForceMode2D.Impulse);
         body.AddForce(transform.up * yPow, ForceMode2D.Impulse);
 
