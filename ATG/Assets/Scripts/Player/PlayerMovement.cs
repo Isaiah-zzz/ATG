@@ -7,13 +7,13 @@ using UnityEngine.UIElements;
 public class NewBehaviourScript : MonoBehaviour
 {
     // player speed, jumping, and gravity variables
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
-    [SerializeField] private float grav;
-    [SerializeField] private float gravMultiplier;
+    [SerializeField] private float speed = 12f;
+    [SerializeField] private float jumpPower = 18f;
+    [SerializeField] private float grav = 3f;
+    [SerializeField] private float gravMultiplier = 2.25f;
     [SerializeField] private float maxFallSpeed = 26f;
-    [SerializeField] float acceleration = 3f;
-    [SerializeField] float deceleration = 5f;
+    [SerializeField] float acceleration = 5f;
+    [SerializeField] float deceleration = 10f;
     [SerializeField] float velPower = 1.1f;
     [SerializeField] float friction = 0.2f;
 
@@ -27,21 +27,21 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private bool invincible = false;
 
     // coyote time and jump buffer variables
-    [SerializeField] private float coyoteTime;
+    [SerializeField] private float coyoteTime = 0.075f;
     private float coyoteTimeCounter;
-    [SerializeField] private float jumpBufferTime;
+    [SerializeField] private float jumpBufferTime = 0.075f;
     private float jumpBufferCounter;
 
     // variables for catapult functionality
-    [SerializeField] private float catapultXPower;
-    [SerializeField] private float catapultYPower;
-    [SerializeField] private float catapultXCap;
-    [SerializeField] private float catapultYCap;
+    [SerializeField] private float catapultXPower = 4f;
+    [SerializeField] private float catapultYPower = 4f;
+    [SerializeField] private float catapultXCap = 25f;
+    [SerializeField] private float catapultYCap = 25f;
     [SerializeField] private float fightMomentum = 1.2f;
-    private bool catapultReady = false;
-    private float catapultCharging = 0f;
-    private bool shiftPressed = false;
     [SerializeField] private float catapultTimeThresh = 0.6f;
+    private bool catapultReady = false;
+    private float catapultChargeTime = 0f;
+    private bool shiftPressed = false;
     private float xMomentum = 0;
     Vector2 PlayerPosition;
 
@@ -51,7 +51,7 @@ public class NewBehaviourScript : MonoBehaviour
     private Rigidbody2D body;
 
     // cameras being used in test scene
-    [SerializeField] private GameObject cam1;
+    // [SerializeField] private GameObject cam1;
 
     // variables to store references for NPC interaction
     public GameObject npcObj = null;
@@ -99,14 +99,14 @@ public class NewBehaviourScript : MonoBehaviour
         }
 
         // update player velocity
-        if (catapultCharging > 0f && IsGrounded())
+        if (catapultChargeTime > 0f && IsGrounded())
         {
             body.velocity = new Vector2(0, 0);
 
+            // flip player to face mouse while aiming catapult
             PlayerPosition = transform.position;
             Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float xSign = Mathf.Sign(MousePosition.x - PlayerPosition.x);
-
             if (xSign > 0.01f)
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -118,6 +118,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else
         {
+            // force for walking acceleration, decleration, etc.
             float targetSpeed = horizontalInput * speed + xMomentum;
             float speedDif = targetSpeed - body.velocity.x;
             float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
@@ -127,12 +128,13 @@ public class NewBehaviourScript : MonoBehaviour
             animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         }
 
-        // allow player to fight momentum
+        // allow player to fight momentum from catapult effectively
         if ((Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
         {
             xMomentum /= fightMomentum;
         }
 
+        // friction
         if (IsGrounded() && Mathf.Abs(horizontalInput) < 0.01f)
         {
             float amount = Mathf.Min(Mathf.Abs(body.velocity.x), Mathf.Abs(friction));
@@ -173,6 +175,7 @@ public class NewBehaviourScript : MonoBehaviour
             coyoteTimeCounter = coyoteTime;
             animator.SetBool("isJumping", false);
         }
+        // otherwise decrease coyote time
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
@@ -181,7 +184,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         animator.SetFloat("yVelocity", body.velocity.y);
 
-        // friction for momentum on x axis
+        // friction for catapult momentum on x axis
         if (coyoteTimeCounter != 0 && IsGrounded())
         {
             if (Mathf.Abs(xMomentum) < 0.1f)
@@ -191,23 +194,23 @@ public class NewBehaviourScript : MonoBehaviour
             xMomentum /= fightMomentum;
         }
 
-        // update jump buffer
+        // update jump buffer when W or Space pressed, else decrement buffer time
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) { jumpBufferCounter = jumpBufferTime;}
         else { jumpBufferCounter -= Time.deltaTime; }
 
         // increment catapult charging while shift is held
         if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && !catapultReady && shiftPressed)
         {
-            catapultCharging += Time.deltaTime;
+            catapultChargeTime += Time.deltaTime;
         }
 
         // if catapult has been charges for long enough, set it to be ready
-        if (catapultCharging >= catapultTimeThresh && IsGrounded())
+        if (catapultChargeTime >= catapultTimeThresh && IsGrounded())
         {
             catapultReady = true;
         }
 
-        // check if Lshift is held
+        // check if Lshift is pressed while on ground for catapult
         if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
         {
             shiftPressed = true;
@@ -222,7 +225,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             shiftPressed = false;
-            catapultCharging = 0f;
+            catapultChargeTime = 0f;
             catapultReady = false;
             animator.Play("Still&Walk");
         }
@@ -231,14 +234,12 @@ public class NewBehaviourScript : MonoBehaviour
         if (IsGrounded() && catapultReady && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
             Catapult();
-            jumpBufferCounter = 0f;
         }
 
         // normal jump functionality
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && catapultCharging == 0f)
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && catapultChargeTime == 0f)
         {
             Jump();
-            jumpBufferCounter = 0f;
         }
 
         // control variable jump height
@@ -263,14 +264,14 @@ public class NewBehaviourScript : MonoBehaviour
 
         #region Debug
 
-        // set spawnpoint
+        // set spawnpoint at mouse on right click
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
 
-        // "respawn" player
+        // respawn player at spawnpoint
         if (Input.GetKeyDown(KeyCode.R))
         {
             Respawn();
@@ -294,19 +295,16 @@ public class NewBehaviourScript : MonoBehaviour
     // basic jump implementation
     private void Jump(){
 
-        // body.velocity = new Vector2(body.velocity.x, jumpPower);
+        // set y velocity to 0 to prevent unexpected behaviors
         body.velocity = new Vector2(body.velocity.x, 0);
+
+        // add jump force and reset coyote/jump buffer times
         body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
         coyoteTimeCounter = 0f;
+        jumpBufferCounter = 0f;
 
-        // short hop if jump buffer used and jump key not held
-        if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W))
-        {
-            body.gravityScale = grav * gravMultiplier;
-        }
-
-            //Play Sound FX
-            SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
+        //Play Sound FX
+        SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
     }
 
     // TODO: Attach animations so player orientation faces the right way on launch
@@ -330,10 +328,11 @@ public class NewBehaviourScript : MonoBehaviour
         body.AddForce(transform.right * xPow, ForceMode2D.Impulse);
         body.AddForce(transform.up * yPow, ForceMode2D.Impulse);
 
-        // reset catapult charging
+        // reset catapult charging and jump buffer
         shiftPressed = false;
-        catapultCharging = 0f;
+        catapultChargeTime = 0f;
         catapultReady = false;
+        jumpBufferCounter = 0f;
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(catapultClip, transform, .75f);
