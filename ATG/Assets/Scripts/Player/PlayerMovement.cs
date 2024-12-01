@@ -32,11 +32,12 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private float jumpBufferTime;
     private float jumpBufferCounter;
 
-    // variables for long jump functionality
+    // variables for catapult functionality
     [SerializeField] private float catapultXPower;
     [SerializeField] private float catapultYPower;
     [SerializeField] private float catapultXCap;
     [SerializeField] private float catapultYCap;
+    [SerializeField] private float fightMomentum = 1.2f;
     private bool catapultReady = false;
     private float xMomentum = 0;
     Vector2 PlayerPosition;
@@ -101,13 +102,19 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else
         {
-            float targetSpeed = horizontalInput * speed;
+            float targetSpeed = horizontalInput * speed + xMomentum;
             float speedDif = targetSpeed - body.velocity.x;
             float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
             float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
             body.AddForce(movement * Vector2.right);
 
             animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
+        }
+
+        // allow player to fight momentum
+        if ((Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
+        {
+            xMomentum /= fightMomentum;
         }
 
         if (IsGrounded() && Mathf.Abs(horizontalInput) < 0.01f)
@@ -156,25 +163,18 @@ public class NewBehaviourScript : MonoBehaviour
             animator.SetBool("isJumping", true);
         }
 
-        // FIXME:
-        // allow player to actually fight momentum while in midair
-        // if (!IsGrounded() && (Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
-        // {
-        //     xMomentum /= 1.1f;
-        // }
-
         animator.SetFloat("yVelocity", body.velocity.y);
 
         // FIXME:
         // friction for velocity on x axis
-        // if (coyoteTimeCounter != 0 && IsGrounded())
-        // {
-        //     if (Mathf.Abs(xMomentum) < 0.1f)
-        //     {
-        //         xMomentum = 0f;
-        //     }
-        //     xMomentum /= 1.1f;
-        // }
+        if (coyoteTimeCounter != 0 && IsGrounded())
+        {
+            if (Mathf.Abs(xMomentum) < 0.1f)
+            {
+                xMomentum = 0f;
+            }
+            xMomentum /= fightMomentum;
+        }
 
         // update jump buffer
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) { jumpBufferCounter = jumpBufferTime;}
@@ -190,6 +190,8 @@ public class NewBehaviourScript : MonoBehaviour
                 animator.SetTrigger("leafJumpReleaseTrigger");
             }
         }
+
+        // catapult is not ready if shift released
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             catapultReady = false;
