@@ -53,9 +53,6 @@ public class NewBehaviourScript : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D body;
 
-    // cameras being used in test scene
-    // [SerializeField] private GameObject cam1;
-
     // variables to store references for NPC interaction
     public GameObject npcObj = null;
     public NpcTalk npcScript = null;
@@ -102,9 +99,12 @@ public class NewBehaviourScript : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
+        #region Velocity Update
+
         // update player velocity
         if (catapultChargeTime > 0f && IsGrounded())
         {
+            // player cannot move while catapult is charging
             body.velocity = new Vector2(0, 0);
 
             // flip player to face mouse while aiming catapult
@@ -131,6 +131,8 @@ public class NewBehaviourScript : MonoBehaviour
 
             animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
         }
+
+        #endregion
 
         // allow player to fight momentum from catapult effectively
         if ((Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)

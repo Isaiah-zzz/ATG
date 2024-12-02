@@ -21,8 +21,11 @@ public class VoleScript : MonoBehaviour
     private float direction = 1;
     private bool onWall = false;
     [SerializeField] float interval = 5f;
-    [SerializeField] float jumpPower = 15f;
+    [SerializeField] float jumpPower = 8f;
     private float timeCount = 0f;
+    [SerializeField] float acceleration = 5f;
+    [SerializeField] float deceleration = 10f;
+    [SerializeField] float velPower = 1.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,10 @@ public class VoleScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         player = GameObject.FindWithTag("Player");
         if (player == null) print("Could not find player");
+        jumpPower *= body.mass;
+        curMoveSpeed *= body.mass;
+        acceleration *= body.mass;
+        deceleration *= body.mass;
     }
 
     // Update is called once per frame
@@ -53,16 +60,16 @@ public class VoleScript : MonoBehaviour
             if (chance <= 30)   // walk right
             {
                 direction = 1;
-                body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
+                // body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             }
             else if (chance <= 60)  // walk left
             {   
                 direction = -1;
-                body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
+                // body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             }
             else if (chance <= 80)  // pause
             {
-                body.velocity = new Vector2(0f, body.velocity.y);
+                direction = 0;
             }
             else    // jump at player
             {
@@ -79,16 +86,22 @@ public class VoleScript : MonoBehaviour
         if (onWall)
         {
             direction *= -1;
-            body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
+            // body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             timeCount = 0f;
             onWall = false;
         }
+
+        // force for walking acceleration, decleration, etc.
+        float targetSpeed = direction * curMoveSpeed;
+        float speedDif = targetSpeed - body.velocity.x;
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+        body.AddForce(movement * Vector2.right);
 
     }
 
     private void Jump()
     {
-        print("player jumped");
 
         System.Random rand = new();
         int jumpChance = rand.Next(1, 101);
@@ -97,8 +110,6 @@ public class VoleScript : MonoBehaviour
         {
             // add jump force and reset coyote/jump buffer times
             body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-
-            print("Vole jumped");
         }
     }
 
