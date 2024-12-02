@@ -6,19 +6,22 @@ using UnityEngine;
 
 public class VoleScript : MonoBehaviour
 {
+    // Unity stuff
     [SerializeField] private LayerMask groundLayer;
     private int groundNum;
     Rigidbody2D body;
     BoxCollider2D boxCollider;
     GameObject player;
 
-    // movement speed variables
+    // Movement speed variables
     [SerializeField] float moveSpeed = 3f;
     private float curMoveSpeed;
 
+    // Variables for movement
     private float direction = 1;
     private bool onWall = false;
     [SerializeField] float interval = 5f;
+    [SerializeField] float jumpPower = 15f;
     private float timeCount = 0f;
 
     // Start is called before the first frame update
@@ -40,24 +43,28 @@ public class VoleScript : MonoBehaviour
     void Update()
     {
 
-        // every 5s walk in a direction or hop
+        // every [interval] seconds, walk in a direction, pause, or hop at player
         if (timeCount >= interval)
         {
-            System.Random rnd = new System.Random();
+            System.Random rnd = new();
 
             int chance = rnd.Next(1, 101);
 
-            if (chance <= 40)
+            if (chance <= 30)   // walk right
             {
                 direction = 1;
-                body.velocity = new Vector2(curMoveSpeed * direction, 0f);
+                body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             }
-            else if (chance <= 80)
+            else if (chance <= 60)  // walk left
             {   
                 direction = -1;
-                body.velocity = new Vector2(curMoveSpeed * direction, 0f);
+                body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             }
-            else
+            else if (chance <= 80)  // pause
+            {
+                body.velocity = new Vector2(0f, body.velocity.y);
+            }
+            else    // jump at player
             {
                 print("hop time");
             }
@@ -71,14 +78,28 @@ public class VoleScript : MonoBehaviour
 
         if (onWall)
         {
-            print("On a wall now");
-            print("Direction is " + direction + ", flipping to " + direction * -1);
             direction *= -1;
             body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             timeCount = 0f;
             onWall = false;
         }
 
+    }
+
+    private void Jump()
+    {
+        print("player jumped");
+
+        System.Random rand = new();
+        int jumpChance = rand.Next(1, 101);
+
+        if ( jumpChance <= 25)
+        {
+            // add jump force and reset coyote/jump buffer times
+            body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+
+            print("Vole jumped");
+        }
     }
 
     // handle collision with terrain

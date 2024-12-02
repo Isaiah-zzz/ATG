@@ -15,6 +15,7 @@ TagManager:
   - PopcornCollectible
   - CatapultCollectible
   - CornCollectible
+  - InfectedVole
   layers:
   - Default
   - TransparentFX

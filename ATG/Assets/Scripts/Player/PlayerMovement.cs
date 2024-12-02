@@ -45,6 +45,9 @@ public class NewBehaviourScript : MonoBehaviour
     private float xMomentum = 0;
     Vector2 PlayerPosition;
 
+    // Boss object to broadcast jumps to
+    GameObject boss;
+
     // need this stuff
     [SerializeField] private LayerMask groundLayer;
     private BoxCollider2D boxCollider;
@@ -78,6 +81,7 @@ public class NewBehaviourScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         footStepsSound = GetComponent<AudioSource>();
+        boss = GameObject.FindWithTag("InfectedVole");
     }
 
     private void Update()
@@ -302,6 +306,8 @@ public class NewBehaviourScript : MonoBehaviour
         body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
         coyoteTimeCounter = 0f;
         jumpBufferCounter = 0f;
+
+        boss.BroadcastMessage("Jump");
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
