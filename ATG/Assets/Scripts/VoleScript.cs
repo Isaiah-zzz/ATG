@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -10,22 +11,22 @@ public class VoleScript : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private int groundNum;
     Rigidbody2D body;
-    BoxCollider2D boxCollider;
+    CircleCollider2D circleCollider;
     GameObject player;
 
-    // Movement speed variables
+    // Variables for movement
     [SerializeField] float moveSpeed = 3f;
     private float curMoveSpeed;
-
-    // Variables for movement
-    private float direction = 1;
-    private bool onWall = false;
-    [SerializeField] float interval = 5f;
     [SerializeField] float jumpPower = 8f;
-    private float timeCount = 0f;
     [SerializeField] float acceleration = 5f;
     [SerializeField] float deceleration = 10f;
     [SerializeField] float velPower = 1.1f;
+    private float direction = 1;
+    private bool onWall = false;
+
+    // Variabeles for behavior timing
+    [SerializeField] float interval = 5f;
+    private float timeCount = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,12 +35,16 @@ public class VoleScript : MonoBehaviour
         groundNum = LayerMask.NameToLayer("Ground");
     }
 
+    // TODO: Make the boss only active once the player is within a certain range
+
     void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
         player = GameObject.FindWithTag("Player");
         if (player == null) print("Could not find player");
+
+        // movement variables need to be scaled relative to mass because he is chunky
         jumpPower *= body.mass;
         curMoveSpeed *= body.mass;
         acceleration *= body.mass;
@@ -53,45 +58,48 @@ public class VoleScript : MonoBehaviour
         // every [interval] seconds, walk in a direction, pause, or hop at player
         if (timeCount >= interval)
         {
+            // generate chance 1-100%
             System.Random rnd = new();
-
             int chance = rnd.Next(1, 101);
 
             if (chance <= 30)   // walk right
             {
                 direction = 1;
-                // body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             }
             else if (chance <= 60)  // walk left
             {   
                 direction = -1;
-                // body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             }
             else if (chance <= 80)  // pause
             {
+                // halt x velocity to reduce unexpected behaviors
+                body.velocity = new Vector2(0, body.velocity.y);
                 direction = 0;
             }
             else    // jump at player
             {
-                print("hop time");
+                // TODO: implement jump in an arc toward player
+                // make boulders fall when hitting the ground?
             }
 
+            // reset time count back to 0 to start next interval
             timeCount = 0f;
         } 
         else 
         {
+            // increment timeCount if interval has not been completed
             timeCount += Time.deltaTime;
         }
 
+        // bounce off wall instead of walking into it repeatedly
         if (onWall)
         {
             direction *= -1;
-            // body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             timeCount = 0f;
             onWall = false;
         }
 
-        // force for walking acceleration, decleration, etc.
+        // add force to move vole in appropriate direction
         float targetSpeed = direction * curMoveSpeed;
         float speedDif = targetSpeed - body.velocity.x;
         float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
@@ -100,29 +108,34 @@ public class VoleScript : MonoBehaviour
 
     }
 
+    // this function is called whenever the player jumps
     private void Jump()
     {
-
+        // generate chance 1-100%
         System.Random rand = new();
         int jumpChance = rand.Next(1, 101);
 
-        if ( jumpChance <= 25)
+        // 25% chance to also jump whenever the player does
+        if ( jumpChance <= 25 && IsGrounded())
         {
-            // add jump force and reset coyote/jump buffer times
+            // reset y velocity to reduce unexpected behaviors
+            body.velocity = new Vector2(body.velocity.x, 0);
+            // add jump force
             body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
         }
     }
 
-    // handle collision with terrain
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //If on a wall, stop walking in that direction
-        if (other.gameObject.layer == groundNum)
-        {
-            onWall = true;
-        }
-    }
+    // NOTE: probably don't need this
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     //If on a wall, stop walking in that direction
+    //     if (other.gameObject.layer == groundNum)
+    //     {
+    //         onWall = true;
+    //     }
+    // }
 
+    // update onWall variable when hitting a wall on either side
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.layer == groundNum)
@@ -131,9 +144,11 @@ public class VoleScript : MonoBehaviour
         }
     }
 
-    // checks if layer attached to collider is groundLayer
-    private bool ColliderIsGround(Collider2D other)
+    // checking if vole is grounded with raycast
+    private bool IsGrounded()
     {
-        return (groundLayer & (1 << other.gameObject.layer)) != 0;
+        float Distance = circleCollider.bounds.extents.y + 0.1f;
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Vector2.down, Distance, groundLayer);
+        return raycastHit.collider != null;
     }
 }
