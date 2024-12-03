@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     // player speed, jumping, and gravity variables
     [SerializeField] private float speed;
@@ -50,6 +50,9 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject npcObj = null;
     public NpcTalk npcScript = null;
 
+    // UI QOL
+    public bool canMove;
+
     // Sound FX clips
     [SerializeField] private AudioClip hurtClip;
     [SerializeField] private AudioClip jumpClip;
@@ -75,6 +78,10 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+        if(!canMove) {
+            return;
+        }
+        
         // get and store horizontal input
         float horizontalInput = Input.GetAxis("Horizontal");
 
