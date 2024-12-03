@@ -176,6 +176,8 @@ public class NewBehaviourScript : MonoBehaviour
                 animator.SetTrigger("leafJumpReleaseTrigger");
             }
         }
+
+        
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             catapultReady = false;
