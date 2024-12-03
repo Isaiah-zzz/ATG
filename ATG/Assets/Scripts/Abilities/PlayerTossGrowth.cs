@@ -40,7 +40,7 @@ public class PlayerTossGrowth : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         cornCount = 0;
         popcornCount = 0;
-        catapultCount = 0;
+        //catapultCount = 0;
 
     }
 
@@ -163,7 +163,7 @@ public class PlayerTossGrowth : MonoBehaviour
         } else if(tagName == "PopcornCollectible") {
             popcornCount++;
         } else if(tagName == "CatapultCollectible") {
-            catapultCount++;
+            //catapultCount++;
         }
     }
 

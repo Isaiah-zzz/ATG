@@ -1,0 +1,7 @@
+this is a text file
+for the intro UI
+of 
+Against the Grain!
+
+Use WASD to move
+Catapult yourself by holding 'Shift' and choosing a direction to launch
