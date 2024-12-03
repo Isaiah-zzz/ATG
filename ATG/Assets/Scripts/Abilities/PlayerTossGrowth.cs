@@ -22,10 +22,10 @@ public class PlayerTossGrowth : MonoBehaviour
     public bool isThrowingPopcorn = false;
     private int cornCollectLimit = 1;
     private int popcornCollectLimit = 3;
-    private int catapultCollectLimit = 2;
+    //private int catapultCollectLimit = 2;
     private int cornCount;
     private int popcornCount;
-    private int catapultCount;
+    //private int catapultCount;
 
     //Sound FX Clips
     [SerializeField] private AudioClip growthClip;
@@ -37,7 +37,7 @@ public class PlayerTossGrowth : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         cornCount = 0;
         popcornCount = 0;
-        catapultCount = 0;
+        //catapultCount = 0;
 
     }
 
@@ -160,7 +160,7 @@ public class PlayerTossGrowth : MonoBehaviour
         } else if(tagName == "PopcornCollectible") {
             popcornCount++;
         } else if(tagName == "CatapultCollectible") {
-            catapultCount++;
+            //catapultCount++;
         }
     }
 

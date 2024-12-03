@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIScript : MonoBehaviour
 {
 
-    [SerializeField] private NewBehaviourScript playerScript;
+    [SerializeField] private PlayerMovement playerScript;
     [SerializeField] private Text healthText;
     [SerializeField] private Text cornText;
     [SerializeField] private Text kernelText;
