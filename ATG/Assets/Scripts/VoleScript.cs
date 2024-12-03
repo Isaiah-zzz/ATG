@@ -71,8 +71,6 @@ public class VoleScript : MonoBehaviour
 
         if (onWall)
         {
-            print("On a wall now");
-            print("Direction is " + direction + ", flipping to " + direction * -1);
             direction *= -1;
             body.velocity = new Vector2(curMoveSpeed * direction, body.velocity.y);
             timeCount = 0f;
