@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CollectibleScript : MonoBehaviour
 {
-    public float respawnTime = 1.0f;
+    public float respawnTime = 30.0f;
     private SpriteRenderer spriteRenderer;
     private Collider2D collide;
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerTossGrowth playerTossGrowth;
     private int collectCount;
 
@@ -15,6 +16,7 @@ public class CollectibleScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         collide = GetComponent<Collider2D>();
         playerTossGrowth = GameObject.FindWithTag("Player").GetComponent<PlayerTossGrowth>();
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,7 +24,15 @@ public class CollectibleScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Collect();
-            playerTossGrowth.AddCount(this.gameObject.tag);
+
+            if (this.gameObject.CompareTag("HealthCollectible"))
+            {
+                playerMovement.AddHealth();
+            }
+            else
+            {
+                playerTossGrowth.AddCount(this.gameObject.tag);
+            }
         }
     }
 

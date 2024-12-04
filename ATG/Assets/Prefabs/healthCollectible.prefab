@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5575216946244062467
+--- !u!1 &5966673727833304102
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1230148752900809171}
-  - component: {fileID: 6472665739081874590}
-  - component: {fileID: 3183887519927339259}
-  - component: {fileID: 6034373922745632249}
+  - component: {fileID: 1459823718469943020}
+  - component: {fileID: 4897171773079859788}
+  - component: {fileID: 330296322063256801}
+  - component: {fileID: 3551285328248802183}
   m_Layer: 0
-  m_Name: catapultCoin
-  m_TagString: CatapultCollectible
+  m_Name: healthCollectible
+  m_TagString: HealthCollectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1230148752900809171
+--- !u!4 &1459823718469943020
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5575216946244062467}
+  m_GameObject: {fileID: 5966673727833304102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107.01, y: -38.647305, z: 0}
-  m_LocalScale: {x: 1.4859791, y: 1.4859791, z: 1.4859791}
+  m_LocalPosition: {x: 7.23, y: -2.78, z: 0}
+  m_LocalScale: {x: 2.363311, y: 2.363311, z: 2.363311}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6472665739081874590
+--- !u!212 &4897171773079859788
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5575216946244062467}
+  m_GameObject: {fileID: 5966673727833304102}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dcea17a6b1423db1c9ffe0cc0a33b716, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12c71776171e8b229ad964000e2c09f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,13 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3183887519927339259
+--- !u!114 &330296322063256801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5575216946244062467}
+  m_GameObject: {fileID: 5966673727833304102}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bda54bbfca702747899ff012048b0d3, type: 3}
@@ -101,13 +101,13 @@ MonoBehaviour:
   respawnTime: 30
   playerMovement: {fileID: 0}
   playerTossGrowth: {fileID: 0}
---- !u!58 &6034373922745632249
+--- !u!58 &3551285328248802183
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5575216946244062467}
+  m_GameObject: {fileID: 5966673727833304102}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -133,6 +133,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.021897595}
+  m_Offset: {x: 0, y: 0.008366856}
   serializedVersion: 2
-  m_Radius: 0.40705138
+  m_Radius: 0.2605993

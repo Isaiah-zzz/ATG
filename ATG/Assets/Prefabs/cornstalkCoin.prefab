@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bda54bbfca702747899ff012048b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 2
+  respawnTime: 30
+  playerMovement: {fileID: 0}
   playerTossGrowth: {fileID: 0}
 --- !u!58 &8489544255850655462
 CircleCollider2D:

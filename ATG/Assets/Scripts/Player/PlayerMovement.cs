@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private static int maxHealth = 5;
     [SerializeField] private int health = maxHealth;
     public int CurrentHealth => health;
+    public void AddHealth() { health += 1; }
     private bool damageLock = false;
     private const float DEFAULT_SPAWNX = -124f;
     private const float DEFAULT_SPAWNY = -78f;
@@ -462,9 +463,8 @@ public class PlayerMovement : MonoBehaviour
             SoundFXManager.instance.PlaySoundFXClip(hurtClip, transform, 1f);
 
             StartCoroutine(FlashSprite());
-
-            damageLock = false;
         }
+        damageLock = false;
     }
 
     IEnumerator Death()
