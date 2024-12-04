@@ -15,7 +15,7 @@ public class PlayerTossGrowth : MonoBehaviour
     public float popcornTossForce = 20f;
     public float cornTossForce = 15f;
 
-
+    public float detectionRadius = 0.3f;
     private SpriteRenderer sprite;
 
     public bool isTossingCornstalk = false;
@@ -58,11 +58,20 @@ public class PlayerTossGrowth : MonoBehaviour
         }
 
         if(isTossingCornstalk) {
-            HandleCornstalkThrow();
+            LayerMask wallLayer = LayerMask.GetMask("Ground");
+            Collider2D wallCollider = Physics2D.OverlapCircle(grainSpawnPoint.position, detectionRadius, wallLayer);
+            Debug.Log(wallCollider);
+            if(wallCollider == null) {
+                HandleCornstalkThrow();
+            }
         }
 
         if(isThrowingPopcorn) {
-            HandlePopcornThrow();    
+            LayerMask wallLayer = LayerMask.GetMask("Ground");
+            Collider2D wallCollider = Physics2D.OverlapCircle(grainSpawnPoint.position, detectionRadius, wallLayer);
+            if(wallCollider == null) {
+                HandlePopcornThrow();
+            } 
         }
     }
 
@@ -185,39 +194,52 @@ public class PlayerTossGrowth : MonoBehaviour
 
     IEnumerator DestroyObject(GameObject grain) {
         Collider2D collider = grain.GetComponent<Collider2D>();
-        RaycastHit2D hit = Physics2D.Raycast(grain.transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
+        RaycastHit2D[] hits;
         int count = 0;
 
-        while(hit.collider == null) {
-            if(collider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
-                hit = Physics2D.Raycast(grain.transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
+        while (true) {
+            if (collider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+                // Cast a box or ray to detect all surfaces the grain touches
+                hits = Physics2D.RaycastAll(grain.transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
                 
+                if (hits.Length > 0) {
+                    // Find the highest Y position among all hits
+                    float maxGroundYPosition = float.MinValue;
+                    foreach (var hit in hits) {
+                        if (hit.collider != null && hit.point.y > maxGroundYPosition) {
+                            maxGroundYPosition = hit.point.y;
+                        }
+                    }
+
+                    if (maxGroundYPosition > float.MinValue) {
+                        // Place the cornstalk on top of the highest ground
+                        grain.transform.rotation = Quaternion.identity;
+
+                        Vector3 grainPosition = new Vector3(
+                            grain.transform.position.x,
+                            maxGroundYPosition,
+                            grain.transform.position.z
+                        );
+
+                        Destroy(grain);
+                        Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
+
+                        // Play Sound FX
+                        SoundFXManager.instance.PlaySoundFXClip(growthClip, transform, 0.5f);
+
+                        yield break; // Exit the coroutine
+                    }
+                }
             }
+
+            // Timeout check to avoid infinite loops
             count++;
-            if(count >= 1200) {
+            if (count >= 1200) {
                 Destroy(grain);
                 yield break;
             }
+
             yield return null;
-        }
-        
-        if (hit.collider != null)
-        {
-            // Save the Y position of the ground where the grain touches
-            float groundYPosition = hit.point.y;
-
-            // Set the grain rotation to be right side up
-            grain.transform.rotation = Quaternion.identity;
-
-            // Calculate the position for the cornstalk based on the grain's position and size
-            Vector3 grainPosition = new Vector3(grain.transform.position.x, groundYPosition, grain.transform.position.z);
-            Debug.Log(groundYPosition);
-
-            Destroy(grain);
-            Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
-
-            // Play Sound FX
-            SoundFXManager.instance.PlaySoundFXClip(growthClip, transform, 0.5f);
         }
     }
 
