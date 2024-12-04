@@ -163,7 +163,7 @@ public class EnemyScript : MonoBehaviour
     {
         var normal = other.GetContact(0).normal;
         //If not from the side, do nothing
-        if (normal.y == 1f || normal.y == -1f)
+        if (Mathf.Abs(normal.y) == 1f)
         {
             return;
         }

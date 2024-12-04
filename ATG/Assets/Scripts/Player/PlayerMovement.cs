@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     // player speed, jumping, and gravity variables
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
-    [SerializeField] private float grav;
-    [SerializeField] private float gravMultiplier;
+    [SerializeField] private float speed = 12f;
+    [SerializeField] private float jumpPower = 18f;
+    [SerializeField] private float grav = 3f;
+    [SerializeField] private float gravMultiplier = 2.25f;
     [SerializeField] private float maxFallSpeed = 26f;
+    [SerializeField] float acceleration = 5f;
+    [SerializeField] float deceleration = 10f;
+    [SerializeField] float velPower = 1.1f;
+    [SerializeField] float friction = 0.2f;
 
     // variables for enemy interaction
     private static int maxHealth = 5;
@@ -23,17 +27,21 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private bool invincible = false;
 
     // coyote time and jump buffer variables
-    [SerializeField] private float coyoteTime;
+    [SerializeField] private float coyoteTime = 0.075f;
     private float coyoteTimeCounter;
-    [SerializeField] private float jumpBufferTime;
+    [SerializeField] private float jumpBufferTime = 0.075f;
     private float jumpBufferCounter;
 
-    // variables for long jump functionality
-    [SerializeField] private float catapultXPower;
-    [SerializeField] private float catapultYPower;
-    [SerializeField] private float catapultXCap;
-    [SerializeField] private float catapultYCap;
+    // variables for catapult functionality
+    [SerializeField] private float catapultXPower = 4f;
+    [SerializeField] private float catapultYPower = 4f;
+    [SerializeField] private float catapultXCap = 25f;
+    [SerializeField] private float catapultYCap = 25f;
+    [SerializeField] private float fightMomentum = 1.2f;
+    [SerializeField] private float catapultTimeThresh = 0.6f;
     private bool catapultReady = false;
+    private float catapultChargeTime = 0f;
+    private bool shiftPressed = false;
     private float xMomentum = 0;
     Vector2 PlayerPosition;
 
@@ -43,12 +51,14 @@ public class NewBehaviourScript : MonoBehaviour
     private Rigidbody2D body;
 
     // cameras being used in test scene
-    [SerializeField] private GameObject cam1;
-    //[SerializeField] private GameObject cam2
+    // [SerializeField] private GameObject cam1;
 
     // variables to store references for NPC interaction
     public GameObject npcObj = null;
     public NpcTalk npcScript = null;
+
+    // UI QOL
+    public bool canMove;
 
     // Sound FX clips
     [SerializeField] private AudioClip hurtClip;
@@ -75,6 +85,13 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+        if(!canMove) {
+            return;
+        }
+        
+
+        #region Walking
+
         // get and store horizontal input
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -88,13 +105,74 @@ public class NewBehaviourScript : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
+        // update player velocity
+        if (catapultChargeTime > 0f && IsGrounded())
+        {
+            body.velocity = new Vector2(0, 0);
+
+            // flip player to face mouse while aiming catapult
+            PlayerPosition = transform.position;
+            Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float xSign = Mathf.Sign(MousePosition.x - PlayerPosition.x);
+            if (xSign > 0.01f)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (xSign < -0.01f)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+        }
+        else
+        {
+            // force for walking acceleration, decleration, etc.
+            float targetSpeed = horizontalInput * speed + xMomentum;
+            float speedDif = targetSpeed - body.velocity.x;
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
+            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+            body.AddForce(movement * Vector2.right);
+
+            animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
+        }
+
+        // allow player to fight momentum from catapult effectively
+        if ((Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
+        {
+            xMomentum /= fightMomentum;
+        }
+
+        // friction
+        if (IsGrounded() && Mathf.Abs(horizontalInput) < 0.01f)
+        {
+            float amount = Mathf.Min(Mathf.Abs(body.velocity.x), Mathf.Abs(friction));
+            amount *= Mathf.Sign(body.velocity.x);
+            body.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+        }
+
+        //Play walking sound FX
+        if (IsGrounded() && (Mathf.Abs(horizontalInput) > 0.01f))
+        {
+            footStepsSound.enabled = true;
+        }
+        else
+        {
+            footStepsSound.enabled = false;
+        }
+
+        #endregion
+
+        #region Jumping
+
         // cause player to fall faster after being up in air for a bit
-        if (body.velocity.y < 0)
+        if (body.velocity.y < 0 && coyoteTimeCounter <= 0)
         {
             body.gravityScale = grav * gravMultiplier;
+        }
 
-            // cap max fall speed
-            body.velocity = new Vector2(body.velocity.x, Mathf.Max(body.velocity.y, -maxFallSpeed));
+        // cap max fall speed
+        if (body.velocity.y < -maxFallSpeed)
+        {
+            body.velocity = new Vector2(body.velocity.x, -maxFallSpeed);
         }
 
         // when player reaches ground, reset gravity and update coyoteTime
@@ -104,119 +182,83 @@ public class NewBehaviourScript : MonoBehaviour
             coyoteTimeCounter = coyoteTime;
             animator.SetBool("isJumping", false);
         }
+        // otherwise decrease coyote time
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
             animator.SetBool("isJumping", true);
         }
 
-        // allow player to actually fight momentum while in midair
-        if (!IsGrounded() && (Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
-        {
-            xMomentum /= 1.1f;
-        }
-
         animator.SetFloat("yVelocity", body.velocity.y);
 
-        // friction for velocity on x axis
+        // friction for catapult momentum on x axis
         if (coyoteTimeCounter != 0 && IsGrounded())
         {
             if (Mathf.Abs(xMomentum) < 0.1f)
             {
                 xMomentum = 0f;
             }
-            xMomentum /= 1.1f;
+            xMomentum /= fightMomentum;
         }
 
-        // update jump buffer
-        if (Input.GetKeyDown(KeyCode.Space))
+        // update jump buffer when W or Space pressed, else decrement buffer time
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) { jumpBufferCounter = jumpBufferTime;}
+        else { jumpBufferCounter -= Time.deltaTime; }
+
+        // increment catapult charging while shift is held
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && !catapultReady && shiftPressed)
         {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
-        
-        // NOTE: For testing only
-        // set spawnpoint
-        if (Input.GetKeyDown(KeyCode.H)){
-            spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-            spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+            catapultChargeTime += Time.deltaTime;
         }
 
-        // NOTE: For testing only
-        // "respawn" player
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
-
-        // NOTE: For testing only
-        // talking animation
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            animator.SetTrigger("talkTrigger");
-        }
-
-        // NOTE: For testing only
-        // respawn player if falling into void
-        if (transform.position.y < -120)
-        {
-            Respawn();
-        }
-
-
-        // check if Lshift is held
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        // if catapult has been charges for long enough, set it to be ready
+        if (catapultChargeTime >= catapultTimeThresh && IsGrounded())
         {
             catapultReady = true;
+        }
+
+        // check if Lshift is pressed while on ground for catapult
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        {
+            shiftPressed = true;
             animator.SetTrigger("leafJumpReadyTrigger");
-            if (Input.GetKeyDown(KeyCode.Space)){
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && catapultReady)
+            {
                 animator.SetTrigger("leafJumpReleaseTrigger");
             }
         }
 
-        
+        // catapult is not ready if shift released
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            shiftPressed = false;
+            catapultChargeTime = 0f;
             catapultReady = false;
             animator.Play("Still&Walk");
         }
 
         // catapult functionality
-        if (IsGrounded() && catapultReady && jumpBufferCounter > 0f)
+        if (IsGrounded() && catapultReady && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
-            catapult();
-
-            catapultReady = false;
-            jumpBufferCounter = 0f;
+            Catapult();
         }
 
         // normal jump functionality
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f && catapultChargeTime == 0f)
         {
             Jump();
-            jumpBufferCounter = 0f;
         }
 
         // control variable jump height
-        if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0f)
+        if ((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W) || (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W))) && body.velocity.y > 0f)
         {
-            body.gravityScale = grav *  4f;
+            body.gravityScale = grav *  gravMultiplier;
             coyoteTimeCounter = 0f;
         }
 
-        // update player velocity
-        if (catapultReady && IsGrounded())
-        {
-            body.velocity = new Vector2(0, body.velocity.y);
-        }
-        else
-        {
-            body.velocity = new Vector2(horizontalInput * speed + xMomentum, body.velocity.y);
-            animator.SetFloat("xVelocity", Mathf.Abs(body.velocity.x));
-        }
+        #endregion
+
+        #region NPC Interaction
 
         //TODO: show some kind of indication when the player can talk
         // activate NPC dialog if available
@@ -225,51 +267,76 @@ public class NewBehaviourScript : MonoBehaviour
             npcScript.Talk();
         }
 
-        //Play walking sound FX
-        if (IsGrounded() && (horizontalInput > 0.01f || horizontalInput < -0.01f))
+        #endregion
+
+        #region Debug
+
+        // set spawnpoint at mouse on right click
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            footStepsSound.enabled = true;
+            spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
-        else
+
+        // respawn player at spawnpoint
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            footStepsSound.enabled = false;
+            Respawn();
         }
+
+        // talking animation
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            animator.SetTrigger("talkTrigger");
+        }
+
+        // respawn player if falling into void
+        if (transform.position.y < -120)
+        {
+            Respawn();
+        }
+
+        #endregion
     }
 
     // basic jump implementation
     private void Jump(){
-        body.velocity = new Vector2(body.velocity.x, jumpPower);
+
+        // set y velocity to 0 to prevent unexpected behaviors
+        body.velocity = new Vector2(body.velocity.x, 0);
+
+        // add jump force and reset coyote/jump buffer times
+        body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+        coyoteTimeCounter = 0f;
+        jumpBufferCounter = 0f;
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
     }
 
-    // TODO: Attach animations so player orientation faces the right way on launch
     // long jump functionality
-    private void catapult()
+    private void Catapult()
     {
         // store player and mouse positions
         PlayerPosition = transform.position;
         Vector2 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float xSign = 1;
-        float ySign = 1;
+        float xSign = Mathf.Sign(MousePosition.x - PlayerPosition.x);
+        float ySign = Mathf.Sign(MousePosition.y - PlayerPosition.y);
 
-        // determine pos/neg sign for x & y directions
-        if (MousePosition.x < PlayerPosition.x)
-        {
-            xSign = -1;
-        }
-        if (MousePosition.y < PlayerPosition.y)
-        {
-            ySign = -1;
-        }
-
-        // update player velocity
+        // update store appropriate values for launch power
         float xPow = Mathf.Min(catapultXCap, Mathf.Abs(MousePosition.x - PlayerPosition.x) * catapultXPower) * xSign;
         float yPow = Mathf.Min(catapultYCap, Mathf.Abs(MousePosition.y - PlayerPosition.y) * catapultYPower) * ySign;
         xMomentum = xPow;
-        Vector2 _velocity = new(xPow, yPow);
-        body.velocity = _velocity;
+
+        // add launch force to player
+        body.AddForce(transform.right * xPow, ForceMode2D.Impulse);
+        body.AddForce(transform.up * yPow, ForceMode2D.Impulse);
+
+        // reset catapult charging and jump buffer
+        shiftPressed = false;
+        catapultChargeTime = 0f;
+        catapultReady = false;
+        jumpBufferCounter = 0f;
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(catapultClip, transform, .75f);
