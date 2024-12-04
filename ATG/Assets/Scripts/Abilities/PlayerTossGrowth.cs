@@ -128,33 +128,97 @@ public class PlayerTossGrowth : MonoBehaviour
     {
         Collider2D collider = grain.GetComponent<Collider2D>();
 
-        while (!collider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        bool isOnValidGround = false;
+        float timeout = 8f; // Maximum wait time in seconds
+        float elapsedTime = 0f;
+
+        while (!isOnValidGround && elapsedTime < timeout)
         {
-            yield return null;
+            // Increment the elapsed time
+            elapsedTime += Time.deltaTime;
+
+            // Wait until the object touches something on the Ground layer
+            while (!collider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            {
+                yield return null;
+                elapsedTime += Time.deltaTime;
+                if (elapsedTime >= timeout)
+                    break;
+            }
+            // Check all contact points
+            ContactPoint2D[] contacts = new ContactPoint2D[10]; // Buffer for contacts
+            int contactCount = collider.GetContacts(contacts);
+
+            isOnValidGround = false;
+
+            for (int i = 0; i < contactCount; i++)
+            {
+                // Verify if the contact point normal is mostly upward
+                if (contacts[i].normal.y > 0.7f) // Adjust the threshold as needed
+                {
+                    isOnValidGround = true;
+                    break;
+                }
+            }
+
+            if (!isOnValidGround && elapsedTime < timeout)
+            {
+                // If the ground isn't valid and timeout hasn't been reached, keep waiting and checking
+                yield return null;
+            }
         }
 
+        // If the timeout was reached without landing on valid ground, destroy the object
+        if (!isOnValidGround)
+        {
+            Destroy(grain);
+            yield break; // Exit the coroutine
+        }
+
+        // Once valid ground is confirmed, wait briefly before proceeding
         yield return new WaitForSeconds(0.3f);
+
         StartCoroutine(DestroyObject(grain));
+        
     }
+
 
     IEnumerator DestroyObject(GameObject grain) {
         Collider2D collider = grain.GetComponent<Collider2D>();
+        RaycastHit2D hit = Physics2D.Raycast(grain.transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
+        int count = 0;
 
-        while (!collider.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        {
+        while(hit.collider == null) {
+            if(collider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+                hit = Physics2D.Raycast(grain.transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
+                
+            }
+            count++;
+            if(count >= 1200) {
+                Destroy(grain);
+                yield break;
+            }
             yield return null;
         }
+        
+        if (hit.collider != null)
+        {
+            // Save the Y position of the ground where the grain touches
+            float groundYPosition = hit.point.y;
 
-        SpriteRenderer grainRenderer = grain.GetComponent<SpriteRenderer>();
+            // Set the grain rotation to be right side up
+            grain.transform.rotation = Quaternion.identity;
 
-        Vector2 spriteSize = grainRenderer.bounds.size;
-        Vector3 grainPosition = new Vector3(grain.transform.position.x, grain.transform.position.y - spriteSize.y / 2, grain.transform.position.z);  
+            // Calculate the position for the cornstalk based on the grain's position and size
+            Vector3 grainPosition = new Vector3(grain.transform.position.x, groundYPosition, grain.transform.position.z);
+            Debug.Log(groundYPosition);
 
-        Destroy(grain);
-        Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
+            Destroy(grain);
+            Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
 
-        //Play Sound FX
-        SoundFXManager.instance.PlaySoundFXClip(growthClip, transform, .5f);
+            // Play Sound FX
+            SoundFXManager.instance.PlaySoundFXClip(growthClip, transform, 0.5f);
+        }
     }
 
     public void AddCount(string tagName) {
