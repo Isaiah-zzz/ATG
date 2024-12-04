@@ -22,9 +22,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int health = maxHealth;
     public int CurrentHealth => health;
     private bool damageLock = false;
+    private const float DEFAULT_SPAWNX = -124f;
+    private const float DEFAULT_SPAWNY = -78f;
+    private const float HUB_SPAWNX = 34f;
+    private const float HUB_SPAWNY = -35f;
     [SerializeField] private float spawnX;
     [SerializeField] private float spawnY;
     [SerializeField] private bool invincible = false;
+    [SerializeField] private float invincibleTime = 3f;
+    private float invincibleTimer = 0f;
+    [SerializeField] private bool debugMode = false;
 
     // coyote time and jump buffer variables
     [SerializeField] private float coyoteTime = 0.075f;
@@ -64,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioClip hurtClip;
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip catapultClip;
+    [SerializeField] private AudioClip catapultReadyClip;
+    [SerializeField] private AudioClip deathClip;
     private AudioSource footStepsSound;
 
     Animator animator;
@@ -71,8 +80,18 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        spawnX = transform.position.x;
-        spawnY = transform.position.y;
+
+        //if not in debug mode, set spawn to default spawn
+        if (!debugMode)
+        {
+            spawnX = DEFAULT_SPAWNX;
+            spawnY = DEFAULT_SPAWNY;
+        }
+        else
+        {
+            spawnX = transform.position.x;
+            spawnY = transform.position.y;
+        }
     }
 
     private void Awake()
@@ -219,9 +238,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // if catapult has been charged for long enough, set catapultReady to true
-        if (catapultChargeTime >= catapultTimeThresh && IsGrounded())
+        if (catapultChargeTime >= catapultTimeThresh && IsGrounded() && !catapultReady)
         {
             catapultReady = true;
+            SoundFXManager.instance.PlaySoundFXClip(catapultReadyClip, transform, 0.5f);
         }
 
         // check if Lshift is pressed while on ground for catapult
@@ -276,17 +296,28 @@ public class PlayerMovement : MonoBehaviour
 
         #endregion
 
+        #region Damage
+
+        // update invincibility
+        if (invincibleTimer > 0f)
+        {
+            invincibleTimer = Mathf.Max(invincibleTimer - Time.deltaTime, 0f);
+            if (invincibleTimer == 0f) invincible = false;
+        }
+
+        #endregion
+
         #region Debug
 
         // set spawnpoint at mouse on right click
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (debugMode && Input.GetKeyDown(KeyCode.Mouse1))
         {
             spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
 
         // respawn player at spawnpoint
-        if (Input.GetKeyDown(KeyCode.R))
+        if (debugMode && Input.GetKeyDown(KeyCode.R))
         {
             Respawn();
         }
@@ -361,14 +392,11 @@ public class PlayerMovement : MonoBehaviour
             npcScript = npcObj.GetComponent<NpcTalk>();
         }
 
-        // if player makes contact with enemy
-        if (other.CompareTag("Enemy"))
+        // if hub checkpoint, set new spawn location
+        if (other.CompareTag("HubCheckpoint"))
         {
-            if (!damageLock && !invincible)
-            {
-                damageLock = true;
-                DamagePlayer();
-            }
+            spawnX = HUB_SPAWNX;
+            spawnY = HUB_SPAWNY;
         }
     }
 
@@ -380,8 +408,28 @@ public class PlayerMovement : MonoBehaviour
         npcScript = null;
     }
 
-    void Respawn()
+    //This just detects enemy collisions
+    void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (!damageLock && !invincible)
+            {
+                damageLock = true;
+                DamagePlayer();
+            }
+        }
+    }
+
+    public void Respawn()
+    {
+        //Reset time scale
+        Time.timeScale = 1f;
+
+        //Reset health
+        health = 5;
+
+        //Reset position
         transform.position = new Vector2(spawnX, spawnY);
         body.velocity = new Vector2(0, 0);
         xMomentum = 0;
@@ -401,23 +449,49 @@ public class PlayerMovement : MonoBehaviour
     {
         health--;
 
-        //Play sound FX
-        SoundFXManager.instance.PlaySoundFXClip(hurtClip, transform, 1f);
-
-        if(health != 0)
+        if (health == 0)
         {
-            Respawn();
+            StartCoroutine(Death());
         }
         else
         {
-            // TODO: respawn player on game over
-            // Game over, respawn at last "save point"
-            // maybe make the dude explode into wheat or something along those
-            // lines that isn't too hard to animate
-            print("Game over!");
-        }
+            invincible = true;
+            invincibleTimer = invincibleTime;
 
-        damageLock = false;
+            //Play sound FX
+            SoundFXManager.instance.PlaySoundFXClip(hurtClip, transform, 1f);
+
+            StartCoroutine(FlashSprite());
+
+            damageLock = false;
+        }
+    }
+
+    IEnumerator Death()
+    {
+        //Play death animation
+        animator.Play("death");
+        //Play death sound fx
+        SoundFXManager.instance.PlaySoundFXClip(deathClip, transform, 1f);
+        //Wait for animation to finish
+        yield return new WaitForSeconds(0.5f);
+        //Pause game
+        Time.timeScale = 0;
+    }
+
+    IEnumerator FlashSprite()
+    {
+        for (int i = 0; i < (int)(invincibleTime * 2f); i++)
+        {
+            Color tmp = GetComponent<SpriteRenderer>().color;
+            tmp.a = 0f;
+            GetComponent<SpriteRenderer>().color = tmp;
+            yield return new WaitForSeconds(0.25f);
+            tmp = GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            GetComponent<SpriteRenderer>().color = tmp;
+            yield return new WaitForSeconds(0.25f);
+        }
     }
 
     // checking if player is grounded with raycast
