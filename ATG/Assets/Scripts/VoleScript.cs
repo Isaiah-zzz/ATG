@@ -58,28 +58,31 @@ public class VoleScript : MonoBehaviour
         // every [interval] seconds, walk in a direction, pause, or hop at player
         if (timeCount >= interval)
         {
-            // generate chance 1-100%
-            System.Random rnd = new();
-            int chance = rnd.Next(1, 101);
+            if (!onWall)
+            {
+                // generate chance 1-100%
+                System.Random rnd = new();
+                int chance = rnd.Next(1, 101);
 
-            if (chance <= 30)   // walk right
-            {
-                direction = 1;
-            }
-            else if (chance <= 60)  // walk left
-            {   
-                direction = -1;
-            }
-            else if (chance <= 80)  // pause
-            {
-                // halt x velocity to reduce unexpected behaviors
-                body.velocity = new Vector2(0, body.velocity.y);
-                direction = 0;
-            }
-            else    // jump at player
-            {
-                // TODO: implement jump in an arc toward player
-                // make boulders fall when hitting the ground?
+                if (chance <= 30)   // walk right
+                {
+                    direction = 1;
+                }
+                else if (chance <= 60)  // walk left
+                {   
+                    direction = -1;
+                }
+                else if (chance <= 80)  // pause
+                {
+                    // halt x velocity to reduce unexpected behaviors
+                    body.velocity = new Vector2(0, body.velocity.y);
+                    direction = 0;
+                }
+                else    // jump at player
+                {
+                    // TODO: implement jump in an arc toward player
+                    // make boulders fall when hitting the ground?
+                }
             }
 
             // reset time count back to 0 to start next interval
@@ -94,9 +97,10 @@ public class VoleScript : MonoBehaviour
         // bounce off wall instead of walking into it repeatedly
         if (onWall)
         {
-            direction *= -1;
-            timeCount = 0f;
+            // body.velocity = new Vector2(0, body.velocity.y);
             onWall = false;
+            direction *= -1;
+            timeCount = 0;
         }
 
         // add force to move vole in appropriate direction
@@ -125,24 +129,24 @@ public class VoleScript : MonoBehaviour
         }
     }
 
-    // NOTE: probably don't need this
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     //If on a wall, stop walking in that direction
-    //     if (other.gameObject.layer == groundNum)
-    //     {
-    //         onWall = true;
-    //     }
-    // }
-
     // update onWall variable when hitting a wall on either side
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        //If on a wall, stop walking in that direction
         if (other.gameObject.layer == groundNum)
         {
-            onWall = false;
+            onWall = true;
         }
     }
+
+    // NOTE: probably don't need this
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if (other.gameObject.layer == groundNum)
+    //     {
+    //         onWall = false;
+    //     }
+    // }
 
     // checking if vole is grounded with raycast
     private bool IsGrounded()

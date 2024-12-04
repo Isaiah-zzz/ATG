@@ -8,7 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
 {
     // player speed, jumping, and gravity variables
     [SerializeField] private float speed = 12f;
-    [SerializeField] private float jumpPower = 18f;
+    [SerializeField] private float jumpPower = 20f;
     [SerializeField] private float grav = 3f;
     [SerializeField] private float gravMultiplier = 2.25f;
     [SerializeField] private float maxFallSpeed = 26f;
@@ -37,7 +37,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] private float catapultYPower = 4f;
     [SerializeField] private float catapultXCap = 25f;
     [SerializeField] private float catapultYCap = 25f;
-    [SerializeField] private float fightMomentum = 1.2f;
+    [SerializeField] private float fightMomentum = 1.03f;
     [SerializeField] private float catapultTimeThresh = 0.6f;
     private bool catapultReady = false;
     private float catapultChargeTime = 0f;
@@ -135,7 +135,8 @@ public class NewBehaviourScript : MonoBehaviour
         #endregion
 
         // allow player to fight momentum from catapult effectively
-        if ((Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
+        // if ((Mathf.Pow(horizontalInput, xMomentum) < 0) && Mathf.Abs(horizontalInput) > .01f)
+        if (Mathf.Sign(horizontalInput) != Mathf.Sign(xMomentum) && Mathf.Abs(horizontalInput) > .01f)
         {
             xMomentum /= fightMomentum;
         }
@@ -197,7 +198,7 @@ public class NewBehaviourScript : MonoBehaviour
             {
                 xMomentum = 0f;
             }
-            xMomentum /= fightMomentum;
+            xMomentum /= 1.2f;
         }
 
         // update jump buffer when W or Space pressed, else decrement buffer time
@@ -210,7 +211,7 @@ public class NewBehaviourScript : MonoBehaviour
             catapultChargeTime += Time.deltaTime;
         }
 
-        // if catapult has been charges for long enough, set it to be ready
+        // if catapult has been charged for long enough, set catapultReady to true
         if (catapultChargeTime >= catapultTimeThresh && IsGrounded())
         {
             catapultReady = true;
@@ -252,7 +253,7 @@ public class NewBehaviourScript : MonoBehaviour
         if ((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W) || (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.W))) && body.velocity.y > 0f)
         {
             body.gravityScale = grav *  gravMultiplier;
-            coyoteTimeCounter = 0f;
+            // coyoteTimeCounter = 0f;
         }
 
         #endregion
@@ -305,9 +306,9 @@ public class NewBehaviourScript : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, 0);
 
         // add jump force and reset coyote/jump buffer times
-        body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
         coyoteTimeCounter = 0f;
         jumpBufferCounter = 0f;
+        body.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
 
         boss.BroadcastMessage("Jump");
 
