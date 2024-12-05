@@ -494,7 +494,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(FlashSprite());
         }
         damageLock = false;
-        invincibleTimer = 0f;
+        //invincibleTimer = 0f;
     }
 
     IEnumerator Death()
