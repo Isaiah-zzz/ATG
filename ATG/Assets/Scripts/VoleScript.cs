@@ -38,8 +38,6 @@ public class VoleScript : MonoBehaviour
         groundNum = LayerMask.NameToLayer("Ground");
     }
 
-    // TODO: Make the boss only active once the player is within a certain range
-
     void Awake()
     {
         animator = GetComponent<Animator>();
