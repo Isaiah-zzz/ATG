@@ -27,6 +27,7 @@ public class VoleScript : MonoBehaviour
     // Variabeles for behavior timing
     [SerializeField] float interval = 5f;
     private float timeCount = 0f;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class VoleScript : MonoBehaviour
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         player = GameObject.FindWithTag("Player");
@@ -67,16 +69,19 @@ public class VoleScript : MonoBehaviour
                 if (chance <= 30)   // walk right
                 {
                     direction = 1;
+                    animator.SetInteger("int", 1);
                 }
                 else if (chance <= 60)  // walk left
                 {   
                     direction = -1;
+                    animator.SetInteger("int", -1);
                 }
                 else if (chance <= 80)  // pause
                 {
                     // halt x velocity to reduce unexpected behaviors
                     body.velocity = new Vector2(0, body.velocity.y);
                     direction = 0;
+                    animator.SetInteger("int", 0);
                 }
                 else    // jump at player
                 {
@@ -122,6 +127,9 @@ public class VoleScript : MonoBehaviour
         // 25% chance to also jump whenever the player does
         if ( jumpChance <= 25 && IsGrounded())
         {
+            Debug.Log("Playing attack animation");
+            // animator.Play("attack");
+            animator.SetTrigger("attack");
             // reset y velocity to reduce unexpected behaviors
             body.velocity = new Vector2(body.velocity.x, 0);
             // add jump force
