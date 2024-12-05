@@ -18,6 +18,9 @@ public class PlayerTossGrowth : MonoBehaviour
     public float detectionRadius = 0.3f;
     private SpriteRenderer sprite;
 
+    [SerializeField] float cornStalkDuration = 15f;
+    [SerializeField] float popcornDuration = 15f;
+
     public bool isTossingCornstalk = false;
     public bool isThrowingPopcorn = false;
     [SerializeField] private int cornCollectLimit = 1;
@@ -27,11 +30,10 @@ public class PlayerTossGrowth : MonoBehaviour
     public int CurrentCornCount => cornCount;
     private int popcornCount;
     public int CurrentPopcornCount => popcornCount;
-    private int catapultCount;
-    public int CurrentCatapulCount => catapultCount;
 
     //Sound FX Clips
     [SerializeField] private AudioClip growthClip;
+    [SerializeField] private AudioClip popcornClip;
 
 
     void Start()
@@ -40,7 +42,6 @@ public class PlayerTossGrowth : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         cornCount = 0;
         popcornCount = 0;
-        catapultCount = 0;
 
     }
 
@@ -94,6 +95,7 @@ public class PlayerTossGrowth : MonoBehaviour
             rb.AddForce(direction * popcornTossForce, ForceMode2D.Impulse);
             isThrowingPopcorn = false;  
             popcornCount -= popcornCollectLimit;
+            StartCoroutine(DestroySpawnedObject(popcornInst, popcornDuration));
         }
 
         //flip player
@@ -188,7 +190,7 @@ public class PlayerTossGrowth : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
 
         StartCoroutine(DestroyObject(grain));
-        
+
     }
 
 
@@ -222,10 +224,12 @@ public class PlayerTossGrowth : MonoBehaviour
                         );
 
                         Destroy(grain);
-                        Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
+                        var cornstalk = Instantiate(cornstalkPrefab, grainPosition, Quaternion.identity);
 
                         // Play Sound FX
                         SoundFXManager.instance.PlaySoundFXClip(growthClip, transform, 0.5f);
+
+                        StartCoroutine(DestroySpawnedObject(cornstalk, cornStalkDuration));
 
                         yield break; // Exit the coroutine
                     }
@@ -243,13 +247,35 @@ public class PlayerTossGrowth : MonoBehaviour
         }
     }
 
+    IEnumerator DestroySpawnedObject(GameObject gameObject, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        //If player is in range, do this
+        if (Vector2.Distance(transform.position, gameObject.transform.position) < 50)
+        {
+            //Flash sprite before destroy
+            for (int i = 0; i < 3; i++)
+            {
+                Color tmp = gameObject.GetComponent<SpriteRenderer>().color;
+                tmp.a = 0f;
+                gameObject.GetComponent<SpriteRenderer>().color = tmp;
+                yield return new WaitForSeconds(0.25f);
+                tmp = gameObject.GetComponent<SpriteRenderer>().color;
+                tmp.a = 1f;
+                gameObject.GetComponent<SpriteRenderer>().color = tmp;
+                yield return new WaitForSeconds(0.25f);
+            }
+            SoundFXManager.instance.PlaySoundFXClip(popcornClip, transform, 0.5f);
+        }
+        Destroy(gameObject);
+    }
+
     public void AddCount(string tagName) {
         if(tagName == "CornCollectible") {
             cornCount++;
         } else if(tagName == "PopcornCollectible") {
             popcornCount++;
-        } else if(tagName == "CatapultCollectible") {
-            catapultCount++;
         }
     }
 

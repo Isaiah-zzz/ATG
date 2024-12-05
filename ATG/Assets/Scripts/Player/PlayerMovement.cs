@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!canMove) {
+        if(!canMove || health == 0) {
             return;
         }
         
@@ -454,7 +454,7 @@ public class PlayerMovement : MonoBehaviour
 
     void DamagePlayer()
     {
-        health--;
+        health = Mathf.Max(health - 1, 0);
 
         if (health == 0)
         {
@@ -475,6 +475,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Death()
     {
+        footStepsSound.enabled = false;
         //Play death animation
         animator.Play("death");
         //Play death sound fx

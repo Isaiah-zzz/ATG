@@ -31,7 +31,7 @@ public class PopAndLockScript : MonoBehaviour
     IEnumerator GrowAfterDelay()
     {
         yield return new WaitForSeconds(growDelay);
-        
+
         // Increase size
         transform.localScale = originalScale * growMultiplier;
 
