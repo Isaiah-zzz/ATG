@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool invincible = false;
     [SerializeField] private float invincibleTime = 3f;
     private float invincibleTimer = 0f;
-    [SerializeField] private bool debugMode = false;
+    public bool debugMode = false;
 
     // coyote time and jump buffer variables
     [SerializeField] private float coyoteTime = 0.075f;
@@ -115,9 +115,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(!canMove || health == 0) {
+        if(!canMove) {
+            body.velocity = Vector2.zero;
+            if (footStepsSound.isPlaying)
+            {
+                footStepsSound.enabled = false;
+            }
             return;
         }
+
+        if(health == 0) return;
         
 
         #region Walking
@@ -362,7 +369,7 @@ public class PlayerMovement : MonoBehaviour
         boss.BroadcastMessage("Jump");
 
         //Play Sound FX
-        SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .5f);
+        SoundFXManager.instance.PlaySoundFXClip(jumpClip, transform, .2f);
     }
 
     // long jump functionality
@@ -415,6 +422,7 @@ public class PlayerMovement : MonoBehaviour
         {
             spawnX = HUB_SPAWNX;
             spawnY = HUB_SPAWNY;
+            health += 2;
         }
     }
 
@@ -435,7 +443,7 @@ public class PlayerMovement : MonoBehaviour
     //This just detects enemy collisions
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("InfectedVole"))
         {
             if (!damageLock && !invincible)
             {

@@ -82,7 +82,7 @@ public class TextBoxManager : MonoBehaviour
         {
             textLines = newTextLines.text.Split('\n');
         }
-        staticText.text = textLines[0]; // Set static NPC name or title
+        staticText.text = textLines[startLine]; // Set static NPC name or title
         currentLine = startLine + 1;
         endAtLine = endLine;
         player.canMove = false;
