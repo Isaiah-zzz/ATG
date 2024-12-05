@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     // variables for enemy interaction
     private static int maxHealth = 5;
-    [SerializeField] private int health = maxHealth;
+    [SerializeField] private int startingHealth = 2;
+    private int health = 2;
     public int CurrentHealth => health;
     private bool damageLock = false;
     private const float DEFAULT_SPAWNX = -124f;
@@ -85,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        health = startingHealth;
 
         //if not in debug mode, set spawn to default spawn
         if (!debugMode)
@@ -315,14 +317,14 @@ public class PlayerMovement : MonoBehaviour
         #region Debug
 
         // set spawnpoint at mouse on right click
-        if (debugMode && Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && debugMode)
         {
             spawnX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             spawnY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         }
 
         // respawn player at spawnpoint
-        if (debugMode && Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && debugMode)
         {
             Respawn();
         }
@@ -434,7 +436,7 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1f;
 
         //Reset health
-        health = 5;
+        health = startingHealth;
 
         //Reset position
         transform.position = new Vector2(spawnX, spawnY);
