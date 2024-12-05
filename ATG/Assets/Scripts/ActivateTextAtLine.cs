@@ -10,15 +10,12 @@ public class ActivateTextAtLine : MonoBehaviour
     public int startLine;
     public int endLine;
     public TextBoxManager textBox;
-    public bool activated;
     private bool playerInRange = false;
-    private int count;
 
     // Start is called before the first frame update
     void Start()
     {
         textBox = FindObjectOfType<TextBoxManager>();
-        count = 0;
     }
 
     // Update is called once per frame
@@ -35,7 +32,6 @@ public class ActivateTextAtLine : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            ActivateTextBox();
         }
     }
 
@@ -49,35 +45,8 @@ public class ActivateTextAtLine : MonoBehaviour
 
     void ActivateTextBox()
     {
-        textBox.ReloadScript(theText);
-        textBox.currentLine = startLine;
-
-        if (endLine == 0)
-        {
-            endLine = textBox.textLines.Length - 1;
-        }
-
-        textBox.endAtLine = endLine;
+        textBox.ReloadScript(theText, startLine, endLine);
         textBox.EnableTextBox();
 
-        if (activated)
-        {
-            Destroy(gameObject); // Optionally destroy if only one-time activation is needed
-        }
     }
-    // void OnTriggerEnter2D(Collider2D other) {
-    //     if(other.tag == "Player") {
-    //         textBox.ReloadScript(theText);
-    //         textBox.currentLine = startLine;
-    //         if(endLine == 0) {
-    //             endLine = textBox.textLines.Length - 1;
-    //         }
-    //         textBox.endAtLine = endLine;
-    //         textBox.EnableTextBox();
-
-    //         if(activated) {
-    //             Destroy(gameObject);
-    //         }
-    //     }
-    // }
 }

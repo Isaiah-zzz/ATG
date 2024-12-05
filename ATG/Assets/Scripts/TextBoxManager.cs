@@ -7,6 +7,8 @@ using TMPro;
 public class TextBoxManager : MonoBehaviour
 {
     public GameObject textBox;
+
+    public TMP_Text staticText;
     public TMP_Text theText;
     public TextAsset textfile;
     public string[] textLines;
@@ -43,15 +45,18 @@ public class TextBoxManager : MonoBehaviour
             return;
         }
 
+        if (currentLine > endAtLine)
+        {
+            DisableTextBox();
+            return;
+        }
+
         theText.text = textLines[currentLine];
 
-        if(Input.GetKeyDown(KeyCode.Return)) {
+        if(Input.GetKeyDown(KeyCode.Space)) {
             currentLine += 1;
         }
 
-        if(currentLine > endAtLine) {
-            DisableTextBox();
-        }
     }
 
     public void EnableTextBox() {
@@ -68,12 +73,18 @@ public class TextBoxManager : MonoBehaviour
         isActive = false;
 
         player.canMove = true;
+        player.alreadyInShoutBox = false;
     }
 
-    public void ReloadScript(TextAsset newTextLines) {
-        if(newTextLines != null) {
-            textLines = new string[1];
-            textLines = (newTextLines.text.Split("\n"));
+    public void ReloadScript(TextAsset newTextLines, int startLine, int endLine)
+    {
+        if (newTextLines != null)
+        {
+            textLines = newTextLines.text.Split('\n');
         }
+        staticText.text = textLines[0]; // Set static NPC name or title
+        currentLine = startLine + 1;
+        endAtLine = endLine;
+        player.canMove = false;
     }
 }

@@ -1,7 +1,52 @@
-this is a text file
-for the intro UI
-of 
-Against the Grain!
+Villager Vole
+Oh hey there, wizard friend! Press 'Space' to continue.
+You've been gone a while, a lot has changed. 
+Let's get you warmed up again: use your 'A' key and 'D' key to MOVE, and 'Space' or 'W' to JUMP!
+Maybe you can figure out what's going on...
 
-Use WASD to move
-Catapult yourself by holding 'Shift' and choosing a direction to launch
+Villager Vole
+This is a large jump, too large for just your legs. 
+I heard that there's a special type of leaf that launches you!
+LEAF LAUNCH yourself by holding 'Shift' and aiming your cursor in the direction to LAUNCH.
+Be ready, make sure you've positioned everything well before pressing 'Space' to LAUNCH!
+Oh, one more thing. 
+Beware of the Blobs... they aren't from around here and hurt one of my friends. 
+Maybe you'll have better luck with them.
+
+Villager Vole
+There are many of these grains lying around, each doing something different. 
+This one can GROW a cornstalk if you water it everyday and check back in three months.
+I'm KIDDING, only we have to do that! Oh, you should've seen the look on your face! 
+A magical wizard like you only has to press 'E' to aim the seed and 'Left Click' to throw the seed. 
+A cornstalk will GROW in its place!
+
+Villager Vole
+This is another grain, and is similar to GROW. 
+Use POP'N'LOCK by pressing 'Q' to aim and 'Left Click to throw. 
+A heavy kernel like this can be used for many things, and can even get a little Pushy... You may want to cover your ears when it POPS!
+
+Mayor Vole
+Welcome to Volesville, where most of us live. 
+Seems like the shops are closed right now, come back later to buy upgrades.
+In the meantime, the Surface may need some gardening help, those pesky Blobs are infectious and messy.
+
+Outcast Vole
+Oh... hey.
+What am I doing alone out here?
+Well... I don't like socializing.
+Please leave.
+
+Tinfoil Hat Vole
+It's up there... on the surface... I seent it!
+What am I talking about??? The big FARMA of course!!!
+That's code for Freaky Anthropomorphic Rabid Monstrous Abomination.
+I don't even know what half those words mean but I know they ain't good.
+And I know these "dangerous blobs" are just a ploy to distract from the true threat.
+Keep your eyes peeled friend, and trust NO ONE!
+Also I have no clue how to get that corn seed...
+
+Kid Vole
+Hiya wizard!
+Have you seen my buddy fuzzton?
+He said he was gonna go lick one of those blobby guys yesterday.
+I haven't seen him since...

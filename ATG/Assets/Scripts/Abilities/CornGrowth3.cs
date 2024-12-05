@@ -8,7 +8,6 @@ public class CornGrowth3 : MonoBehaviour
     public GameObject spriteMask; // Reference to the GameObject with Sprite Mask component
     public float shrinkSpeed = 4f; // Speed at which the mask shrinks
     private bool isShrinking = true;
-    private bool revealed = false;
     private float initY;
 
     void Start()
@@ -24,9 +23,9 @@ public class CornGrowth3 : MonoBehaviour
         //     isShrinking = true; 
         // }
 
-        if (revealed && Input.GetKeyDown(KeyCode.F)) {
-            spriteRenderer.color = Color.grey;
-        }
+        // if (revealed && Input.GetKeyDown(KeyCode.F)) {
+        //     spriteRenderer.color = Color.grey;
+        // }
 
         // Shrink the mask downwards
         if (isShrinking && spriteMask.transform.localScale.y > 0)
@@ -39,7 +38,6 @@ public class CornGrowth3 : MonoBehaviour
             {
                 newHeight = 0; // Cap it to zero
                 isShrinking = false; // Stop shrinking when fully shrunk
-                revealed = true;
             }
 
             // Apply the new scale
