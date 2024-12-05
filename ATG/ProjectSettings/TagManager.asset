@@ -17,6 +17,7 @@ TagManager:
   - CornCollectible
   - InfectedVole
   - HubCheckpoint
+  - HealthCollectible
   layers:
   - Default
   - TransparentFX

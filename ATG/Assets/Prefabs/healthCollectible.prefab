@@ -101,6 +101,7 @@ MonoBehaviour:
   respawnTime: 30
   playerMovement: {fileID: 0}
   playerTossGrowth: {fileID: 0}
+  collectibleClip: {fileID: 8300000, guid: 1de9b81e0c8d0d965a3175bcd27ebf75, type: 3}
 --- !u!58 &3551285328248802183
 CircleCollider2D:
   m_ObjectHideFlags: 0

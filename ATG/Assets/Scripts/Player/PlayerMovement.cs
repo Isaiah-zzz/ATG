@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour
     private static int maxHealth = 5;
     [SerializeField] private int health = maxHealth;
     public int CurrentHealth => health;
-    public void AddHealth() { health += 1; }
     private bool damageLock = false;
     private const float DEFAULT_SPAWNX = -124f;
     private const float DEFAULT_SPAWNY = -78f;
@@ -52,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
     private bool shiftPressed = false;
     private float xMomentum = 0;
     Vector2 PlayerPosition;
+    [SerializeField] private int catapultCollectLimit = 1;
+    [SerializeField] private int catapultIncrement = 3;
+    private int catapultCount = 0;
+    public int CurrentCatapultCount => catapultCount;
+    private bool CanUseCatapult() => catapultCount >= catapultCollectLimit;
 
     // Boss object to broadcast jumps to
     GameObject boss;
@@ -233,20 +237,20 @@ public class PlayerMovement : MonoBehaviour
         else { jumpBufferCounter -= Time.deltaTime; }
 
         // increment catapult charging while shift is held
-        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && !catapultReady && shiftPressed)
+        if (Input.GetKey(KeyCode.LeftShift) && IsGrounded() && !catapultReady && shiftPressed && CanUseCatapult())
         {
             catapultChargeTime += Time.deltaTime;
         }
 
         // if catapult has been charged for long enough, set catapultReady to true
-        if (catapultChargeTime >= catapultTimeThresh && IsGrounded() && !catapultReady)
+        if (catapultChargeTime >= catapultTimeThresh && IsGrounded() && !catapultReady && CanUseCatapult())
         {
             catapultReady = true;
             SoundFXManager.instance.PlaySoundFXClip(catapultReadyClip, transform, 0.5f);
         }
 
         // check if Lshift is pressed while on ground for catapult
-        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() && CanUseCatapult())
         {
             shiftPressed = true;
             animator.SetTrigger("leafJumpReadyTrigger");
@@ -266,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // catapult functionality
-        if (IsGrounded() && catapultReady && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
+        if (IsGrounded() && catapultReady && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && CanUseCatapult())
         {
             Catapult();
         }
@@ -381,6 +385,8 @@ public class PlayerMovement : MonoBehaviour
 
         //Play Sound FX
         SoundFXManager.instance.PlaySoundFXClip(catapultClip, transform, .75f);
+
+        --catapultCount;
     }
 
     // detect when the player has entered the range of an npc
@@ -500,4 +506,12 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+    public void AddCount(string tagName)
+    {
+        if(tagName == "HealthCollectible") {
+            health = Mathf.Min(health + 1, maxHealth);
+        } else if(tagName == "CatapultCollectible") {
+            catapultCount += catapultIncrement;
+        }
+    }
 }

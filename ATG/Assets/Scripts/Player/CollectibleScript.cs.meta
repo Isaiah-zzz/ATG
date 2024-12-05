@@ -3,7 +3,10 @@ guid: 3bda54bbfca702747899ff012048b0d3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerMovement: {instanceID: 0}
+  - playerTossGrowth: {instanceID: 0}
+  - collectibleClip: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

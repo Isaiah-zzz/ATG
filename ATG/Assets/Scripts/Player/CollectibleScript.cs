@@ -10,6 +10,7 @@ public class CollectibleScript : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerTossGrowth playerTossGrowth;
     private int collectCount;
+    [SerializeField] private AudioClip collectibleClip;
 
     void Start()
     {
@@ -25,9 +26,9 @@ public class CollectibleScript : MonoBehaviour
         {
             Collect();
 
-            if (this.gameObject.CompareTag("HealthCollectible"))
+            if (this.gameObject.CompareTag("HealthCollectible") || this.gameObject.CompareTag("CatapultCollectible"))
             {
-                playerMovement.AddHealth();
+                playerMovement.AddCount(this.gameObject.tag);
             }
             else
             {
@@ -38,6 +39,7 @@ public class CollectibleScript : MonoBehaviour
 
     void Collect()
     {
+        SoundFXManager.instance.PlaySoundFXClip(collectibleClip, transform, 1f);
         spriteRenderer.enabled = false;
         collide.enabled = false;
         StartCoroutine(RespawnAfterDelay());
