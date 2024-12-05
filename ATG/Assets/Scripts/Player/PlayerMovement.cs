@@ -446,11 +446,17 @@ public class PlayerMovement : MonoBehaviour
         //Despawn all cornstalk and popcorn objects
         foreach (var cornstalk in GameObject.FindGameObjectsWithTag("Cornstalk"))
         {
-            Destroy(cornstalk);
+            if (cornstalk != null)
+            {
+                Destroy(cornstalk);
+            }
         }
         foreach (var popcorn in GameObject.FindGameObjectsWithTag("Popcorn"))
         {
-            Destroy(popcorn);
+            if (popcorn != null)
+            {
+                Destroy(popcorn);
+            }
         }
     }
 
@@ -473,6 +479,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(FlashSprite());
         }
         damageLock = false;
+        invincibleTimer = 0f;
     }
 
     IEnumerator Death()
