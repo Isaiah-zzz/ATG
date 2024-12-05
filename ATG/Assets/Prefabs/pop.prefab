@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growDelay: 1
-  growMultiplier: 6
+  growMultiplier: 4
   groundLayer:
     serializedVersion: 2
     m_Bits: 256

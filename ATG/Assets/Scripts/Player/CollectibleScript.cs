@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class CollectibleScript : MonoBehaviour
 {
-    public float respawnTime = 1.0f;
+    public float respawnTime = 30.0f;
     private SpriteRenderer spriteRenderer;
     private Collider2D collide;
+    [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerTossGrowth playerTossGrowth;
     private int collectCount;
+    [SerializeField] private AudioClip collectibleClip;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collide = GetComponent<Collider2D>();
         playerTossGrowth = GameObject.FindWithTag("Player").GetComponent<PlayerTossGrowth>();
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,12 +25,21 @@ public class CollectibleScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Collect();
-            playerTossGrowth.AddCount(this.gameObject.tag);
+
+            if (this.gameObject.CompareTag("HealthCollectible") || this.gameObject.CompareTag("CatapultCollectible"))
+            {
+                playerMovement.AddCount(this.gameObject.tag);
+            }
+            else
+            {
+                playerTossGrowth.AddCount(this.gameObject.tag);
+            }
         }
     }
 
     void Collect()
     {
+        SoundFXManager.instance.PlaySoundFXClip(collectibleClip, transform, 1f);
         spriteRenderer.enabled = false;
         collide.enabled = false;
         StartCoroutine(RespawnAfterDelay());

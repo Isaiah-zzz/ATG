@@ -20,7 +20,7 @@ public class UIScript : MonoBehaviour
     void Update()
     {
         healthText.text = "" + movementScript.CurrentHealth;
-        catapultText.text = "" + abilityScript.CurrentCatapulCount;
+        catapultText.text = "" + movementScript.CurrentCatapultCount;
         cornText.text = "" + abilityScript.CurrentCornCount;
         kernelText.text = "" + abilityScript.CurrentPopcornCount;
 
