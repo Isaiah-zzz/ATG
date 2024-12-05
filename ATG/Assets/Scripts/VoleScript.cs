@@ -28,6 +28,8 @@ public class VoleScript : MonoBehaviour
     [SerializeField] float interval = 5f;
     private float timeCount = 0f;
     Animator animator;
+    // distance from player at which enemy becomes active 
+    [SerializeField] float activeDistance = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +58,12 @@ public class VoleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!PlayerInRange())
+        {
+            body.velocity = new Vector2(0, 0);
+            return;
+        }
 
         // every [interval] seconds, walk in a direction, pause, or hop at player
         if (timeCount >= interval)
@@ -145,6 +153,12 @@ public class VoleScript : MonoBehaviour
         {
             onWall = true;
         }
+    }
+
+    // Checks distance between this enemy and player
+    private bool PlayerInRange()
+    {
+        return Vector2.Distance(transform.position, player.transform.position) < activeDistance;
     }
 
     // NOTE: probably don't need this
