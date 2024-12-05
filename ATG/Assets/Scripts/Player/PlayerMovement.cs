@@ -70,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject npcObj = null;
     public NpcTalk npcScript = null;
 
+    public bool isInShoutBox = false;
+    public bool alreadyInShoutBox = false;
+
     // UI QOL
     public bool canMove;
 
@@ -330,9 +333,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // talking animation
-        if (Input.GetKeyDown(KeyCode.T))
+        if (isInShoutBox && !alreadyInShoutBox)
         {
             animator.SetTrigger("talkTrigger");
+            alreadyInShoutBox = true;
         }
 
         // respawn player if falling into void
@@ -394,6 +398,11 @@ public class PlayerMovement : MonoBehaviour
     // detect when the player has entered the range of an npc
     void OnTriggerEnter2D (Collider2D other)
     {
+        if (other.CompareTag("ShoutBox"))
+        {
+            isInShoutBox = true;
+        }
+
         // if player is within range of NPC
         if (other.CompareTag("NPC"))
         {
@@ -415,6 +424,12 @@ public class PlayerMovement : MonoBehaviour
     {
         npcObj = null;
         npcScript = null;
+
+        if (other.CompareTag("ShoutBox"))
+        {
+            isInShoutBox = false;
+            alreadyInShoutBox = false;
+        }
     }
 
     //This just detects enemy collisions

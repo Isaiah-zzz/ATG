@@ -25,7 +25,6 @@ public class PlayerTossGrowth : MonoBehaviour
     public bool isThrowingPopcorn = false;
     [SerializeField] private int cornCollectLimit = 1;
     [SerializeField] private int popcornCollectLimit = 3;
-    private int catapultCollectLimit = 2;
     private int cornCount;
     public int CurrentCornCount => cornCount;
     private int popcornCount;
