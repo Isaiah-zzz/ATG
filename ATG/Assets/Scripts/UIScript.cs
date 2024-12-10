@@ -15,6 +15,9 @@ public class UIScript : MonoBehaviour
     [SerializeField] private Text kernelText;
     [SerializeField] private GameObject ui;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject resumeButton;
 
     // Update is called once per frame
     void Update()
@@ -38,6 +41,7 @@ public class UIScript : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
@@ -46,5 +50,21 @@ public class UIScript : MonoBehaviour
         ui.SetActive(true);
         gameOverScreen.SetActive(false);
         movementScript.Respawn();
+    }
+
+    public void DisplayPauseScreen()
+    {
+        Time.timeScale = 0f;
+        pauseScreen.SetActive(true);
+        pauseButton.SetActive(false);
+        resumeButton.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        pauseScreen.SetActive(false);
+        pauseButton.SetActive(true);
+        resumeButton.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
