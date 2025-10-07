@@ -60,6 +60,23 @@ sysinfo.txt
 *.aab
 *.unitypackage
 *.app
+*.exe
+*.dll
+
+# Unity build output
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity player data
+*_Data/
+*_BurstDebugInformation_DoNotShip/
+
+# Unity player files
+UnityPlayer.dll
+UnityCrashHandler*.exe
+MonoBleedingEdge/
 
 # Crashlytics generated file
 crashlytics-build.properties
